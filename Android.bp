@@ -1,0 +1,23 @@
+// Soong namespace for the m2note device tree.
+//
+// WHY (FACT, measured 2026-09-16 on this tree): every Android.bp without a
+// soong_namespace lands in the root namespace "." (build/soong/android/
+// namespace.go:193), soong_build always exports "." to kati (build/soong/cmd/
+// soong_build/main.go:106), and every module of an exported namespace gets
+// NamespaceExportedToMake = true (namespace.go:204), which is the only thing
+// androidmk.go:919 checks before writing the module's install rule into
+// installs-<product>.mk.  Soong has no TARGET_DEVICE guard (kati does), so a
+// module declared in ONE device tree gets install rules in EVERY product of
+// this workspace.  Measured before this file existed: a plain `m nothing`
+// for lineage_m5s carried 51 install-rule lines pointing at 27 modules from
+// device/meizu/m95 (installs-lineage_m5s.mk), two of which collided with real
+// m5s blobs (vendor/lib{,64}/libperfservicenative.so, from the `stem:` of
+// libm95shim_perfservice — a name-only grep does not find those).
+//
+// A namespace is only exported to Make for products that list it in
+// PRODUCT_SOONG_NAMESPACES (see device.mk of this tree); for every other
+// product the modules below simply do not reach Make.  Modules inside a
+// namespace can still depend on root-namespace modules: the root namespace is
+// searched last but it IS searched (namespace.go:288-292).
+soong_namespace {
+}

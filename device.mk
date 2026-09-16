@@ -16,6 +16,25 @@
 
 LOCAL_PATH := device/meizu/m2note
 
+# ---------------------------------------------------------------------------
+# Soong namespaces (device-tree isolation)
+#
+# FACT (measured 2026-09-16): Soong parses every Android.bp in the workspace
+# for every product and has no TARGET_DEVICE guard, so a bp module declared in
+# one device tree lands in installs-<product>.mk of ALL products — a plain
+# `m nothing` for lineage_m5s carried 51 install-rule lines from
+# device/meizu/m95 (27 modules), two of them colliding with real m5s blobs
+# (vendor/lib{,64}/libperfservicenative.so, via the `stem:` of
+# libm95shim_perfservice).  Modules of a namespace reach Make only for the
+# products that list that namespace here
+# (build/soong/cmd/soong_build/main.go:99-112 -> android/namespace.go:204 ->
+# android/androidmk.go:919).  Each tree carries a root Android.bp with
+# `soong_namespace {}`; this line is the other half of the pair.
+# ---------------------------------------------------------------------------
+PRODUCT_SOONG_NAMESPACES += \
+    device/meizu/m2note \
+    vendor/meizu/m2note
+
 # Vendor blobs.
 $(call inherit-product-if-exists, vendor/meizu/m2note/m2note-vendor.mk)
 
