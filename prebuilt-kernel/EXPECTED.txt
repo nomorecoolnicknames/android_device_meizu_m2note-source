@@ -1,0 +1,2 @@
+MD5 c98b27fec7f9452420f15bab39973ea1
+VERSION Linux version 3.18.19+ (n8n@n8nagent) (gcc version 4.9 20150123 (prerelease) (GCC) ) #108 SMP PREEMPT Thu Jun 18 11:02:00 CDT 2026

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Device overlay for the Meizu M2 Note (m2note, M571) — LineageOS 20.0.
+
+     Carried from the overlay of the LOS 15.1 tree that was built for this
+     handset (/srv/forge/android/meizu_m6/rom-lineage-15.1-meizu_m6-experimental/
+     device/meizu/m2note/overlay/frameworks/base/core/res/res/values/config.xml).
+
+     Every name below was checked against
+     frameworks/base/core/res/res/values/*.xml in THIS tree on 2026-09-16.  An
+     unknown name in an overlay is an aapt2 error, not a no-op, so the
+     following entries from the 15.1 overlay were DROPPED because the resource
+     no longer exists in Android 13:
+
+       config_wifi_background_scan_support   (gone — verified MISSING)
+       config_wifi_dual_band_support         (gone — verified MISSING)
+       config_dozeAfterScreenOff             (gone — verified MISSING)
+
+     Dropped on purpose although the names still resolve:
+
+       networkAttributes / radioAttributes — the 15.1 arrays describe the
+         Nougat/Oreo connectivity model.  Carrying a stale set wholesale is how
+         subtle data-connection bugs get inherited; they go back in when
+         someone checks them against A13's ConnectivityService, not before.
+       config_multiuserMaximumUsers / config_enableMultiUserUI — multi-user on
+         a 1792 MiB /system with 3 GB RAM is a space and memory decision, not a
+         device-capability one.  Left at AOSP defaults.
+       config_persistentDataPackageName=com.google.android.gms — this is a
+         LineageOS build with no GMS.  Pointing the FRP package at a package
+         that is not installed is worse than leaving it unset.
+
+     Kept despite being unverified on this handset, with the reason:
+       config_supportDoubleTapWake=true — asserted by the 15.1 tree, never
+         measured on this unit.  HYPOTHESIS; disproved the moment a double tap
+         on a sleeping screen does nothing.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Backlight: LUX/backlight pairs carried from the 15.1 tree. -->
+    <integer name="config_screenBrightnessSettingMinimum">1</integer>
+    <integer name="config_screenBrightnessDim">20</integer>
+    <bool name="config_automatic_brightness_available">true</bool>
+
+    <integer-array name="config_autoBrightnessLevels">
+        <item>10</item>
+        <item>200</item>
+        <item>320</item>
+        <item>450</item>
+        <item>580</item>
+        <item>700</item>
+        <item>850</item>
+        <item>950</item>
+        <item>1500</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>7000</item>
+        <item>9000</item>
+        <item>11000</item>
+        <item>13000</item>
+        <item>15000</item>
+        <item>17000</item>
+    </integer-array>
+
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>1</item>
+        <item>12</item>
+        <item>91</item>
+        <item>103</item>
+        <item>107</item>
+        <item>113</item>
+        <item>120</item>
+        <item>129</item>
+        <item>134</item>
+        <item>152</item>
+        <item>224</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+    </integer-array>
+
+    <!-- Dual SIM, both slots hot-swappable (FACT: stock ro.telephony.sim.count=2,
+         ro.mtk_sim_hot_swap=1). -->
+    <bool name="config_hotswapCapable">true</bool>
+
+    <!-- The microSD slot is in the hybrid SIM tray, reachable without opening
+         the phone. -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
+
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+
+    <string-array translatable="false" name="config_tether_usb_regexs">
+        <item>rndis\\d</item>
+    </string-array>
+
+    <string-array translatable="false" name="config_tether_wifi_regexs">
+        <item>ap0</item>
+    </string-array>
+
+    <string-array translatable="false" name="config_tether_bluetooth_regexs">
+        <item>bt-pan</item>
+    </string-array>
+
+    <bool name="config_cellBroadcastAppLinks">true</bool>
+    <bool name="config_safe_media_volume_enabled">true</bool>
+    <bool name="config_dreamsEnabledByDefault">true</bool>
+    <bool name="config_restart_radio_on_pdp_fail_regular_deactivation">false</bool>
+    <bool name="config_speed_up_audio_on_mt_calls">true</bool>
+
+    <!-- ALS/PS is live on this unit (FACT: the 2026-07-06 subsystem matrix lists
+         INPUT as "good" and the sensor stack as working on the live 15.1 build). -->
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+
+    <!-- Doze / power -->
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+    <integer name="config_screenBrightnessDoze">3</integer>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+    <bool name="config_enableAutoPowerModes">true</bool>
+    <bool name="config_nightDisplayAvailable">true</bool>
+
+    <!-- Touch controller gesture wake: asserted by the 15.1 tree, never measured. -->
+    <bool name="config_supportDoubleTapWake">true</bool>
+
+    <bool name="config_intrusiveNotificationLed">true</bool>
+
+    <bool name="config_enableWifiDisplay">false</bool>
+</resources>

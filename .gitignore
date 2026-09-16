@@ -1,0 +1,4 @@
+# Nothing generated lives here. prebuilt-kernel/Image.gz-dtb IS tracked on
+# purpose: it is the runtime this port is built around, and the gate in
+# BoardConfig.mk compares it against prebuilt-kernel/EXPECTED.txt on every
+# parse. Losing it to a .gitignore would silently break the gate.

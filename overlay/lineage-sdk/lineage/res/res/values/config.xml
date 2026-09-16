@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     lineage-sdk device overlay for the Meizu M2 Note.
+
+     config_deviceHardwareKeys is a bit field:
+       1 Home, 2 Back, 4 Menu, 8 Assist, 16 AppSwitch, 32 Camera, 64 Volume.
+
+     The M2 Note has ONE physical front key (the mTouch home button) plus the
+     volume rocker: 1 + 64 = 65.  This unit has NO fingerprint sensor — FACT:
+     the LOS 15.1 vendor tree explicitly filters the FPC blobs out with the
+     comment "m2note has no fingerprint sensor; exclude stale donor FPC blobs"
+     (vendor/meizu/m2note/m2note-vendor-blobs.mk), and this tree drops the same
+     twelve files (see vendor/meizu/m2note/m2note-vendor-blobs.mk exclusions).
+
+     Note the pairing with system.prop: qemu.hw.mainkeys=1, i.e. no software
+     navbar, because the hardware key is the navigation.  Changing one without
+     the other leaves the device with either no Back or two Backs.
+
+     config_longPressOnHomeBehavior=2 (long-press Home -> Recents) is carried
+     verbatim from the 15.1 tree, and the name was verified to still exist in
+     lineage-sdk/lineage/res/res/values in this tree.
+-->
+<resources>
+    <integer name="config_deviceHardwareKeys">65</integer>
+    <integer name="config_longPressOnHomeBehavior">2</integer>
+</resources>

@@ -1,0 +1,50 @@
+#
+# system.prop for the Meizu M2 Note (m2note, M571) — LineageOS 20.0
+#
+# Only framework-side / system-partition properties belong here.  MTK hardware
+# knobs live in vendor.prop (TARGET_VENDOR_PROP).
+#
+# Deliberately NOT carried from the LOS 15.1 system.prop of this handset:
+#   ro.zygote=zygote64
+#     -> core_64_bit.mk sets zygote64_32, and init.${ro.zygote}.rc is imported
+#        while init.rc is parsed, before any prop FILE is read.  Setting it here
+#        cannot work.
+#   debug.hwui.render_dirty_regions
+#     -> not a property hwui knows.  FACT: the only partial-update knob in this
+#        tree is debug.hwui.use_partial_updates
+#        (frameworks/base/libs/hwui/Properties.h:124).
+#   ro.sys.sdcardfs=false  -> sdcardfs is gone in A13 (FUSE/MediaProvider).
+#   dalvik.vm.heapgrowthlimit / heapsize -> come from the inherited
+#        phone-xxhdpi-2048-dalvik-heap.mk in device.mk.
+#   ro.forge.m2note.gralloc2_stub_first / debug.sf.* / debug.composition.type
+#     -> these six lines encode the 15.1 source-HWC1 bring-up state
+#        ("v212: enable source HWC1 present path").  That HWC does not exist in
+#        this tree, so forcing SF into its shape here would configure a path
+#        that is not built.  They go back in with the HWC, not before.
+
+# FACT: live getprop on the running 15.1 build (capture v212, 2026-06-20)
+# reports [ro.sf.lcd_density]: [420] for the 1080x1920 panel.
+ro.sf.lcd_density=420
+
+# The m2note has capacitive/hardware keys, so no software navbar.
+# FACT: the 15.1 tree ships qemu.hw.mainkeys=1 and the device is usable that
+# way today.
+qemu.hw.mainkeys=1
+
+# GLES 3.1 (Mali-T720 MP3).
+ro.opengles.version=196609
+
+net.tethering.noprovisioning=true
+drm.service.enabled=true
+
+# HWUI on Mali-T720 + HWC1.
+# FACT, measured ON THIS HANDSET (M2NOTE_FULL_ROM_ASSESSMENT_2026-07-02.md,
+# "BOOTLOOP ЗИПА"): with debug.hwui.use_buffer_age=true the consolidated ROM
+# hung ~160 s after flash and then watchdog-rebooted; flipping that single
+# variable to false booted clean and held >500 s uptime.
+# FACT that the property is real in A13:
+# frameworks/base/libs/hwui/Properties.h:117 PROPERTY_USE_BUFFER_AGE.
+# HYPOTHESIS for the MECHANISM (Mali EGL_EXT_buffer_age partial updates ->
+# overlay freeze) was never given a disconfirming test; the correlation is the
+# fact, the mechanism is not.
+debug.hwui.use_buffer_age=false

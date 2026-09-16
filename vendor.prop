@@ -1,0 +1,136 @@
+#
+# vendor.prop for the Meizu M2 Note (m2note, M571) — LineageOS 20.0
+#
+# These go to /vendor/build.prop.  Sources: the LOS 15.1 tree's system.prop for
+# this handset, and live getprop captures of the running 15.1 build under
+# /srv/forge/android/export/m2note_flash_captures/runtime/.
+#
+# CAVEAT: on these Meizu MTK devices property_load_boot_defaults() runs before
+# /vendor is mounted, so /vendor/build.prop is not readable by early init.
+# Anything needed before mount_all belongs in PRODUCT_PROPERTY_OVERRIDES.
+
+# --- Platform identity -----------------------------------------------------
+# FACT (capture v212_live_20260620-080956/getprop.txt):
+#   [ro.board.platform]: [mt6753]   [ro.hardware]: [mt6735]
+#   [ro.hardware.gps]:   [m2note]
+ro.board.platform=mt6753
+ro.mediatek.platform=MT6753
+ro.mediatek.chip_ver=S01
+ro.mediatek.version.release=alps-mp-m0.mp1-V2.39.1_wtk6753.65u.m0_P16
+
+# --- HAL module selection --------------------------------------------------
+# ro.hardware.gps is "m2note", not "mt6753" — the GPS HAL in this blob set is
+# named for the device, unlike the m5s.  Carried verbatim from the 15.1 tree
+# (and confirmed by the live getprop above).
+ro.hardware.gps=m2note
+ro.hardware.power=mt6753
+
+# --- Panel -----------------------------------------------------------------
+# nt35532_fhd_dsi_vdo_sharp, mounted upside down relative to the framework.
+# FACT: the live cmdline carries lcm=1-nt35532_fhd_dsi_vdo_sharp
+# (capture v194 identity.txt) and the 15.1 tree sets hwrotation 180.
+ro.sf.hwrotation=180
+
+# --- MTK combo chip --------------------------------------------------------
+persist.mtk.wcn.combo.chipid=0x0337
+persist.mtk.wcn.fwlog.status=0
+service.wcn.driver.ready=no
+persist.mtk.combo.coredump=no
+
+# --- Wi-Fi ----------------------------------------------------------------
+mediatek.wlan.chip=CONSYS_MT6735
+mediatek.wlan.module.postfix=_consys_mt6735
+ro.mediatek.wlan.wsc=1
+ro.mediatek.wlan.p2p=1
+mediatek.wlan.ctia=0
+ro.mtk_wlan_support=1
+wifi.tethering.interface=wlan0
+wifi.interface=wlan0
+wifi.direct.interface=p2p0
+wifi.supplicant_scan_interval=180
+
+# --- Bluetooth ------------------------------------------------------------
+ro.mtk_bt_support=1
+
+# --- Telephony (dual SIM, LTE) --------------------------------------------
+# HONEST NOTE: telephony is BROKEN on this handset today.  FACT
+# (M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md via factbase §3.2): SIM/RIL "broken",
+# gsm.sim.state=ABSENT,ABSENT while the modem itself is alive.  These
+# properties are the configuration the 15.1 build used; they are not evidence
+# that telephony works.
+rild.libpath=/vendor/lib64/mtk-ril.so
+rild.libargs=-d /dev/ttyC0
+ro.telephony.sim.count=2
+ro.telephony.default_network=20,20
+persist.radio.multisim.config=dsds
+persist.radio.default.sim=0
+persist.radio.mobile.data=0,0
+persist.radio.fd.counter=15
+persist.radio.fd.off.counter=5
+persist.radio.fd.r8.counter=15
+persist.radio.fd.off.r8.counter=5
+ril.current.share_modem=2
+ril.external.md=0
+ril.telephony.mode=0
+ro.mtk_enable_md1=1
+ro.mtk_lte_support=1
+ro.mtk_gemini_support=1
+ro.mtk_gemini_enhancement=1
+persist.gemini.sim_num=2
+ro.gemini.smart_sim_switch=false
+ro.mtk_sim_hot_swap=1
+ro.mtk_world_phone=1
+ro.mtk_eap_sim_aka=1
+ro.mtk_rild_read_imsi=1
+ro.mtk_flight_mode_power_off_md=1
+ril.flightmode.poweroffMD=1
+persist.md.perm.checked=1
+keyguard.no_require_sim=true
+bgw.current3gband=0
+
+# --- GPS ------------------------------------------------------------------
+ro.mtk_gps_support=1
+ro.mtk_agps_app=1
+
+# --- Audio ----------------------------------------------------------------
+ro.camera.sound.forced=0
+ro.audio.silent=0
+persist.af.audio_patch_fm=1
+# Same MTK legacy audio HAL family as m5c/m5s: audio.primary.mt6753.so does not
+# assign audio_stream_in::get_capture_position, so the AOSP wrapper's NULL check
+# passes on uninitialised heap.  On the m5c this crashed audioserver on every
+# microphone capture.  HYPOTHESIS that the opt-in guard still exists in A13.
+ro.audio.legacy_hal_no_capture_position=1
+
+# --- Camera ---------------------------------------------------------------
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+camera.disable_zsl_mode=1
+
+# --- FM -------------------------------------------------------------------
+fmradio.driver.enable=0
+
+# --- Display / MiraVision -------------------------------------------------
+persist.sys.display.clearMotion=0
+ro.mtk_clearmotion_support=0
+wfd.dummy.enable=1
+persist.debug.wfd.enable=1
+
+# --- USB ------------------------------------------------------------------
+ro.sys.usb.mtp.whql.enable=0
+ro.sys.usb.storage.type=mtp
+ro.vold.umsdirtyratio=20
+ro.sys.usb.bicr=no
+ro.sys.usb.charging.only=yes
+
+# --- FRP ------------------------------------------------------------------
+# CHANGED from the 15.1 tree, which hard-coded ro.frp.pst=/dev/block/mmcblk0p20.
+# Partition numbers in properties are exactly the kind of thing that silently
+# breaks after a repartition; frp is p20 today (FACT: live by-name.txt), and
+# the by-name node says so without depending on it.
+ro.frp.pst=/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp
+
+# --- Misc -----------------------------------------------------------------
+ro.oem_unlock_supported=1
+ro.mtk_cta_set=1
+sys.ipo.pwrdncap=2

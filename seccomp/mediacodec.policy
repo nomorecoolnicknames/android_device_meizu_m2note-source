@@ -1,0 +1,20 @@
+# device specific syscalls
+# extension of services/mediacodec/minijail/seccomp_policy/mediacodec-seccomp-arm.policy
+sched_getscheduler: 1
+sched_setaffinity: 1
+sched_getparam: 1 
+
+# pselect6 (peripherals lane 2026-09-03).  The MTK OMX blobs call pselect(2);
+# the AOSP Pie base policy that this file extends
+# (frameworks/av/services/mediacodec/seccomp_policy/mediacodec-arm.policy)
+# allows ppoll but not pselect6.  media.codec therefore took SIGSYS in
+# libminijail log_sigsys_handler and aborted in the MIDDLE of enumerating
+# OMX components — the boot log stopped after OMX.google.flac.decoder.
+# IOmxStore then served a truncated/absent list, MediaCodecList came up
+# empty in every client, and the visible symptoms were: SoundPool 'Unable to
+# load sample' (no sound at all), screenrecord 'unable to create video/avc
+# codec instance', no camcorder profiles.  With this one line the component
+# enumeration completes (MTK video encoders + the whole OMX.google set incl.
+# vorbis), screenrecord writes a valid mp4, AudioService.loadSoundEffects()
+# returns true and card0/pcm8p goes to state RUNNING on the speaker.
+pselect6: 1
