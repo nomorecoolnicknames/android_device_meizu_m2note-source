@@ -43,9 +43,18 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache                    /cache       ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,nofail
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/metadata                 /metadata    ext4    noatime,nosuid,nodev,discard                                          wait,formattable,first_stage_mount
 
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect1                 /protect_f   ext4    noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc               wait,check,formattable
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect2                 /protect_s   ext4    noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc               wait,check,formattable
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvdata                   /nvdata      ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,formattable
+# /protect_f, /protect_s and /nvdata are nofail (lesson 11 of the m95 bring-up,
+# 2026-09-24; m95's own fstab carries the same flags).  Without nofail a failed
+# mount of any of them means a boot loop with no logs: one error makes
+# mount_all return FS_MGR_MNTALL_FAIL (system/core/fs_mgr/fs_mgr.cpp:1567,
+# 1580, branch meizu-legacy-kernel), init sets no ro.crypto.state and zygote
+# never starts.  With nofail the phone boots, and the log shows that NVRAM or
+# the IMEI is missing ("Ignoring failure to mount", fs_mgr.cpp:1557) instead
+# of hiding it.  `formattable` does not cover this case: it only formats a
+# partition that has no filesystem at all (fs_mgr.cpp:1496-1498).
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect1                 /protect_f   ext4    noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc               wait,check,formattable,nofail
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect2                 /protect_s   ext4    noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc               wait,check,formattable,nofail
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvdata                   /nvdata      ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,formattable,nofail
 
 # Removable / OTG
 /devices/mtk-msdc.0/11240000.msdc1*                                            auto         auto    defaults                                                              voldmanaged=sdcard1:auto
