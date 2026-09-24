@@ -134,3 +134,17 @@ ro.frp.pst=/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp
 ro.oem_unlock_supported=1
 ro.mtk_cta_set=1
 sys.ipo.pwrdncap=2
+
+# --- VINTF: kernel check at boot (m95 lesson 4, cc14611) -------------------
+# Treble turns on Build.isBuildConsistent() -> VintfObject.verifyWithoutAvb()
+# (frameworks/base/core/java/android/os/Build.java:1254, gated on
+# IS_TREBLE_ENABLED).  The prebuilt kernel is 3.18.19, and no framework
+# compatibility matrix of Android 13 has a 3.18 entry — FCM 3, the
+# target-level of manifest.xml, lists 4.4 / 4.9 / 4.14 only
+# (hardware/interfaces/compatibility_matrices/Android.bp:30-33).  So the
+# RuntimeInfo check fails on every boot ("No kernel entry found for kernel
+# version 3.18", the same line m95 logged on its 3.18) and shows the "internal
+# problem with your device" dialog.  The property skips only that half; HAL and
+# manifest checks stay on (frameworks/base branch meizu-legacy-vendor,
+# 2b2698c85a72, core/jni/android_os_VintfObject.cpp:97-110).
+ro.vendor.vintf.legacy_kernel=true
