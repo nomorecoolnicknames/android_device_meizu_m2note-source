@@ -70,6 +70,29 @@ PRODUCT_PACKAGES += \
     libcamera_client_vendor \
     librilutils
 
+# HALs the framework compatibility matrix of target-level 3 marks
+# optional="false" (hardware/interfaces/compatibility_matrices/
+# compatibility_matrix.3.xml): audio + audio.effect (>= 4.0 — Android 13's
+# client knows only 4.0..7.1, frameworks/av/media/libaudiohal/
+# FactoryHalHidl.cpp), drm, gatekeeper, composer, mapper, media.omx.  Composer
+# and mapper are already installed below; omx comes from base_vendor.mk.
+# Same choices as m95 (device/meizu/m95/device.mk, "Treble HAL backbone"):
+#  * audio@6.0-impl + audio.effect@6.0-impl: loaded by the multi-version
+#    android.hardware.audio@2.0-service already in this file.  Whether the
+#    Marshmallow audio.primary.mt6753.so survives the 6.0 wrapper is NOT known
+#    (m95 needed a Nougat-layout guard in hardware/interfaces) — HYPOTHESIS.
+#  * drm@1.0-impl/-service + drm@1.4-service.clearkey (ships its own VINTF
+#    fragment).
+#  * gatekeeper@1.0-service.software (ships its own VINTF fragment): without
+#    any IGatekeeper LockSettingsService throws (m95 18.1 evidence).
+PRODUCT_PACKAGES += \
+    android.hardware.audio@6.0-impl \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service \
+    android.hardware.drm@1.4-service.clearkey \
+    android.hardware.gatekeeper@1.0-service.software
+
 # ---------------------------------------------------------------------------
 # Screen: 1080x1920, density 420 -> xxhdpi
 # ---------------------------------------------------------------------------

@@ -36,7 +36,167 @@
   "NOT WIRED YET" block in device.mk).  Add an entry only together with runtime
   proof that the service answers.
 -->
-<manifest version="1.0" type="device">
+<!--
+  2026-09-25, FULL TREBLE (owner's directive 2026-09-24) — the "deliberately
+  narrow" rule above no longer holds, and this is why:
+
+  PRODUCT_FULL_TREBLE turns on PRODUCT_ENFORCE_VINTF_MANIFEST
+  (build/make/core/config.mk:684-693), libhidl is then built with
+  -DENFORCE_VINTF_MANIFEST (system/libhidl/Android.bp:222), and
+  registerAsService() refuses every HIDL service this manifest does not declare
+  as hwbinder (system/libhidl/transport/ServiceManagement.cpp:851-862); the
+  passthrough fallback of getService() is gone too (:770-771).  So under Treble
+  a SERVED-but-undeclared HAL is as fatal as a declared-but-unserved one:
+  without the composer entry SurfaceFlinger never gets a composer.  Every HIDL
+  service installed by device.mk is therefore declared below, and nothing else.
+  Services that ship their own VINTF fragment are NOT repeated here (the build
+  merges them): keymint, wpa_supplicant, gatekeeper@1.0-service.software,
+  drm@1.4-service.clearkey.
+
+  target-level 3 = FCM of Android 9, the lowest one Android 13 carries (m95
+  measured this: level 1 no longer exists, checkvintf exit 70).  Its
+  optional="false" HALs are all present: audio 6.0 + audio.effect 6.0 (>= 4.0
+  required), drm 1.0 + clearkey 1.4 fragment, gatekeeper (fragment),
+  composer 2.1, mapper 2.0, media.omx 1.0 (service from base_vendor.mk).
+
+  The IWifi entry stays although its service is still NOT WIRED (device.mk
+  item 1): that is the pre-existing decision of this tree, kept unchanged.
+-->
+<manifest version="1.0" type="device" target-level="3">
+    <hal format="hidl">
+        <name>android.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <version>6.0</version>
+        <interface>
+            <name>IDevicesFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.audio.effect</name>
+        <transport>hwbinder</transport>
+        <version>6.0</version>
+        <interface>
+            <name>IEffectsFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>IBluetoothHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.camera.provider</name>
+        <transport>hwbinder</transport>
+        <version>2.4</version>
+        <interface>
+            <name>ICameraProvider</name>
+            <instance>legacy/0</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.drm</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ICryptoFactory</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IDrmFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.gnss</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGnss</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.allocator</name>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
+        <interface>
+            <name>IAllocator</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.composer</name>
+        <transport>hwbinder</transport>
+        <version>2.1</version>
+        <interface>
+            <name>IComposer</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.mapper</name>
+        <transport arch="32+64">passthrough</transport>
+        <version>2.0</version>
+        <interface>
+            <name>IMapper</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.light</name>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
+        <interface>
+            <name>ILight</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.media.omx</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IOmx</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IOmxStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.memtrack</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMemtrack</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.sensors</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISensors</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.vibrator</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IVibrator</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl">
         <name>android.hardware.wifi</name>
         <transport>hwbinder</transport>
