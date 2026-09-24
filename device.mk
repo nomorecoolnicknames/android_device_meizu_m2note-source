@@ -299,6 +299,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    (gsm.sim.state=ABSENT,ABSENT with a live modem, 2026-07-06 matrix).  A13
 #    additionally wants IRadio 1.6 / AIDL.  This is a research item, not a
 #    porting item.
+#    FACT (2026-09-24, nm -D --defined-only): proprietary/vendor/lib{,64}/
+#    mtk-ril.so export RIL_InitSocket and NO RIL_Init (DT_NEEDED librilmtk.so
+#    only), and this tree has no librilimp module.  So the m95 telephony
+#    scheme (hardware/ril branch meizu-legacy-vendor, BOARD_USES_MTK_LEGACY_RIL
+#    + librilmtk + a renamed librilimp, device/meizu/m95 7c49535/2922847) does
+#    not apply: its rild loads mtk-ril.so and calls RIL_Init.
 # 6. LD shims.  The 15.1 tree declared a 13-entry TARGET_LD_SHIM_LIBS
 #    (libmtkshim_gui/_audio/_camera/_binder/_ui).  The mechanism survives on
 #    LOS 20, the shim sources do not live in this tree, and their symbol sets
