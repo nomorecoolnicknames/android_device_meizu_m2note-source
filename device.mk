@@ -293,7 +293,24 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service \
+    vibrator.default \
+    android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
+
+# 2026-09-25, Treble: every service above is declared in manifest.xml, so it
+# must actually be able to serve (a declared-but-unserved HAL hangs its
+# client).  The @1.0 impls load legacy hw modules via hw_get_module
+# (hardware/interfaces/vibrator/1.0/default/Vibrator.cpp:72,
+# memtrack/1.0/default/Memtrack.cpp:77).  FACT (m2note-vendor-blobs.mk):
+# memtrack.mt6753.so IS in the set, but the -impl that loads it was missing, so
+# the service could only exit; there is no vibrator.* module (the 5 776-byte
+# AOSP vibrator.default.so blob was excluded on purpose, see the header of
+# that file).
+#  * memtrack@1.0-impl — added, it picks memtrack.mt6753.so.
+#  * vibrator.default — the A13 AOSP module (hardware/libhardware/modules/
+#    vibrator, proprietary: true) instead of the M-era copy; it drives
+#    /sys/class/timed_output/vibrator/enable.  HYPOTHESIS: the kernel exposes
+#    timed_output; check `ls /sys/class/timed_output/vibrator` on first boot.
 
 # Camera: camera.mt6753.so is a HAL1 module; provider@2.4's default impl wraps
 # it.  Both -impl and -service are required.
