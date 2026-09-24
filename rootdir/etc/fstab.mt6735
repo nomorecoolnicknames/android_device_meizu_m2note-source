@@ -30,7 +30,17 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/custom                   /vendor      ext4    ro,barrier=1                                                          wait,first_stage_mount
 
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata                 /data        ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,encryptable=footer
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache                    /cache       ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check
+# /cache is nofail (lesson from the m95 bring-up, 2026-09-24).  A /cache that
+# does not mount (erased, or never flashed) counts as an error, and one error
+# makes mount_all return FS_MGR_MNTALL_FAIL (system/core/fs_mgr/fs_mgr.cpp:1567,
+# 1580, branch meizu-legacy-kernel); queue_fs_event() has no branch for that
+# code (init/builtins.cpp:577-626, "Invalid code"), so ro.crypto.state is never
+# set and zygote-start never fires.  With nofail the same failure is only
+# logged ("Ignoring failure to mount an un-encryptable or wiped partition",
+# fs_mgr.cpp:1557).  Deliberately NOT formattable: A13 mke2fs defaults may
+# enable ext4 features an old kernel lacks, and a failed format returns
+# NEEDS_RECOVERY (fs_mgr.cpp:1534), i.e. a reboot into recovery.
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache                    /cache       ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,nofail
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/metadata                 /metadata    ext4    noatime,nosuid,nodev,discard                                          wait,formattable,first_stage_mount
 
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect1                 /protect_f   ext4    noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc               wait,check,formattable
