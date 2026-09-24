@@ -1,0 +1,29 @@
+// m2note vendor-side libraries that exist only because the device is full
+// Treble.
+//
+// Under Treble a vendor process links in the vendor namespace: /vendor/${LIB}
+// first, then LLNDK from /system and public VNDK from the VNDK apex
+// (system/linkerconfig/contents/namespace/vendordefault.cc).  A Marshmallow
+// blob that NEEDs a framework-only library therefore fails to load unless
+// /vendor carries a library under that exact soname.
+// Evidence and counts: meizu-fleet/designs/TREBLE_M5S_M2NOTE_20260924.md §4.
+
+// libgui.so for the blobs (m95 lesson 6, libgui_m95).  FACT: 113 of the 879
+// vendor ELFs have libgui.so in their closure (treble_blob_audit.py), and
+// libgui is VNDK-private in Android 13 (vndkprivate.libraries.33.txt), so the
+// VNDK apex copy is not visible to the vendor namespace at all.  The blobs
+// were never rewired (unlike m95's libgui_m95), so the forwarder takes the
+// real soname via `stem`.  It is empty: its only content is DT_NEEDED on
+// libgui_vendor (frameworks/native/libs/gui/Android.bp, vendor: true), and
+// bionic binds the consumers' symbols across the whole local group, so a
+// process gets exactly one libgui instance (the m95 model check in
+// device/meizu/m95/shims/Android.bp).  Shadowing is not a concern here:
+// being VNDK-private, there is no apex libgui a vendor process could have
+// used instead.
+cc_library_shared {
+    name: "libm2noteshim_gui",
+    stem: "libgui",
+    vendor: true,
+    srcs: ["stub.cpp"],
+    shared_libs: ["libgui_vendor"],
+}

@@ -39,6 +39,38 @@ PRODUCT_SOONG_NAMESPACES += \
 $(call inherit-product-if-exists, vendor/meizu/m2note/m2note-vendor.mk)
 
 # ---------------------------------------------------------------------------
+# Full Treble: vendor-side copies of libraries the blobs NEED
+# ---------------------------------------------------------------------------
+# With Treble (BoardConfig.mk) a vendor process sees only /vendor, LLNDK and
+# public VNDK.  FACT (meizu-fleet/tools/treble_blob_audit.py over
+# m2note-vendor-blobs.mk, VNDK 33 lists of the m95 build, 2026-09-25): 818 of
+# 879 vendor ELFs had an unresolved closure, 111 missing sonames.  The entries
+# below are the ones Android 13 can build for /vendor from source; with them
+# the same audit gives 591 / 108.  What remains (libnativehelper,
+# libandroid_runtime, libskia, libstagefright, libmedia, ..., GPU in sphal,
+# and a long tail of SYSTEM binaries that the 15.1 extraction put into this
+# vendor set — screencap, dex2oat, e2fsck, the TEE's alipayapp) is the shim /
+# blob-list lane: designs/TREBLE_M5S_M2NOTE_20260924.md §4.
+#
+#  * libstdc++.vendor — bionic's small libstdc++ (bionic/libc/Android.bp,
+#    vendor_available: true); 773 closures, the largest single gap.
+#  * libgui_vendor + libm2noteshim_gui — libgui.so for 113 closures, m95
+#    lesson 6 (shims/Android.bp says why a forwarder and not a copy).
+#  * libcamera_client_vendor — m95 lesson 7: the vendor build of
+#    libcamera_client (stem libcamera_client, frameworks/av branch
+#    meizu-legacy-vendor), 87 closures.  Still missing for libsource.so: the
+#    N-form getCameraInfo(int, android::CameraInfo*)
+#    (…13getCameraInfoEiPNS_10CameraInfoE) — design doc §5, wall (b).
+#  * librilutils — vendor: true in hardware/ril/librilutils; NEEDed by mtkrild
+#    and the RIL closure (10).
+PRODUCT_PACKAGES += \
+    libstdc++.vendor \
+    libgui_vendor \
+    libm2noteshim_gui \
+    libcamera_client_vendor \
+    librilutils
+
+# ---------------------------------------------------------------------------
 # Screen: 1080x1920, density 420 -> xxhdpi
 # ---------------------------------------------------------------------------
 # FACT: live getprop [ro.sf.lcd_density]: [420] (capture
