@@ -222,7 +222,8 @@ TARGET_COPY_OUT_PRODUCT := system/product
 # ---------------------------------------------------------------------------
 # Vendor partition / VNDK
 # ---------------------------------------------------------------------------
-# Decision: REAL /vendor on custom (p19), VNDK OFF.
+# Decision: REAL /vendor on custom (p19).  (Until 2026-09-24: "VNDK OFF";
+# superseded by the Treble block below.)
 #
 # FACT: custom = mmcblk0p19, 524 288 KiB = 512 MiB (by-name.txt +
 #   proc_partitions.txt above).
@@ -236,23 +237,45 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
 
-# VNDK stays OFF — and this IS a change of direction from the LOS 15.1 tree,
-# so the reason is spelled out rather than assumed.
+# Full Treble + VNDK (owner's directive 2026-09-24: "all of them Treble",
+# same shape as m95).  Until 2026-09-24 this block said "VNDK stays OFF" — a
+# change of direction from the LOS 15.1 tree, which had set
+# BOARD_VNDK_VERSION := current and never reached full Treble (TRB-FULL =
+# "error" in the 2026-07-06 matrix: no /vendor/etc/vintf/manifest.xml, Q/R GSIs
+# died early; M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md via factbase §3.2).  The
+# reason given then still holds — these are Marshmallow blobs with no VNDK
+# compliance — and it is now paid on the vendor side.  Measured before the
+# switch (meizu-fleet/tools/treble_blob_audit.py over m2note-vendor-blobs.mk
+# against the VNDK 33 lists of the m95 build): 818 of 879 vendor ELFs have an
+# unresolved DT_NEEDED closure in the vendor or sphal namespace, 111 missing
+# sonames; the vendor copies in device.mk bring that to 591 / 108.  The rest is
+# the shim lane — designs/TREBLE_M5S_M2NOTE_20260924.md §4.  The first
+# manifest failure named above is closed here (DEVICE_MANIFEST_FILE, and
+# manifest.xml now carries a target-level and every served HAL).
 #
-# The 15.1 tree set BOARD_VNDK_VERSION := current and aimed at full Treble.
-# FACT: that goal was never reached.  The 2026-07-06 subsystem matrix records
-# TRB-FULL as "error": no /vendor/etc/vintf/manifest.xml, and Q/R GSIs died
-# early in boot (M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md via factbase §3.2).
-# FACT: the blob set is Marshmallow-era MTK, the same generation whose vendor
-# ELFs link framework-only libraries; on the m5c that measured 134 of 403 ELFs,
-# and every one of them fails at the linker inside a VNDK namespace
-# (M5C_LOS16_TREBLE_PLAN.md §6.2).
-# FACT (build/make/core/config.mk:721-737): with PRODUCT_SHIPPING_API_LEVEL and
-# PRODUCT_FULL_TREBLE both unset, leaving BOARD_VNDK_VERSION undefined is legal
-# in A13 and selects the pre-VNDK linking model.
-# A vendor PARTITION does not require VNDK; the two are independent knobs, and
-# this tree takes the partition without the namespace.
-PRODUCT_FULL_TREBLE_OVERRIDE := false
+# PRODUCT_FULL_TREBLE_OVERRIDE: PRODUCT_SHIPPING_API_LEVEL is not set, so
+# nothing turns Treble on by itself.  It also switches
+# PRODUCT_ENFORCE_VINTF_MANIFEST on (build/make/core/config.mk:684-693), and
+# with it libhidl refuses to register any HIDL service the device manifest does
+# not declare as hwbinder (system/libhidl/transport/ServiceManagement.cpp:
+# 851-862) — see manifest.xml.
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+
+# VNDK "current" (= 33), the same value m95 ships.  NOT 30: m95 tried
+# BOARD_VNDK_VERSION := 30 first and rejected it on two hard soong walls
+# (vendor apexes in hardware/interfaces, and a vendor_snapshot module this
+# workspace does not have) — device/meizu/m95/BoardConfig.mk "Treble + VNDK 30".
+# m95's PRODUCT_EXTRA_VNDK_VERSIONS := 30 is NOT carried over: it exists there
+# only to boot the new system against an already-built v30 vendor.img; the only
+# vendor ever built for this device is the 15.1 one (VNDK 27), and /system here
+# has no room to spare (1536 MiB, see the report's size section).
+BOARD_VNDK_VERSION := current
+
+# SELinux split follows PRODUCT_FULL_TREBLE (PRODUCT_SEPOLICY_SPLIT, same
+# config.mk block): the vendor image gets vendor_sepolicy.cil built from
+# system/sepolicy/vendor plus BOARD_VENDOR_SEPOLICY_DIRS.  No device policy is
+# carried yet (runtime is permissive via cmdline); the device dir is the place
+# for it when the rc lane lands.
 
 # ---------------------------------------------------------------------------
 # Boot / root layout
