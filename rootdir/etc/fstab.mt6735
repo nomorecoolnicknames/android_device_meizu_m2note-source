@@ -9,8 +9,14 @@
 #     FACT: custom = mmcblk0p19, 524 288 KiB = 512 MiB (live by-name.txt and
 #     /proc/partitions, recovery session 2026-05-30), and the LOS 15.1 port
 #     already mounts it as /vendor (HANDOFF_NEXT_AGENT.md:30).
-#  3. forceencrypt dropped from /data — A13 uses FBE; encryptable=footer keeps
-#     the door open without forcing anything at first boot.
+#  3. forceencrypt dropped from /data — A13 uses FBE.
+#     CORRECTION 2026-09-24: /data carries NO encryption flag at all.  The
+#     encryptable=footer this note used to keep is rejected by Android 13
+#     unless vold_managed is also set (system/core/fs_mgr/fs_mgr_fstab.cpp:
+#     317-322, "FDE is no longer supported"), and that rejection fails the
+#     WHOLE fstab, so first-stage init could not have mounted /system.
+#     Decision (team lead, 2026-09-24): /data unencrypted for now; FBE is a
+#     separate task.
 #
 # The by-name directory is resolved at runtime; partition NUMBERS are never
 # written here.  That rule matters more on this device than on its siblings:
@@ -29,7 +35,8 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system                   /system      ext4    ro,barrier=1                                                          wait,first_stage_mount
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/custom                   /vendor      ext4    ro,barrier=1                                                          wait,first_stage_mount
 
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata                 /data        ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check,encryptable=footer
+# /data: no encryption flag — see note 3 above (fs_mgr_fstab.cpp:317-322).
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata                 /data        ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                           wait,check
 # /cache is nofail (lesson from the m95 bring-up, 2026-09-24).  A /cache that
 # does not mount (erased, or never flashed) counts as an error, and one error
 # makes mount_all return FS_MGR_MNTALL_FAIL (system/core/fs_mgr/fs_mgr.cpp:1567,
