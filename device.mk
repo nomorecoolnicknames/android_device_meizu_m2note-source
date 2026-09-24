@@ -154,6 +154,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal/ht120.mtc:$(TARGET_COPY_OUT_VENDOR)/etc/.tp/.ht120.mtc \
     $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/agps_profiles_conf2.xml
 
+# wpa_supplicant service with the AIDL interface name the A13 framework asks
+# for (m95 lesson 161682f; nothing else in this image defines the service —
+# see the header of that rc).
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init/init.m2note.wifi.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.m2note.wifi.rc
+
 # ---------------------------------------------------------------------------
 # Permissions — only hardware that exists on this unit
 # ---------------------------------------------------------------------------
@@ -304,9 +310,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    they are Oreo-era init syntax; the device-side init.mt6735.rc /
 #    ueventd.mt6735.rc from the 15.1 tree are not carried either.  This is the
 #    single largest remaining chunk of work after the kernel.
-#    Carried ahead of that lane: rootdir/etc/init/init.m2note.nvram.rc (m95
-#    Bluetooth-address lesson, 2026-09-24).  It needs nvram_daemon running
-#    (service.nvram_init=Ready); the stock nvram_daemon.rc starts it only on
-#    sys.boot_completed=1.
+#    Carried ahead of that lane: rootdir/etc/init/init.m2note.wifi.rc
+#    (wpa_supplicant with the AIDL interface; do not port a second
+#    `service wpa_supplicant`) and rootdir/etc/init/init.m2note.nvram.rc (m95
+#    Bluetooth-address lesson, 2026-09-24).  The latter needs nvram_daemon
+#    running (service.nvram_init=Ready); the stock nvram_daemon.rc starts it
+#    only on sys.boot_completed=1.
 # 9. recovery/TWRP — this tree does nothing with recovery.img beyond the
 #    partition size and TARGET_RECOVERY_FSTAB.

@@ -46,13 +46,15 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.wifi.supplicant</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>ISupplicant</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
+    <!--
+      android.hardware.wifi.supplicant is deliberately NOT declared here
+      (2026-09-24, lesson of m95 161682f).  The Android 13 wpa_supplicant of
+      this tree serves only the AIDL ISupplicant (CONFIG_CTRL_IFACE_AIDL,
+      external/wpa_supplicant_8/wpa_supplicant/android.config:332) and declares
+      it itself in its own VINTF fragment,
+      /vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml
+      (wpa_supplicant/Android.mk:1827).  The HIDL 1.1 entry that stood here
+      would be a declared-but-unserved HAL (see the rule above).  The service
+      itself is in rootdir/etc/init/init.m2note.wifi.rc.
+    -->
 </manifest>
