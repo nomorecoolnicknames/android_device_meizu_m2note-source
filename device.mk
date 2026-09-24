@@ -94,6 +94,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.mt6735:$(TARGET_COPY_OUT_RAMDISK)/fstab.mt6735 \
     $(LOCAL_PATH)/rootdir/etc/fstab.mt6735:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.mt6735
 
+# Init fragment with the m95 NVRAM/Bluetooth lesson, carried ahead of the rc
+# lane (NOT WIRED YET below): the BT address publisher.
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init/init.m2note.nvram.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.m2note.nvram.rc \
+    $(LOCAL_PATH)/rootdir/m2note-bdaddr.sh:$(TARGET_COPY_OUT_VENDOR)/bin/m2note-bdaddr.sh
+
 # ---------------------------------------------------------------------------
 # Input
 # ---------------------------------------------------------------------------
@@ -298,5 +304,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    they are Oreo-era init syntax; the device-side init.mt6735.rc /
 #    ueventd.mt6735.rc from the 15.1 tree are not carried either.  This is the
 #    single largest remaining chunk of work after the kernel.
+#    Carried ahead of that lane: rootdir/etc/init/init.m2note.nvram.rc (m95
+#    Bluetooth-address lesson, 2026-09-24).  It needs nvram_daemon running
+#    (service.nvram_init=Ready); the stock nvram_daemon.rc starts it only on
+#    sys.boot_completed=1.
 # 9. recovery/TWRP — this tree does nothing with recovery.img beyond the
 #    partition size and TARGET_RECOVERY_FSTAB.
