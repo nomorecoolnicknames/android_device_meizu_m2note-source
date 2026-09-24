@@ -348,6 +348,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    android.hardware.wifi@1.0-service module; the device tree must define its
 #    own cc_binary.  manifest.xml already declares IWifi, and a declared but
 #    unserved HAL hangs its client (m681 light@2.0 lesson).
+#    CORRECTION 2026-09-25 (FACT): the standalone service DOES exist, as a
+#    kati module — hardware/interfaces/wifi/1.6/default/Android.mk:96
+#    (LOCAL_MODULE := android.hardware.wifi@1.0-service), and m95 installs it.
+#    It links the static libwifi-hal, which for BOARD_WLAN_DEVICE := MediaTek
+#    is libwifi-hal-mt66xx (frameworks/opt/net/wifi/libwifi_hal/Android.mk:
+#    123-125); m95 builds its own (device/meizu/m95/wifi_hal).  The service
+#    ships a VINTF fragment (IWifi 1.6): when it is wired, drop the IWifi 1.2
+#    entry from manifest.xml in the same change.
 # 4. lib_driver_cmd_mt66xx / libwifi-hal-mt66xx come from vendor/mediatek, not
 #    present here.  libwpa_client does not exist in A13.
 # 5. Telephony.  SIM/RIL is broken on this handset even on 15.1
