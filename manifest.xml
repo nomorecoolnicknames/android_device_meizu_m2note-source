@@ -61,6 +61,10 @@
 
   The IWifi entry stays although its service is still NOT WIRED (device.mk
   item 1): that is the pre-existing decision of this tree, kept unchanged.
+
+  GNSS is NOT declared (and its service not installed): its legacy module
+  cannot load in the vendor namespace yet, and system_server blocks on a
+  declared IGnss (device.mk, GNSS block).
 -->
 <manifest version="1.0" type="device" target-level="3">
     <hal format="hidl">
@@ -109,15 +113,6 @@
         </interface>
         <interface>
             <name>IDrmFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.gnss</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IGnss</name>
             <instance>default</instance>
         </interface>
     </hal>
