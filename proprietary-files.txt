@@ -400,7 +400,6 @@ lib/libdiagn.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdiagn.so
 lib/libdirect-coredump.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdirect-coredump.so
 lib/libdlna_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdlna_jni.so
 lib/libdngop.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdngop.so
-lib/libdpframework.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdpframework.so
 lib/libdrmmtkutil.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdrmmtkutil.so
 lib/libdrmmtkwhitelist.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdrmmtkwhitelist.so
 lib/libdta_mt6605_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdta_mt6605_jni.so
@@ -448,7 +447,6 @@ lib/libfmmt6630.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfmmt6630.so
 lib/libfrsdk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfrsdk.so
 lib/libgas.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgas.so
 lib/libgccdemangle.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgccdemangle.so
-lib/libged.so|$(TARGET_COPY_OUT_VENDOR)/lib/libged.so
 lib/libgifEncoder_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgifEncoder_jni.so
 lib/libgnustl_shared.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgnustl_shared.so
 lib/libgpu_aux.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgpu_aux.so
@@ -469,7 +467,6 @@ lib/libimg_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimg_utils.so
 lib/libimsma.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma.so
 lib/libimsma_rtp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma_rtp.so
 lib/libimsma_socketwrapper.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma_socketwrapper.so
-lib/libion_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libion_mtk.so
 lib/libiprouteutil.so|$(TARGET_COPY_OUT_VENDOR)/lib/libiprouteutil.so
 lib/libja3m.so|$(TARGET_COPY_OUT_VENDOR)/lib/libja3m.so
 lib/libjhead.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjhead.so
@@ -749,7 +746,6 @@ lib64/libdiagn.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdiagn.so
 lib64/libdirect-coredump.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdirect-coredump.so
 lib64/libdlna_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdlna_jni.so
 lib64/libdngop.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdngop.so
-lib64/libdpframework.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdpframework.so
 lib64/libdrmmtkutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdrmmtkutil.so
 lib64/libdrmmtkwhitelist.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdrmmtkwhitelist.so
 lib64/libdta_dynamic_load_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdta_dynamic_load_jni.so
@@ -785,7 +781,6 @@ lib64/libfmmt6630.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfmmt6630.so
 lib64/libfrsdk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfrsdk.so
 lib64/libgas.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgas.so
 lib64/libgccdemangle.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgccdemangle.so
-lib64/libged.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libged.so
 lib64/libgpu_aux.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgpu_aux.so
 lib64/libgralloc_extra.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgralloc_extra.so
 lib64/libgraphite2.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgraphite2.so
@@ -803,7 +798,6 @@ lib64/libimg_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimg_utils.so
 lib64/libimsma.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma.so
 lib64/libimsma_rtp.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma_rtp.so
 lib64/libimsma_socketwrapper.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma_socketwrapper.so
-lib64/libion_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libion_mtk.so
 lib64/libiprouteutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libiprouteutil.so
 lib64/libja3m.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libja3m.so
 lib64/libjhead.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjhead.so
@@ -1056,9 +1050,12 @@ thh/uTAgent|$(TARGET_COPY_OUT_VENDOR)/thh/uTAgent
 # lib/hw/vibrator.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib/lib_fpc_tac_shared.so  -- датчика отпечатка у m2note нет
 # lib/libcom_fingerprints_service.so  -- датчика отпечатка у m2note нет
+# lib/libdpframework.so  -- модуль BUILD_PREBUILT: зависимость symbols (libmtkshim_camera) из vendor/mediatek
 # lib/libeffects.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib/libfingerprint_tac.so  -- датчика отпечатка у m2note нет
 # lib/libfs_mgr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/libged.so  -- модуль BUILD_PREBUILT: зависимость libgralloc_extra из vendor/mediatek
+# lib/libion_mtk.so  -- модуль BUILD_PREBUILT: зависимость libgem (libgui_ext) из vendor/mediatek
 # lib/libm.so  -- AOSP libm Android 6 — не должен лежать рядом с блобами
 # lib/libreference-ril.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib/librilmtk.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
@@ -1088,9 +1085,12 @@ thh/uTAgent|$(TARGET_COPY_OUT_VENDOR)/thh/uTAgent
 # lib64/lib_fpc_tac_shared.so  -- датчика отпечатка у m2note нет
 # lib64/libcam1client.so.pre_m2note_skip_prefeature_cmd.bak  -- резервная копия редактора
 # lib64/libcom_fingerprints_service.so  -- датчика отпечатка у m2note нет
+# lib64/libdpframework.so  -- модуль BUILD_PREBUILT: зависимость symbols (libmtkshim_camera) из vendor/mediatek
 # lib64/libeffects.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib64/libfingerprint_tac.so  -- датчика отпечатка у m2note нет
 # lib64/libfs_mgr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/libged.so  -- модуль BUILD_PREBUILT: зависимость libgralloc_extra из vendor/mediatek
+# lib64/libion_mtk.so  -- модуль BUILD_PREBUILT: зависимость libgem (libgui_ext) из vendor/mediatek
 # lib64/libreference-ril.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib64/librilmtk.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
 # lib64/libteei_fp.so  -- датчика отпечатка у m2note нет

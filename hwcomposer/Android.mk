@@ -7,8 +7,11 @@
 # It is the HWC that 15.1 ran on this handset (system.prop v212 notes, "panel
 # functional; HWC and gralloc HALs run", M2NOTE_SUBSYSTEM_STATUS DISP-HWC).
 # The stock hwcomposer.mt6753.so blob is left out of the vendor list.
-# libgralloc_extra: the vendor/mediatek source module (built for m2note, whose
-# blob copy is excluded from the vendor list so one file has one rule).
+# libgralloc_extra: linked against the vendor/mediatek source module (defined for
+# m2note), but at runtime the BLOB copy is what lands in /vendor/lib* — the
+# vendor list installs it and PRODUCT_COPY_FILES wins the expected "overriding
+# commands" — exactly the 15.1 state (device_m2note.mk:497-510).  This HWC calls
+# only gralloc_extra_query, which the blob exports (FACT, readelf).
 LOCAL_PATH := $(call my-dir)
 
 # m2note source HWC 1.1 (direct-framebuffer present; replacement for the

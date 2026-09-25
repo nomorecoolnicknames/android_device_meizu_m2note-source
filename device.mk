@@ -116,9 +116,14 @@ PRODUCT_PACKAGES += \
 # (/system/build.prop, m5c 2026-08-29).  USB: NO sys.usb.configfs / controller
 # here — the m2note kernel has the legacy android_usb gadget, driven by
 # rootdir/init.mt6735.usb.rc and the platform init.usb.rc (configfs=0 path).
+# sys.usb.ffs.aio_compat=1 (m5c usb-shell 2026-08-29): Pie adbd uses AIO on
+# FunctionFS by default, and on the MTK musb path AIO wedged bulk-IN.  Oreo
+# adbd (what ran on 15.1) did not use AIO, so 15.1 proves nothing here —
+# kept on (review 2026-09-25); harmless where AIO works.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.zygote=zygote64_32 \
     persist.sys.usb.config=adb \
+    sys.usb.ffs.aio_compat=1 \
     pm.dexopt.first-boot=quicken \
     pm.dexopt.boot=verify \
     pm.dexopt.install=speed-profile \
@@ -162,3 +167,18 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     forge_vendor_firmware_link
+
+# Blob ABI shims paired in BoardConfig.mk TARGET_LD_SHIM_LIBS.  The linker loads
+# a shim like a DT_NEEDED library (bionic linker.cpp:1368-1371 @29f0b5db): if
+# the file is not in the image, the CONSUMER fails to load — so they must be
+# installed (review 2026-09-25: they were paired but not packaged).
+PRODUCT_PACKAGES += \
+    libshim_vcodec_m2note \
+    libshim_icu53_m2note
+
+# Blob modules that vendor/mediatek (included whole for m2note) links by name —
+# defined in vendor/meizu/m2note/Android.mk, installed once from here.
+PRODUCT_PACKAGES += \
+    libged \
+    libion_mtk \
+    libdpframework

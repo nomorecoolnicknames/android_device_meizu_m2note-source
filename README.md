@@ -67,10 +67,23 @@ Meizu M2 Note (M571, MT6753, 8×A53). Продукт `lineage_m2note` (`-userdeb
 
 ## 5. Статическая проверка (без сборки)
 
-`meizu-fleet/tools/a9-static-check.py m2note`: 982 правила `PRODUCT_COPY_FILES` — все источники есть
-(918 блобов, 37 в дереве, 27 в платформе на коммитах ганвеста); двойных назначений — 0 (два найденных —
-seccomp-политика и `wpa_supplicant.conf` — сняты исключением блобов); 48/48 имён `PRODUCT_PACKAGES`
-определены; `.bp`-модулей в дереве нет. Не `m nothing`.
+`meizu-fleet/tools/a9-static-check.py m2note`: 976 правил `PRODUCT_COPY_FILES` — все источники есть
+(912 блобов, 37 в дереве, 27 в платформе на коммитах ганвеста); двойных назначений — 0 (два найденных —
+seccomp-политика и `wpa_supplicant.conf` — сняты исключением блобов); 53/53 имён `PRODUCT_PACKAGES`
+определены; строки fstab — по 5 полей; `.bp`-модулей в дереве нет. Не `m nothing`.
+
+**Исправлено по ревью 2026-09-25** (независимый проход code-reviewer):
+- fstab: при замене шапки осталась незакомментированная строка `…/by-name/<partition>` — fs_mgr счёл бы
+  весь fstab пустым (`fs_mgr_fstab.cpp:582-584` @e7f32da), `mount_all` без /system. Удалена; в проверку
+  добавлен разбор fstab.
+- `vendor/mediatek`, включённый для m2note целиком, ссылается по имени модуля на блобы `libged`,
+  `libion_mtk`, `libdpframework`; `core/main.mk:804-815` проверяет зависимости всех объявленных модулей →
+  `m nothing` упал бы. Теперь это BUILD_PREBUILT-модули в `vendor/meizu/m2note` + PRODUCT_PACKAGES.
+- шимы `libshim_vcodec_m2note`, `libshim_icu53_m2note` были спарены, но не ставились — добавлены в
+  PRODUCT_PACKAGES (иначе потребитель шима не грузится: linker.cpp:1368-1371).
+- возвращён `sys.usb.ffs.aio_compat=1` (adbd Pie использует AIO на FunctionFS; на 15.1 был Oreo-adbd без AIO).
+- Оставлено как у донора: `forge-modem.rc` без `override` для nvram/ccci/muxreport/terservice (действуют
+  рамдисковые определения); `vendor/mediatek/nfc` кладёт висячие симлинки в system — шум, не сбой.
 
 ## 6. HYPOTHESIS первого бута
 
