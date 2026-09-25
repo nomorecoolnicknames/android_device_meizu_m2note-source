@@ -1,17 +1,22 @@
-# BoardConfig.mk for the Meizu M5c (m5c, model M710H) — MT6737M, arm64, 2 GB RAM.
-# LineageOS 16.0 (Android 9 Pie) skeleton, Treble stage A: a REAL /vendor
-# partition on custom (mmcblk0p17, exactly 512 MiB), NO VNDK.
+# BoardConfig.mk for the Meizu M2 Note (m2note, model M571) — MT6753, arm64,
+# 8x Cortex-A53.  LineageOS 16.0 (Android 9 Pie), Treble stage A: a REAL
+# /vendor partition on custom, NO VNDK.
 #
-# Modeled on device/meizu/m95 (standalone Pie BoardConfig in this tree) and
-# device/meizu/m681 (the Treble stage A vendor-partition block).  Sources of
-# truth: the working LOS 14.1 tree on the forge box
-# (/srv/forge/android/m5c/los14.1-m5c-patched/device/meizu/m5c — board/*.mk,
-# PlatformConfig.mk, all values boot the device daily on the
-# lineage-14.1-20260827 ROM) and its M5C_LOS16_TREBLE_PLAN.md.
+# Donor: device/meizu/m5c @77e62e0 (LOS 16.0, boots on the M5c), through the
+# MT6753 adaptations made for the m5s (a9-trees/m5s, same SoC).  The m2note
+# differs from both in what matters most here: it runs a 3.18.19 kernel (not
+# 4.9), its partition NUMBERS differ, its panel is 1080x1920, it uses the
+# legacy android_usb gadget, and it is the only one of the three with a live
+# history (LOS 15.1 reached sys.boot_completed on it).  Sources of truth:
+#   - live 15.1 captures   /srv/forge/android/export/m2note_flash_captures/
+#   - the LOS 15.1 tree    /srv/forge/android/meizu_m6/rom-lineage-15.1-meizu_m6-experimental/device/meizu/m2note
+#   - kernel tree          /srv/forge/android/m2note/kernel-m2note-3.18-adapt
+#   - the LOS 20 report    meizu-fleet/trees/M2NOTE_LOS20_TREE.md
+# Nothing in this tree has been built or run on the device (README.md).
 
-DEVICE_PATH := device/meizu/m5c
+DEVICE_PATH := device/meizu/m2note
 
-# Architecture — arm64 quad Cortex-A53 (MT6737M).
+# Architecture — arm64, 8x Cortex-A53 (MT6753).
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -19,100 +24,79 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
 
 TARGET_2ND_ARCH := arm
-# Pie combo makefiles ignore armv7-a-neon on an armv8-a primary and warn;
-# armv8-a is the correct 2nd-arch variant (m95 gunwest parse gate, 2026-07-26).
 TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_USES_64_BIT_BINDER := true
 
-# Platform
-TARGET_BOARD_PLATFORM := mt6737m
-TARGET_BOOTLOADER_BOARD_NAME := mt6737m
+# Platform.  FACT (live getprop, capture runtime/v212_live_20260620-080956):
+# [ro.board.platform]: [mt6753], [ro.hardware]: [mt6735].
+TARGET_BOARD_PLATFORM := mt6753
+TARGET_BOOTLOADER_BOARD_NAME := mt6753
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
-BOARD_NAME := m5c
+BOARD_NAME := m2note
 BOARD_USES_MTK_HARDWARE := true
 MTK_HARDWARE := true
 
-# Kernel — geometry is the 14.1 board/kernel.mk one (boots the device daily).
-# The MTK boot-header board tag is "mt6737" (14.1 BOARD_MKBOOTIMG_ARGS).
-# androidboot.hardware=mt6735 matches the rc/fstab suffix the live 14.1
-# device uses (init.mt6735.rc, fstab.mt6735) — same lesson as the m681 port,
-# where androidboot.hardware was REQUIRED for init to import the platform rc.
-# buildvariant= is appended by build/make automatically — do not set it here.
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive androidboot.hardware=mt6735
-# Boot geometry MUST reproduce the addresses of the proven 14.1 image:
-#   kernel 0x40080000, ramdisk 0x44000000, tags 0x4e000000.
-# The earlier base 0x40078000 (taken from the recovery block) plus the
-# 0x00080000 kernel offset landed the kernel at 0x400f8000 - 0x78000 off.
-# The MTK loader jumps exactly where the header says, so the kernel never ran:
-# no pstore, no last_kmsg, no expdb entry from 4.9 at all, just a boot loop.
-# ramdisk and tags happened to come out right with the old base; they do not
-# with the correct one, hence all four values move together.
+# Kernel / boot.img geometry.  FACT: header of the image that last reached
+# sys.boot_completed on this handset (sha256 9b25c1e0...3a3f, four-way identity,
+# runtime/v181_15.1_v178_regdump_20260618-121109/):
+#   kernel 0x40080000, ramdisk 0x44000000, second 0x40f00000, tags 0x4e000000,
+#   page 2048, header v0, name "m2note".
+# Its cmdline was
+#   bootopt=64S3,32N2,64N2 firmware_class.path=/system/vendor/firmware
+#   androidboot.selinux=permissive buildvariant=eng m2note.disable_md1=1
+# Two deliberate changes (FACT for why):
+#   - firmware_class.path -> /vendor/firmware: /vendor is a real partition here;
+#     modem images sit in /vendor/etc/firmware and firmware-link/ adds the
+#     /vendor/firmware -> etc/firmware symlink (m5c layout);
+#   - m2note.disable_md1=1 DROPPED: it is the "cmdline-gated MD1 isolation" of
+#     kernel commit 44275ddc (ccci_util_lib_fo.c:297-308, 524) — that proven boot
+#     ran WITH THE MODEM SWITCHED OFF.  A9 wants the modem.
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 firmware_class.path=/vendor/firmware androidboot.selinux=permissive androidboot.hardware=mt6735
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_OFFSET := 0x00080000
 BOARD_RAMDISK_OFFSET := 0x04000000
 BOARD_KERNEL_TAGS_OFFSET := 0x0e000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --board mt6737
+BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --board m2note
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-# Prebuilt lane: our 4.9.188 kernel, gzip -n -9 of arch/arm64/boot/Image
-# glued with the byte-exact STOCK DTB (captures/20260817-los-first-boot/
-# dtb_stock.dtb, 69427 B — project rule: the 4.9 kernel runs with the stock
-# DTB byte-for-byte, never the tree-built one).
-#
-# Provenance of the file now in prebuilt-kernel/ (2026-09-03, display lane):
-#   worktree k49-worktrees/piedisp, branch pie-disp, HEAD ae73519c1
-#   Linux version 4.9.188-m5c+ #11 SMP PREEMPT Thu Sep  3 18:27:08 MSK 2026
-#   md5 349ddd90ad0e60a1ad35270b3e61eb8d
-# It carries, on top of the 13 display commits ported from 14.1:
-#   ab80fb63a  ion: ION_MM_SET/GET_SF_BUF_INFO (the LOS16 scroll lag:
-#              frame median 200-250 ms -> 38 ms, Invalid command(4) 2040 -> 0)
-#   e856673d3  ion: the same for the 32-bit compat path
-#   b13478280  ion: compat union offset fix (camera lane d8a8dc5bc) + the
-#              layout BUILD_BUG_ONs re-pointed at it, and ret_copy checked
-#   235dc9759  ion: build-time gate on the ion_mm_data layout
-#   840fd40ef  bt: stpbt .write_iter (BT lane 12196ff80)
-#   3dda5aeb6  sched: CONFIG_CPUSETS (see rootdir/forge-cpuset.rc)
-#   ae73519c1  disp: forge-bornsig probe (tearing lane, zero cost per frame)
-# The previous comment named pie-config d0f794f8d; that branch has since lost
-# the SMI fix (smi_legacy.c / mmsys_config) and must NOT be built from —
-# pie-disp carries it (mtk-smi.c +20, smi_legacy.c +15 against pie-config).
-#
-# Packaging gate held on this file:
-#   strings Image.gz-dtb | grep -c mt6735m-mmc   == 2
-#   strings Image.gz-dtb | grep -c mediatek,msdc == 0
-# (i.e. the stock DTB is inside, the tree-built DTB is NOT).  Beware: grep -c
-# returns 1 on ZERO matches, and zero is what the msdc gate wants — under
-# set -e that kills the checking script exactly when it succeeds.
+# Prebuilt lane: 3.18.19+ #108 — the kernel of that same proven image
+# (pages [2048, 2048+7654977) of it), sha256 87f5ec53...4080, md5 c98b27fe...
+# (identical to los20/device/meizu/m2note/prebuilt-kernel, PROVENANCE.md there).
+# Built from /srv/forge/android/m2note/kernel-m2note-3.18-adapt (m2note_defconfig).
+# What this kernel is: the v178 "pmic rail trace" debug build — the LAST one that
+# booted, not a release kernel.  3.18 is fine for Pie (m95 and the M6 run LOS 16
+# on 3.18).  FACT (m2note_defconfig): CONFIG_USB_G_ANDROID=y, no USB_CONFIGFS —
+# hence the legacy USB path in rootdir/; CONFIG_CPUSETS=y; CONFIG_SECCOMP_FILTER=y.
 TARGET_KERNEL_SOURCE :=
 TARGET_KERNEL_CONFIG :=
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt-kernel/Image.gz-dtb
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
-# Гейт свежести prebuilt-ядра.  Файл выше кладётся в дерево РУКАМИ и молча
-# устаревает: 2026-09-03 здесь лежало ядро от 28 августа, и чистая сборка
-# отгрузила бы ROM без единой правки того дня.  Инвентарь по файлам
-# /system и /vendor этого не ловит — ядро в эти разделы не входит.
-# Правило, которое человек должен помнить, уже один раз не сработало;
-# это — правило, которое валит сборку.  Подробности несовпадения уходят в
-# stderr (видны в логе как есть), в stdout — короткий маркер.
-# Проверено негативно: с ядром от 28 августа make останавливается с кодом 2.
+# Prebuilt kernel gate (m5c pattern) — proves "image == tree", not "tree is right".
 forge_kernel_check := $(shell $(DEVICE_PATH)/tools/check_prebuilt_kernel.sh \
         $(TARGET_PREBUILT_KERNEL) $(DEVICE_PATH)/prebuilt-kernel/EXPECTED.txt)
 ifneq ($(strip $(forge_kernel_check)),)
 $(error $(forge_kernel_check))
 endif
 
-# Partitions — 14.1 board/filesystem.mk + the p86 partition map.
-# recovery: fastboot getvar says 32 MiB; the 14.1 BoardConfig's 20 MiB is a
-# known contradiction (M5C_LOS16_TREBLE_PLAN.md §1.1 — ground truth getvar).
+# Partitions.  FACT (recovery session 2026-05-30, by-name.txt + /proc/partitions,
+# and sgdisk in GSI_REPARTITION_PLAN_2026-07-03.md:18-20):
+#   boot p9 16 MiB, recovery p10 20 MiB (NOT the 22 MiB of the 15.1 tree — a
+#   15.1-built recovery would not fit), custom p19 512 MiB, system p23 1536 MiB,
+#   cache p24 400 MiB, userdata p25 12 831 948 800.
+# CONTRADICTION, recorded both ways: M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:69
+# says "System partition was repartitioned large enough for Q/R candidates".
+# The current GPT was not re-read after that.  1536 MiB is the stock minimum, so
+# it is a safe upper bound for system.img either way; check before flashing
+# (README.md §7): cat /proc/partitions; sgdisk -p /dev/block/mmcblk0.
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
 BOARD_CACHEIMAGE_PARTITION_SIZE := 419430400
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12831948800
@@ -124,46 +108,35 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# --- Treble stage A (mirrors m681 BoardConfig.mk vendor block) -------------
-# /vendor is a REAL partition: custom = mmcblk0p17, exactly 512 MiB, never
-# mounted by LOS 14.1 — the same size as m681's custom(p3) byte for byte.
-# TARGET_COPY_OUT_VENDOR=vendor is what makes the difference: it builds a
-# vendor.img and removes the ramdisk /vendor -> /system/vendor symlink.
-# Stage A ONLY: PRODUCT_FULL_TREBLE_OVERRIDE stays false and
-# PRODUCT_SHIPPING_API_LEVEL stays 25 (lineage_m5c.mk), so VNDK enforcement
-# is NOT turned on — it is unreachable for this blob set (134 of 403 vendor
-# ELFs need framework libs, plan §6.2) and is not required for a vendor
-# partition (PRODUCT_USE_VNDK gates on shipping API level, not on Treble).
+# --- Treble stage A ---------------------------------------------------------
+# /vendor is a REAL partition: custom = mmcblk0p19, 512 MiB (FACT: live by-name
+# and /proc/partitions), and the 15.1 port already mounted it as /vendor
+# (kernel-m2note-3.18-adapt/HANDOFF_NEXT_AGENT.md:30).  VNDK OFF: the 15.1 tree
+# set BOARD_VNDK_VERSION := current and full Treble was never reached
+# (TRB-FULL = error, M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:47) — Marshmallow blobs.
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
 
-# A-only — no slots, no dynamic partitions.  fastboot is DEAD on this device
-# (writes no partition); flashing is TWRP/dd over by-name only.
 AB_OTA_UPDATER := false
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.mt6735
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
-TARGET_SCREEN_WIDTH := 720
-TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1920
 
-# System props
 TARGET_SYSTEM_PROP := $(DEVICE_PATH)/system.prop
 
-# SELinux: runtime stays androidboot.selinux=permissive for bring-up (same
-# as 14.1 and the m681/m95 ports).  Pie public-policy neverallows reject
-# Oreo-era MTK vendor rules; skip build-time assertions until an enforcing
-# build is attempted (same flag the mt6755-common layer uses).
+# SELinux: permissive via cmdline; 201 unique denials in 29 domains on one 15.1
+# boot (M2NOTE_FULL_ROM_ASSESSMENT_2026-07-02.md §3) — enforcing is a later lane.
 SELINUX_IGNORE_NEVERALLOWS := true
 
-# Seccomp (mediacodec policy carried from 14.1; the MTK omx lesson from m681:
-# without the vendor seccomp policy the omx service hits SIGSYS and bootloops).
 BOARD_SECCOMP_POLICY := $(DEVICE_PATH)/seccomp
 
-# Wi-Fi — MTK conn_soc (MT6735 CONSYS).  Same control path 14.1 proves live
-# (/dev/wmtWifi write 1/0), wired the m681 way for the Pie wifi stack.
+# Wi-Fi — MTK CONSYS.  lib_driver_cmd_mt66xx and libwifi-hal-mt66xx come from
+# vendor/mediatek (its Android.mk includes EVERYTHING for TARGET_DEVICE=m2note).
 BOARD_WLAN_DEVICE := MediaTek
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -174,95 +147,60 @@ WIFI_DRIVER_STATE_CTRL_PARAM := /dev/wmtWifi
 WIFI_DRIVER_STATE_ON := 1
 WIFI_DRIVER_STATE_OFF := 0
 
-# Bluetooth — same CONSYS; the HIDL service arrives with the stage-4 lane.
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 
-# RIL bridge anchor (hardware/ril/libril/librilmtk_force_needed.c): the m95
-# default isMalSupported does not exist in the m5c M-era stock libril — our
-# librilimp exports exactly the 8 non-MAL symbols mtk-ril.so imports
-# (fact-checked with nm -D 2026-08-28, see M5C_LOS16_TREE_BRINGUP.md).
-# isEpdgSupport is one of those 8.
-FORGE_LIBRILMTK_KEEP_ANCHOR := isEpdgSupport
-
-# Vendor-blob ABI shim. libvcodecdrv.so (Flyme / Android 7.1) imports
-# __pthread_gettid, dropped from bionic in Pie; the missing symbol breaks the
-# dlopen chain of /vendor/lib/egl/libGLES_mali.so, so the 32-bit zygote aborts
-# with couldn't find an OpenGL ES implementation and the boot never finishes.
-# The 64-bit path is unaffected, which is why bootanimation ran while the
-# framework did not. See shims/pthread_gettid_shim.c.
-# Three 32-bit blobs import the symbol (nm -D -u over proprietary/lib):
-# libvcodecdrv is the boot blocker, reached through the Mali dlopen chain;
-# libMtkOmxVdecEx and libmtkjpeg would trip later on video decode and JPEG.
-# All three take the same shim. The 64-bit blobs are clean.
+# Vendor-blob ABI shims — measured on THIS blob set (readelf, 2026-09-25):
+#  - __pthread_gettid (dropped from bionic in Pie) is imported by
+#    lib/libvcodecdrv.so, lib/libMtkOmxVdec.so, lib/libmtkjpeg.so,
+#    lib/libvcodec_utility.so and lib64/libvcodec_utility.so -> libshim_vcodec_m2note
+#    (the m5c shim source; on the m5c the libvcodecdrv hole broke the Mali
+#    dlopen chain and with it the 32-bit zygote).
+#  - ICU *_53 (Pie ships ICU 60, external/icu uvernum.h:61): mtk_agpsd needs 7
+#    ucnv_* symbols; libdrmmtkutil, libmzplayer, libtaglib add ucnv_toUnicode_53
+#    and ucnv_fromUChars_53 -> libshim_icu53_m2note (the m681 icu.cpp pattern,
+#    _53 names).
+#  - camera closure: libcam_utils / libmtk_mmutils / libmmsdkservice.feature /
+#    libcam.client import GraphicBuffer / BufferQueue symbols that
+#    vendor/mediatek/symbols/{gui,ui}.cpp export (same set as m5s/m5c).
+# NOT needed here (FACT, same pass): no VoiceUnlock imports in
+# audio.primary.mt6753.so (m5c/m5s had them); libnvram.so has no DT_NEEDED
+# libfs_mgr.so.
 TARGET_LD_SHIM_LIBS += \
-    /system/lib/libvcodecdrv.so|/system/vendor/lib/libshim_vcodec.so \
-    /system/lib/libMtkOmxVdecEx.so|/system/vendor/lib/libshim_vcodec.so \
-    /system/lib/libmtkjpeg.so|/system/vendor/lib/libshim_vcodec.so
-
-# GPS blobs (N-era, ELF32 only), the m95/m681 pattern:
-#  - /vendor/bin/mtk_agpsd links seven ICU-56 ucnv_* exports (readelf
-#    --dyn-syms 2026-09-03: UCNV_FROM_U_CALLBACK_STOP_56, UCNV_TO_U_CALLBACK_
-#    STOP_56, ucnv_close_56, ucnv_convertEx_56, ucnv_open_56,
-#    ucnv_setFromUCallBack_56, ucnv_setToUCallBack_56); Pie ships ICU 60+ and
-#    the daemon dies at the linker with "cannot locate symbol UCNV_FROM_U_
-#    CALLBACK_STOP_56". libmtkshim_icu (vendor/mediatek/symbols/icu.cpp) is
-#    the thin forwarder set; m5c is already in vendor/mediatek/Android.mk's
-#    device filter, so only the wiring is new here.
-#  - /vendor/bin/mnld: its libmnl.so destroys a mutex twice per session stop,
-#    which Pie's FORTIFY turns into SIGABRT; libmnld_shim (shims/pthread.c)
-#    is the no-op interposer, queued before libc for the whole process.
-# Consumer paths are realpath()'d by the linker at parse time, so on this
-# real-/vendor-partition image the canonical /vendor/... spelling is used.
-# Executable consumers: the linker matches the exe's /proc/self/exe path.
-TARGET_LD_SHIM_LIBS += \
-    /vendor/bin/mtk_agpsd|/vendor/lib/libmtkshim_icu.so \
-    /vendor/bin/mnld|/vendor/lib/libmnld_shim.so
-
-# Peripherals lane 2026-09-03 (forge-peripherals.mk; evidence in
-# M5C_LOS16_PERIPHERALS_20260903.md).  Measured with blobsym.py over the
-# LOS 16 out tree, both ABIs; every pair below closes a real "cannot locate
-# symbol" the linker would otherwise hit:
-#  - audio.primary.mt6737m.so: 11 MTK AudioSystem::*VoiceUnlock* statics that
-#    AOSP libmedia never exported -> libshim_audio_m5c (shims/audio_voiceunlock.c).
-#  - camera HAL closure: libcam_utils (2 GraphicBuffer ctors), libmtk_mmutils
-#    (GraphicBuffer(w,h,fmt,usage)), libmmsdkservice.feature (createBufferQueue
-#    with IGraphicBufferAlloc, BufferItemConsumer ctor + setName, and the
-#    libui GraphicBuffer(ANativeWindowBuffer*,bool)) -> the m95 gui/ui thunks.
-# The linker realpath()s the consumer half and matches the loaded library's
-# realpath, so 32- and 64-bit consumers are separate pairs (no ${LIB}).
-TARGET_LD_SHIM_LIBS += \
-    /vendor/lib/hw/audio.primary.mt6737m.so|/vendor/lib/libshim_audio_m5c.so \
-    /vendor/lib64/hw/audio.primary.mt6737m.so|/vendor/lib64/libshim_audio_m5c.so \
+    /vendor/lib/libvcodecdrv.so|/vendor/lib/libshim_vcodec_m2note.so \
+    /vendor/lib/libMtkOmxVdec.so|/vendor/lib/libshim_vcodec_m2note.so \
+    /vendor/lib/libmtkjpeg.so|/vendor/lib/libshim_vcodec_m2note.so \
+    /vendor/lib/libvcodec_utility.so|/vendor/lib/libshim_vcodec_m2note.so \
+    /vendor/lib64/libvcodec_utility.so|/vendor/lib64/libshim_vcodec_m2note.so \
+    /vendor/bin/mtk_agpsd|/vendor/lib/libshim_icu53_m2note.so \
+    /vendor/lib/libdrmmtkutil.so|/vendor/lib/libshim_icu53_m2note.so \
+    /vendor/lib64/libdrmmtkutil.so|/vendor/lib64/libshim_icu53_m2note.so \
+    /vendor/lib/libmzplayer.so|/vendor/lib/libshim_icu53_m2note.so \
+    /vendor/lib64/libmzplayer.so|/vendor/lib64/libshim_icu53_m2note.so \
+    /vendor/lib/libtaglib.so|/vendor/lib/libshim_icu53_m2note.so \
+    /vendor/lib64/libtaglib.so|/vendor/lib64/libshim_icu53_m2note.so \
     /vendor/lib/libcam_utils.so|/vendor/lib/libmtkshim_gui.so \
     /vendor/lib64/libcam_utils.so|/vendor/lib64/libmtkshim_gui.so \
     /vendor/lib/libmtk_mmutils.so|/vendor/lib/libmtkshim_gui.so \
     /vendor/lib64/libmtk_mmutils.so|/vendor/lib64/libmtkshim_gui.so \
+    /vendor/lib/libcam.client.so|/vendor/lib/libmtkshim_gui.so \
+    /vendor/lib64/libcam.client.so|/vendor/lib64/libmtkshim_gui.so \
     /vendor/lib/libmmsdkservice.feature.so|/vendor/lib/libmtkshim_gui.so \
     /vendor/lib/libmmsdkservice.feature.so|/vendor/lib/libmtkshim_ui.so \
     /vendor/lib64/libmmsdkservice.feature.so|/vendor/lib64/libmtkshim_gui.so \
     /vendor/lib64/libmmsdkservice.feature.so|/vendor/lib64/libmtkshim_ui.so
 
-# --- Stage 4: telephony via the MTK Oreo HIDL RIL (vendor/mediatek/ril) -----
-# FACT (readelf, 2026-09-03, M5C_LOS16_TREE_BRINGUP.md): the stock mtk-ril.so
-# has no RIL_Init (only RIL_InitSocket), so the AOSP rild can never host it;
-# the stock mtkrild needs seven MTK entry points (RIL_registerSocket,
-# RIL_queryMyChannelId, ...) that the AOSP-Pie libril lacks, so with our
-# librilmtk it registered the vendor RIL with the STOCK (socket-only) libril
-# and Pie telephony never saw an IRadio. vendor/mediatek/ril's rild.c does
-# RIL_InitSocket -> RIL_registerSocket and its libril publishes IRadio 1.0.
-# BOARD_PROVIDES_LIBRIL skips hardware/ril/libril entirely (incl. its
-# librilmtk-SONAME build and the FORGE_LIBRILMTK_KEEP_ANCHOR hook above,
-# which is now inert); ENABLE_VENDOR_RIL_SERVICE (device.mk) swaps rild.
-# TARGET_SPECIFIC_HEADER_PATH puts MTK's telephony/ril.h (RIL_Env with the
-# MTK proxy/channel slots) ahead of hardware/ril's — m681 BoardConfig.mk:208.
+# --- Telephony via the MTK Oreo HIDL RIL (vendor/mediatek/ril), m5c recipe ---
+# FACT (readelf 2026-09-25): mtk-ril.so (both ABIs) exports RIL_InitSocket and
+# no RIL_Init.  librilmtk.so here exports IMS_RIL_onUnsolicitedResponseSocket
+# and IMS_RILA_register but NOT IMS_isRilRequestFromIms / RIL_UpdateToVT — and
+# that is harmless: the MTK libril @6dd7c54b defines IMS_isRilRequestFromIms and
+# IMS_RIL_onUnsolicitedResponseSocket itself (ril/libril/ril.cpp:1102-1110) and
+# never references RIL_UpdateToVT.  mtk-ril's ifc_* imports are all in
+# system/core @e7f32da.  RIL_InitialAttachApn layout: see README.md (needs the
+# MTK_RIL_IAA_NO_ROAMING_PROTOCOL patch to vendor/mediatek, as on the m5c).
 BOARD_PROVIDES_LIBRIL := true
 TARGET_SPECIFIC_HEADER_PATH := vendor/mediatek/include
 
-# VINTF device manifest (peripherals lane 2026-09-03).  Without it
-# hwservicemanager answers getTransport() EMPTY for every vendor HAL and
-# HalDeviceManager.isSupported() concludes there is no Wi-Fi vendor HAL, so
-# the MTK combo driver is never powered up and wlan0 never appears.  See the
-# comment at the top of manifest.xml.
-DEVICE_MANIFEST_FILE := device/meizu/m5c/manifest.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
