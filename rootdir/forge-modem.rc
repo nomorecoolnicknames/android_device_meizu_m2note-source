@@ -1,0 +1,197 @@
+# forge: modem bring-up chain for LineageOS 16.0 on m5c.
+#
+# The Pie vendor tree ships the MTK modem binaries (ccci_mdinit, ccci_fsd,
+# gsm0710muxd, muxreport, terservice, mtkrild) but no init script defines
+# them, so nothing ever brings the modem up: mtk.md1.status stays empty and
+# rild restarts forever. This is the same chain that was reconstructed for
+# 14.1 (rootdir/root/init.modem.rc); the ordering facts below were established
+# there on this exact hardware.
+
+# forge m5c (sim lane, 2026-09-03): disarm the etap-4 libril's
+# "reset modem once after boot", which was taking the whole modem down.
+#
+# vendor/mediatek/ril/libril/ril.cpp, onNewCommandConnect():
+#   773: if (0 == property_get(RIL_MUXREPORT, prop, NULL) && socket_id == RIL_SOCKET_2) {
+#   774:     RLOGD("**reset modem**");
+#   775:     property_set(GSM_RIL_INIT, "0");        // gsm.ril.init
+#   777:     property_set(RIL_MUXREP_CASE, "2");     // ril.mux.report.case
+#   778:     property_set("ctl.start", "muxreport-daemon");
+#   779:     property_set(RIL_MUXREPORT, "0");       // ril.muxreport
+#
+# property_get() returns the LENGTH of the value, so the guard reads
+# "ril.muxreport has never been set".  FACT, boot 14:27 (logcat + dmesg):
+# the block fired 3 ms after the SUB1 socket connected (14:28:45.062
+# UNSOL_RIL_CONNECTED socket_id=1 -> 14:28:45.065 **reset modem**), and the
+# rest followed mechanically: ril.mux.report.case 0 -> 2, rild's own
+# ctl.start of muxreport-daemon, "Invoke mux app mechanism with case=2",
+# kernel "MD reset ioctl called by (159)muxreport", ccci_mdinit
+# "stop all up layer service" -> ril-daemon-mtk / ccci_fsd / gsm0710muxd
+# killed.  Nothing brings them back: mtk.md1.status stays "wait to reset"
+# and gsm.ril.init stays 0, which would also hang any later socket connect
+# in the do{sleep(1)}while(gsm.ril.init != "1") loop just above line 773.
+#
+# The stock 14.1 RIL never does this: the golden capture
+# captures/20260827-sim-notready/radio_boot.log carries 3053 RILC lines and
+# ZERO "**reset modem**", with ril.mux.report.case read as 0 throughout -
+# same modem, same firmware, same ccci_mdinit, SIM working.  Seeding the
+# property makes property_get() return 1 and skips the block entirely.
+# Must be set before rild starts; rild is started off the mux watchdog,
+# many seconds after post-fs-data.
+on post-fs-data
+    setprop ril.muxreport 0
+    mkdir /data/nvram/md 0770 root system
+    mkdir /data/ccci_cfg 0770 system radio
+    mkdir /data/mdlog 0775 shell system
+    chown radio radio /sys/kernel/ccci/boot
+    chown radio radio /sys/class/BOOT/BOOT/boot/md
+    chown radio radio /dev/ccci_fs
+    chown radio radio /dev/ccci_ioctl0
+    chown radio radio /dev/ccci_ioctl1
+    chown radio radio /dev/ccci_monitor
+    chown radio radio /dev/ttyC0
+    chown media audio /dev/ccci_aud
+    restorecon /data/ccci_cfg
+
+service nvram_daemon /vendor/bin/nvram_daemon
+    class main
+    user root
+    group system
+
+service ccci_fsd /vendor/bin/ccci_fsd 0
+    class main
+    user radio
+    group radio system
+    oneshot
+
+# forge (14.1 fact): this binary must run as root. Started as system it gets a
+# NULL path for the modem-boot node and exits 255.
+# It also waits for NVRAM and gives up if it is not ready yet, so it is started
+# on the nvram-ready property rather than with the rest of the class.
+service ccci_mdinit /vendor/bin/ccci_mdinit 0
+    class main
+    user root
+    group radio system
+    disabled
+    oneshot
+
+on property:service.nvram_init=Ready
+    start ccci_mdinit
+
+# forge (2026-09-03): the mux WAITS for the modem handshake before it talks,
+# because it cannot be armed late enough from here.
+# FACT: the ramdisk /init.modem.rc (the 14.1 file, inside boot.img) already
+# carries "on property:mtk.md1.status=init_done -> start gsm0710muxd", and
+# trigger actions from every rc file accumulate, so no vendor-side trigger can
+# cancel that early start. What CAN be replaced is the service: `override`
+# swaps the ramdisk definition for this one, so whoever starts "gsm0710muxd"
+# (the ramdisk trigger, ours, or ccci_mdinit's ctl.start) now gets a process
+# that first waits for the MD's second handshake and only then execs the real
+# muxd - spending its 10 s "+EIND: 128" window on a modem that is actually up.
+# FACT (boots 13:15 and 14:10, identical): init_done arms the mux at t~12 s,
+# md_cd_power_on lands at t~18.5, HS2 at t~19.0, and the window expires at
+# t~21.9 -> ASSERT ERROR_CODE=8 -> muxreport MD reset -> ccci_mdinit stops the
+# chain. Boot 13:07 won the same race with the same files (CMUX READY).
+# NB: no '$' anywhere in the command. init expands BOTH ${x} and bare $x as
+# property names (system/core/init/util.cpp expand_props), so a shell variable
+# in an rc line is read as a property name and the line fails to expand.
+service gsm0710muxd /system/bin/sh -c "timeout 30 sh -c 'while ! dmesg | grep -q md_hs2_msg_notify; do sleep 1; done'; exec /vendor/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic"
+    override
+    class main
+    user root
+    group radio cache inet misc
+    disabled
+    oneshot
+
+service muxreport-daemon /vendor/bin/muxreport
+    class main
+    user radio
+    group radio cache inet misc
+    disabled
+    oneshot
+
+service terservice /vendor/bin/terservice
+    class main
+    user radio
+    group radio system inet
+    disabled
+    oneshot
+
+# forge (14.1 fact): the chain does not self-start. mux and the RIL sit
+# disabled with no trigger, so they must be armed on the modem-ready property.
+#
+# forge (2026-09-03, live): mtk.md1.status=init_done is ccci_mdinit's OWN
+# readiness, not the modem's, and it fires BEFORE the MD handshake finishes.
+# gsm0710muxd then waits 10 s for the modem's "+EIND: 128" URC and, when HS2
+# lands later than that, gives up:
+#   poll_modem_ready(): select timeout / Wait +EIND: 128 timeout! Continue...
+#   Modem does not respond to AT commands / 'No such device' (code: 19)
+#   Could not open all devices and start muxer / ASSERT : ERROR_CODE=8
+# (boot 13:15 on this device; the 13:07 boot won the same race and reached
+# CMUX READY with the identical files). ccci_mdinit also publishes "ready"
+# and "bootup" [FACT: strings]. The working 14.1 init.modem.rc arms the mux on
+# init_done AND on ready; do the same here, so a late modem still gets a mux.
+on property:mtk.md1.status=init_done
+    chown radio radio /dev/ttyC0
+    start terservice
+    start gsm0710muxd
+
+on property:mtk.md1.status=ready
+    chown radio radio /dev/ttyC0
+    start terservice
+    start gsm0710muxd
+
+on property:init.svc.gsm0710muxd=running
+    start ril-daemon-mtk
+
+# forge (14.1 fact): muxreport is armed by the RIL itself via ril.muxreport=1,
+# NOT by "mux is running". That ordering matters: muxreport is the process
+# that issues the MD reset ioctl, so starting it while the mux is still
+# failing turns a lost race into a modem reset that takes ccci_fsd,
+# gsm0710muxd and ril-daemon-mtk down with it ("stop all up layer service").
+on property:ril.muxreport=1
+    start muxreport-daemon
+
+# Stage 4 (2026-09-03): the RIL that owns the modem is the MTK Oreo HIDL rild
+# built from vendor/mediatek/ril (RIL_InitSocket -> RIL_registerSocket, IRadio
+# 1.0). The service KEEPS the name ril-daemon-mtk: ccci_mdinit has
+# "gsm0710muxd" / "ril-daemon-mtk" hardcoded for its ctl.start / ctl.stop
+# ("stop all up layer service") [FACT: strings ccci_mdinit], and the ramdisk
+# init.modem.rc triggers start it by that name. `override` replaces the
+# ramdisk definition (/vendor/bin/mtkrild, class core) with this one.
+# Socket set = the 14.1 mtkrild set; mtk-ril.so takes its control sockets
+# from the environment.
+service ril-daemon-mtk /vendor/bin/hw/rild
+    override
+    class main
+    socket rild stream 660 root radio
+    socket rild2 stream 660 root radio
+    socket rild3 stream 660 root radio
+    socket rild4 stream 660 root radio
+    socket rild-ims stream 660 root radio
+    socket rild-debug stream 660 radio system
+    socket rild-oem stream 660 radio system
+    socket rild-mtk-ut stream 660 radio net_bt
+    socket rild-mtk-ut-2 stream 660 radio net_bt
+    socket rild-mtk-modem stream 660 radio system
+    socket rild-atci stream 660 root radio
+    socket rild-mal stream 660 radio system
+    socket rild-mal-at stream 660 radio system
+    socket rild-vsim stream 660 root radio
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    user root
+    group radio cache inet misc audio sdcard_r sdcard_rw log system
+    disabled
+    oneshot
+
+# The AOSP rild.legacy.rc (vendor/etc/init) defined ril-daemon = the AOSP
+# rild, class main, autostart. Stage 4 no longer builds it, but a device that
+# was not re-flashed still carries the file. This stub is parsed first
+# (alphabetical order within /vendor/etc/init) and stays disabled; the later
+# duplicate is ignored by init. Nothing starts it.
+service ril-daemon /vendor/bin/hw/rild
+    override
+    class main
+    user root
+    group radio
+    disabled
+    oneshot

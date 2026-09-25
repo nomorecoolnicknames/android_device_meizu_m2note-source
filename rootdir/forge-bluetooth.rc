@@ -1,0 +1,87 @@
+# forge-bluetooth.rc — Bluetooth HAL service + local address for the m5c on
+# LOS 16 (peripherals lane 2026-09-03).  Vendor rc, parsed inside mount_all.
+#
+# 1. The service.  Replaces the 64-bit AOSP android.hardware.bluetooth@1.0-
+#    service placed on 2026-08-29: that one registers fine (btHci != nullptr
+#    stopped aborting), but its passthrough impl cannot dlopen libbt-vendor.so
+#    — this device's blob set has it 32-bit only — so the first BT enable
+#    would fail.  See bluetooth_hal/Android.bp.  Same service name as the AOSP
+#    rc (vendor.bluetooth-1-0) so the framework-side ctl.* and the vts hooks
+#    keep working; `override` because both rc files may be present and init
+#    keeps the first definition otherwise.
+#
+#    Groups: the AOSP rc has only `bluetooth`.  libbluetooth_mtk reads the
+#    NVRAM BD address record through libnvram in THIS process and programs the
+#    controller with it (14.1 M5C_BT_ADDR_LANE.md: vendor HCI 0xFC1A,
+#    radiomod.c:291; the address the stack passes is ignored).  The record is
+#    root:3008 0660 from stock; AID 3008 (net_bt_stack) no longer exists on
+#    Pie, hence the chown below (m95 shape), plus the wider group list of the
+#    vendor/mediatek .mtk rc (net_bt_stack there is load-bearing on m681).
+#
+# 2. The address.  Pie's HAL (hardware/interfaces/bluetooth/1.0/default/
+#    bluetooth_address.cc) reads the local address from exactly three sources
+#    — the file named by ro.bt.bdaddr_path, ro.boot.btmacaddr,
+#    persist.service.bdroid.bdaddr — and vendor_interface.cc:212 does
+#    LOG_ALWAYS_FATAL("No Bluetooth Address!") when all miss.  On this image
+#    all three are unset (FACT, getprop 2026-09-03); the 14.1 tree published
+#    the address via btaddr_mtk -> /data/misc/bluetooth/bdaddr + ro.bt.bdaddr_path,
+#    which LOS 16 does not carry.  m5c-bdaddr.sh (port of m95-bdaddr.sh) reads
+#    the six factory bytes — d8 6c 02 ab 6f 3f on this unit, = 14.1's
+#    <factory-address-redacted> — and publishes persist.service.bdroid.bdaddr.  The HAL
+#    reads it at BT enable, not at boot, so post-fs-data is early enough.
+
+#
+# 3. /dev/stpbt.  ueventd.mt6735.rc (ramdisk) says `0660 bluetooth net_bt_stack`;
+#    on Pie that group name does not resolve, so ueventd leaves the node at
+#    root:root 0600 (FACT, ls -l on the live LOS 16, 2026-09-03) and the HAL
+#    (user bluetooth) cannot open it.  Fixed in the tree's ueventd too, but
+#    that only lands with the next boot.img; this chown covers the current one.
+
+on post-fs-data
+    chown bluetooth bluetooth /dev/stpbt
+    chmod 0660 /dev/stpbt
+    chown root bluetooth /data/nvram/APCFG/APRDEB/BT_Addr
+    chmod 0660 /data/nvram/APCFG/APRDEB/BT_Addr
+    exec_background - root bluetooth -- /vendor/bin/sh /vendor/bin/m5c-bdaddr.sh
+
+# forge m5c (2026-09-03, bt-stp): the chown at post-fs-data above CANNOT work.
+# /dev/stpbt does not exist yet at that point.  The node appears only when
+# wmt_loader loads the connectivity drivers ("[MTK-BT] BT_init: mtk_stp_BT_chrdev
+# driver (major 192) installed"), and wmtLoader is `class core`, started by
+# `class_start core` in init.rc's `on boot` (init.rc:677) - long after
+# `on post-fs-data` (init.rc:389).  FACT from the 14:10 boot: the node came up
+# root:root 0600, the HAL (user bluetooth) could not open it and BT crash-looped
+# ("Disabled due to CRASH" every ~2 s) even with the transport fix in place; a
+# manual chown made it enable immediately.  Same shape as the port's other
+# ordering traps (prop.default, fw_path[], import /init.${ro.zygote}.rc): an
+# early action touching something created later.
+#
+# Redo the chown once the oneshot wmtLoader has finished (the node exists by
+# then; conn_launcher, same class, starts after it), and once more at
+# boot_completed to cover the ueventd/uevent race.  The permanent fix is the
+# tree's ueventd.mt6735.rc (`bluetooth bluetooth`), which needs a new boot.img.
+# Backstop.  Both triggers above can miss: the wmtLoader one races ueventd's
+# asynchronous node creation, and sys.boot_completed is NOT dependable on this
+# build - observed EMPTY on the 14:10 boot with zygote running and system_server
+# answering dumpsys, i.e. the framework can be up while the property never gets
+# set.  m5c-stpbt-perm.sh waits for the node (up to 60 s) and then chowns it,
+# and prints the outcome to /dev/kmsg so the next boot's dmesg says plainly
+# whether it fired.  exec_background is the same mechanism m5c-bdaddr.sh above
+# already uses successfully on this device.
+
+on property:init.svc.wmtLoader=stopped
+    chown bluetooth bluetooth /dev/stpbt
+    chmod 0660 /dev/stpbt
+    exec_background - root root -- /vendor/bin/sh /vendor/bin/m5c-stpbt-perm.sh
+
+on property:sys.boot_completed=1
+    chown bluetooth bluetooth /dev/stpbt
+    chmod 0660 /dev/stpbt
+
+service vendor.bluetooth-1-0 /vendor/bin/hw/android.hardware.bluetooth@1.0-service.m5c
+    override
+    class hal
+    capabilities BLOCK_SUSPEND NET_ADMIN SYS_NICE
+    user bluetooth
+    group bluetooth radio net_bt net_bt_admin inet system
+    writepid /dev/stune/foreground/tasks

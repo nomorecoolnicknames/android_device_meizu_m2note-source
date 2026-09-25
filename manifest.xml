@@ -1,0 +1,52 @@
+<!--
+  Device HAL manifest (VINTF) for the m5c on LineageOS 16.0.
+
+  Why this file exists (peripherals lane, 2026-09-03).  The m5c port has no
+  DEVICE_MANIFEST_FILE, so /vendor/etc/vintf/manifest.xml is absent and
+  hwservicemanager answers getTransport() with EMPTY for every vendor HAL.
+  Most clients survive that: system/libhidl's getRawServiceInternal() only
+  warns on an undeclared interface and still tries hwbinder, then passthrough.
+
+  Wi-Fi is the exception.  frameworks/opt/net/wifi HalDeviceManager decides
+  whether a vendor HAL exists at all by asking the manifest directly:
+
+      isSupportedInternal():
+          IServiceManager.getTransport(IWifi.kInterfaceName, "default")
+              != Transport.EMPTY
+
+  With no manifest that returns EMPTY, WifiNative logs
+  "Vendor Hal not supported, ignoring start", IWifi.start() is never called,
+  and hardware/interfaces/wifi/1.2/default/wifi_mode_controller.cpp:63
+  (driver_tool_->LoadDriver() -> wifi_load_driver() -> "1" into
+  WIFI_DRIVER_STATE_CTRL_PARAM = /dev/wmtWifi) never runs.  The MTK combo
+  driver therefore never powers up, wlan0 is never created, and wificond
+  reports "No interface is found".  Measured on the live device 2026-09-03
+  13:36 (M5C_LOS16_PERIPHERALS_MEASURE_20260903.md).
+
+  Scope is deliberately narrow.  A HAL declared here but not actually served
+  hangs its client (the m681 light@2.0 lesson), so this manifest lists only
+  interfaces observed registered in lshal on the running device.  Every other
+  vendor HAL on the m5c already resolves through the EMPTY-transport fallback
+  and needs no entry; add one only together with runtime proof that the
+  service answers.
+-->
+<manifest version="1.0" type="device">
+    <hal format="hidl">
+        <name>android.hardware.wifi</name>
+        <transport>hwbinder</transport>
+        <version>1.2</version>
+        <interface>
+            <name>IWifi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.wifi.supplicant</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface>
+            <name>ISupplicant</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</manifest>

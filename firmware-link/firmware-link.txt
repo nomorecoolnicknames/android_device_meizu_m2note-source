@@ -1,0 +1,1 @@
+/vendor/firmware -> etc/firmware (forge_vendor_firmware_link); see firmware-link/Android.mk

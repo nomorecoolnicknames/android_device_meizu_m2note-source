@@ -1,0 +1,68 @@
+# forge-connectivity.rc — Pie half of the MTK CONSYS Wi-Fi userspace for the
+# m5c (LOS 16), peripherals lane 2026-09-03.  Vendor rc: parsed inside
+# mount_all, i.e. AFTER the ramdisk init.mt6735.rc (the 14.1 rc set carried
+# over as the porting base).
+#
+# The combo-chip side is unchanged and already lives in init.mt6735.rc:
+# wmtLoader (/vendor/bin/wmt_loader, class core) probes the chip, conn_launcher
+# (/vendor/bin/6620_launcher -p /system/etc/firmware/) stays resident feeding
+# WMT_SOC.cfg + WIFI_RAM_CODE_6735; the kernel driver is built in
+# (CONFIG_MTK_COMBO_WIFI=y, pie-config) and is powered on/off through
+# /dev/wmtWifi.  What Pie changes is who drives that node and who owns the
+# supplicant:
+#
+#  * android.hardware.wifi@1.0-service (user wifi, groups wifi gps inet
+#    net_admin net_raw) writes "1"/"0" into WIFI_DRIVER_STATE_CTRL_PARAM
+#    (= /dev/wmtWifi, BoardConfig.mk) itself, from libwifi-hal's
+#    wifi_load_driver().  ueventd.mt6735.rc (ramdisk) hands the node to
+#    system:system, so the HAL fails before wlan0 ever appears.  Regrouped
+#    below, m95 shape (ueventd.mt6797.rc line 73: wifi system).
+#
+#    MEASURED 2026-09-03 14:12 (M5C_LOS16_PERIPHERALS_MEASURE_20260903.md):
+#    a chown in `on post-fs-data` is NOT early-proof, it silently does
+#    nothing.  /dev/wmtWifi does not exist at kernel init — the chardev
+#    (major 153) is created by mtk_wmt_WIFI_chrdev only when wmt_loader
+#    probes the combo chip, dmesg [3.907] "WIFI_init: mtk_wmt_WIFI_chrdev
+#    driver(major 153) installed", i.e. AFTER post-fs-data has run.  The
+#    node then stayed system:system and the HAL died with
+#      Failed to access driver state control param Permission denied, 13
+#      -> Failed to load WiFi driver -> HalDevMgr: Cannot start IWifi: 9
+#      -> WifiNative: Failed to start Hal -> WifiClientModeManager idle.
+#    The HAL runs as uid wifi with supplementary groups gps inet net_raw
+#    net_admin only (no `system`, read from /proc/<pid>/status), so group
+#    rw on a system:system node does not help it either.  Hence the second,
+#    late trigger below: wmtLoader is oneshot, so init.svc.wmtLoader=stopped
+#    fires exactly once, right after the chardev exists.  The same chown done
+#    by hand at that moment produced wlan0 and a 16-network scan on the spot.
+#
+#  * wpa_supplicant is a HIDL service on Pie (/vendor/bin/hw, sockets under
+#    /data/vendor/wifi/wpa) and this tree's external/wpa_supplicant_8 ships no
+#    .rc for it (see device/meizu/m95/rootdir/init.m95.connectivity.rc for
+#    how that was found the hard way).  The ramdisk init.mt6735.rc still
+#    declares the Nougat form (/system/bin/wpa_supplicant -Dnl80211 -c/data/
+#    misc/wifi/...), a binary that does not exist on this image; init keeps
+#    the FIRST definition of a name and drops later ones ("ignored duplicate
+#    definition of service"), hence `override` — a Pie init keyword, verified
+#    in system/core/init/service.cpp of this tree.
+
+on post-fs-data
+    mkdir /data/vendor/wifi 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
+
+# The node only exists once wmt_loader (oneshot) has probed the chip.
+on property:init.svc.wmtLoader=stopped
+    chown wifi system /dev/wmtWifi
+    chmod 0660 /dev/wmtWifi
+
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+    -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 \
+    -g@android:wpa_wlan0
+    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
+    override
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    group system wifi inet
+    disabled
+    oneshot

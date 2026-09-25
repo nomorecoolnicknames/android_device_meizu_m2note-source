@@ -1,0 +1,46 @@
+# forge m5c: zygote services, verbatim from ramdisk init.zygote64_32.rc.
+# Needed because import /init.${ro.zygote}.rc resolves during EARLY init.rc
+# parsing, before any prop file on /system or /vendor is readable (no
+# first-stage mount) - so the stock import never lands. Vendor rc files are
+# parsed inside mount_all; the stock zygote-start trigger fires later, but
+# class_start main has already run by then, so start explicitly on a prop
+# that rises after parsing (vold.post_fs_data_done=1 - FACT in snapshots).
+service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-system-server --socket-name=zygote
+    class main
+    priority -20
+    user root
+    group root readproc reserved_disk
+    socket zygote stream 660 root system
+    onrestart write /sys/android_power/request_state wake
+    onrestart write /sys/power/state on
+    onrestart restart audioserver
+    onrestart restart cameraserver
+    onrestart restart media
+    onrestart restart netd
+    onrestart restart wificond
+    writepid /dev/cpuset/foreground/tasks
+
+service zygote_secondary /system/bin/app_process32 -Xzygote /system/bin --zygote --socket-name=zygote_secondary --enable-lazy-preload
+    class main
+    priority -20
+    user root
+    group root readproc reserved_disk
+    socket zygote_secondary stream 660 root system
+    onrestart restart zygote
+    writepid /dev/cpuset/foreground/tasks
+
+on property:vold.post_fs_data_done=1
+    # pm.dexopt.* live in /system/etc/prop.default which our no-first-stage
+    # boot never loads (stage-4 wall: system_server FATAL in
+    # PackageManagerServiceCompilerMapping.checkProperties). Values verbatim
+    # from the build's prop.default.
+    setprop pm.dexopt.first-boot quicken
+    setprop pm.dexopt.boot verify
+    setprop pm.dexopt.install speed-profile
+    setprop pm.dexopt.bg-dexopt speed-profile
+    setprop pm.dexopt.ab-ota speed-profile
+    setprop pm.dexopt.inactive verify
+    setprop pm.dexopt.shared speed
+    start netd
+    start zygote
+    start zygote_secondary

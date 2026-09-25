@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- m5c LOS16 overlay.
+
+     Started as an intentionally empty skeleton: real overlay values get ported
+     from the 14.1 tree per bring-up stage, each with its own evidence, so a
+     stale N-era resource name can never break the Pie build silently.
+
+     That policy is kept. Every key below carries why it is here and how to
+     falsify it. Nothing is ported "just in case".
+
+     Key-name audit against this tree's frameworks/base/core/res/res/values
+     (2026-09-03): all keys used here exist in API 28. Checked and NOT ported:
+     config_deviceHardwareKeys — it moved out of frameworks/base into
+     lineage-sdk (lineage-sdk/lineage/res/res/values/config.xml:139), so
+     overlaying it from here would be a silent no-op, not a build error.
+     If it is ever needed it belongs in overlay/lineage-sdk/, not here.
+-->
+<resources>
+
+    <!-- Proximity: blank the screen while the phone is at the ear.
+         Ported 2026-09-03 with the ALS/PS bring-up. Without it a working
+         proximity sensor changes nothing: the kernel driver now binds
+         (stk3x1x at i2c-2 0x48, PID=0x15 VID=0xca, probe ok, IRQ 353 counting),
+         but the framework never acts on it.
+         Falsify: during a call, dumpsys power must show useProximitySensor=true
+         and the screen must blank at the ear. Cannot be tested from here —
+         needs a real call, which is the owner's money. -->
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+
+    <!-- Automatic brightness. The flag alone does nothing: DisplayPowerController
+         needs both curves, so all three keys move together or not at all.
+         Measured before porting (kernel #14): the framework reported
+         mUseSoftwareAutoBrightnessConfig=false, so auto-brightness was
+         impossible regardless of the sensor.
+         Falsify after a build: mUseSoftwareAutoBrightnessConfig must become
+         true, and LIGHT (0x05) must appear in the running list of
+         "dumpsys sensorservice" once auto-brightness is switched on. -->
+    <bool name="config_automatic_brightness_available">true</bool>
+
+    <!-- Lux breakpoints and the backlight values between them.
+         Verbatim from the 14.1 tree — a vendor-tuned curve that shipped in a
+         ROM built and flashed on this same hardware, which is the evidence for
+         these numbers; they are not invented here.
+         AOSP invariants checked before porting: backlight array is exactly one
+         longer than the lux array (18 vs 17), lux strictly increasing,
+         backlight non-decreasing, all values within 0..255.
+         ONE DELIBERATE DEVIATION from the 14.1 curve: its first backlight
+         entry is 1, ours is 10. We cannot check whether this panel emits any
+         light at 1 — the sysfs node accepts 0..255 and reads the value back,
+         but reading a value back proves the request, not the light. If the
+         panel is dark at 1, auto-brightness in a dark room would look like the
+         screen switched off and the owner would reboot a working phone. 10 is
+         the live minimum today and is known to be visible. The cost is a
+         slightly-too-bright screen in full darkness; the cost the other way is
+         a phone that looks dead. Restore the 14.1 value of 1 once somebody has
+         looked at the panel at 1 and at 3 — that same look also decides
+         config_screenBrightnessSettingMinimum below.
+         Invariants still hold with 10: array stays 18 long, values stay
+         non-decreasing (10, 12, 91, ...), all within 0..255. -->
+    <integer-array name="config_autoBrightnessLevels">
+        <item>10</item>
+        <item>200</item>
+        <item>320</item>
+        <item>450</item>
+        <item>580</item>
+        <item>700</item>
+        <item>850</item>
+        <item>950</item>
+        <item>1500</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>7000</item>
+        <item>9000</item>
+        <item>11000</item>
+        <item>13000</item>
+        <item>15000</item>
+        <item>17000</item>
+    </integer-array>
+
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>10</item>
+        <item>12</item>
+        <item>91</item>
+        <item>103</item>
+        <item>107</item>
+        <item>113</item>
+        <item>120</item>
+        <item>129</item>
+        <item>134</item>
+        <item>152</item>
+        <item>224</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+    </integer-array>
+
+    <!-- Dim level when the activity timeout expires. Doubles as the cheapest
+         proof that this overlay reached the image at all: measured on kernel
+         #14 the framework reported mScreenBrightnessDimConfig=10, which is the
+         AOSP default, not our value.
+         Falsify after a build: mScreenBrightnessDimConfig must become 20. -->
+    <integer name="config_screenBrightnessDim">20</integer>
+
+    <!-- NOT ported yet, on purpose: config_screenBrightnessSettingMinimum=3
+         from the 14.1 tree. It is the floor the USER can set, so if the panel
+         is dark at 3 the owner can put the screen somewhere they cannot read
+         and cannot get back from. The live value today is 10 and is known to
+         work. Port it together with the backlight-visibility check above,
+         in one pass, once someone has looked at the panel at 1 and at 3. -->
+
+</resources>

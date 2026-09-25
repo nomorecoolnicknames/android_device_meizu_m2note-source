@@ -1,0 +1,35 @@
+// Device-local Bluetooth HIDL service for the m5c, 32-bit.
+//
+// The AOSP android.hardware.bluetooth@1.0-service (hardware/interfaces/
+// bluetooth/1.0/default) is ELF64 on this arm64 build, and it works only as
+// far as registering: the passthrough impl it loads dlopens libbt-vendor.so,
+// which this device's Flyme (Android M era) blob set ships ONLY as 32-bit
+// (vendor/lib/libbt-vendor.so -> vendor/lib/libbluetooth_mtk.so, no lib64
+// copies at all — unlike the m95, where lib64/libbluetooth_mtk.so existed and
+// a 64-bit forwarding shim was enough).  So the first BT enable would die with
+// "Open unable to open libbt-vendor.so ... not found" and drag
+// com.android.bluetooth into a CHECK-abort loop (m95 BLOB_SHIMS.md, 2026-08-09).
+//
+// Same nine-line service.cpp, compile_multilib 32, unique name — the shared
+// hardware/interfaces tree stays untouched (m95 needs it 64-bit), exactly the
+// shape of device/meizu/m95/audio_hal_service.  android.hardware.bluetooth@1.0-impl
+// already builds for both ABIs, so /vendor/lib/hw has the 32-bit passthrough.
+cc_binary {
+    name: "android.hardware.bluetooth@1.0-service.m5c",
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    proprietary: true,
+    compile_multilib: "32",
+    srcs: ["service.cpp"],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libdl",
+        "libbase",
+        "libutils",
+        "libhardware",
+        "libhidlbase",
+        "libhidltransport",
+        "android.hardware.bluetooth@1.0",
+    ],
+}

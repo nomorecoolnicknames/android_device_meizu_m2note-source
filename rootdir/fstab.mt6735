@@ -1,0 +1,45 @@
+# fstab.mt6735 for the Meizu M5c — LineageOS 16.0, Treble stage A.
+#
+# The by-name path is device-verified LIVE on this unit:
+#   /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/<partition>
+#
+# custom = mmcblk0p17 = exactly 512 MiB, never mounted by LOS 14.1 — it IS
+# the /vendor partition on this device (owner decision 2026-08-17, matches
+# BOARD_VENDORIMAGE_PARTITION_SIZE byte for byte).
+#
+# No first-stage/DT fstab: the stock DTB carries no firmware/android node
+# (M5C_LOS16_TREBLE_PLAN.md §1.4) and the project runs the stock DTB
+# byte-for-byte, so everything mounts in mount_all from this ramdisk fstab
+# and sepolicy stays monolithic in the ramdisk.
+#
+# forceencrypt (the 14.1 fstab had it on /data) is deliberately dropped for
+# bring-up: an fstab forceencrypt was a proven boot blocker on the nx569j
+# port, and encryption is not a stage-A goal.
+
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system     /system     ext4  ro                                                        wait
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/custom     /vendor     ext4  ro                                                        wait
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/userdata   /data       ext4  noatime,nosuid,nodev,noauto_da_alloc,discard              wait,check,formattable
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/cache      /cache      ext4  noatime,nosuid,nodev,noauto_da_alloc,discard              wait,check
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect1   /protect_f  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc  wait,check,formattable
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/protect2   /protect_s  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc  wait,check,formattable
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvdata     /nvdata     ext4  noatime,nosuid,nodev,noauto_da_alloc,discard              wait,check,formattable
+
+# Removable media
+/devices/mtk-msdc.0/11240000.msdc1*  auto  auto  defaults  voldmanaged=sdcard1:auto
+/devices/platform/mt_usb*            auto  vfat  defaults  voldmanaged=usbotg:auto
+
+# zram — mandatory on 2 GB RAM under Pie (plan §3); 512 MiB.
+/dev/block/zram0  none  swap  defaults  zramsize=536870912
+
+# Raw emmc slots (recovery/OTA tooling)
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp        /persistent  emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvram      /nvram       emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/proinfo    /proinfo     emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/lk         /bootloader  emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/para       /misc        emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/boot       /boot        emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/recovery   /recovery    emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo       /logo        emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/expdb      /expdb       emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/secro      /secro       emmc  defaults  defaults
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/seccfg     /seccfg      emmc  defaults  defaults
