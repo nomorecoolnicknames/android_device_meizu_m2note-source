@@ -180,10 +180,8 @@ etc/nfc_conformance/DTA_Config/Others/platform_config_tagOp.txt|$(TARGET_COPY_OU
 etc/nfc_conformance/DTA_Config/Others/platform_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_polling.txt
 etc/nfc_conformance/DTA_Config/Others/platform_polling_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_polling_tagOp.txt
 etc/radvd/radvd.conf|$(TARGET_COPY_OUT_VENDOR)/etc/radvd/radvd.conf
-etc/seccomp_policy/mediacodec.policy|$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 etc/seccomp_policy/mediaextractor.policy|$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
 etc/wifi/p2p_supplicant_overlay.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
-etc/wifi/wpa_supplicant.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf
 etc/wifi/wpa_supplicant_overlay.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 firmware/WIFI_RAM_CODE_MT6630|system/etc/firmware/WIFI_RAM_CODE_MT6630
 firmware/WMT.cfg|system/etc/firmware/WMT.cfg
@@ -1045,6 +1043,8 @@ thh/uTAgent|$(TARGET_COPY_OUT_VENDOR)/thh/uTAgent
 # etc/permissions/com.meizu.camera.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
 # etc/permissions/handheld_core_hardware.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
 # etc/permissions/platform.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/seccomp_policy/mediacodec.policy  -- device.mk ставит политику m5c (проверена на Pie с MTK OMX); второе правило на ту же цель — a9-static-check.py
+# etc/wifi/wpa_supplicant.conf  -- forge-peripherals.mk ставит wpa_supplicant_template.conf (урок m95: addInterface без шаблона отвергает wlan0); второе правило на ту же цель
 # lib/hw/audio.primary.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib/hw/audio.r_submix.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
 # lib/hw/audio.usb.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
