@@ -60,7 +60,7 @@
   composer 2.1, mapper 2.0, media.omx 1.0 (service from base_vendor.mk).
 
   The IWifi entry stays although its service is still NOT WIRED (device.mk
-  item 1): that is the pre-existing decision of this tree, kept unchanged.
+  item 3): that is the pre-existing decision of this tree, kept unchanged.
 
   GNSS is NOT declared (and its service not installed): its legacy module
   cannot load in the vendor namespace yet, and system_server blocks on a
