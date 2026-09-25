@@ -1,0 +1,1116 @@
+# proprietary-files.txt (m2note, LOS 16) — СГЕНЕРИРОВАНО a9-gen-vendor-blobs.py.
+# Формат: <путь в наборе 15.1 proprietary/vendor>|<назначение>  (# — не ставится, с причиной).
+bin/6620_launcher|$(TARGET_COPY_OUT_VENDOR)/bin/6620_launcher
+bin/6620_wmt_concurrency|$(TARGET_COPY_OUT_VENDOR)/bin/6620_wmt_concurrency
+bin/6620_wmt_lpbk|$(TARGET_COPY_OUT_VENDOR)/bin/6620_wmt_lpbk
+bin/AcdApiDaemon|$(TARGET_COPY_OUT_VENDOR)/bin/AcdApiDaemon
+bin/BGW|$(TARGET_COPY_OUT_VENDOR)/bin/BGW
+bin/GoogleOtaBinder|$(TARGET_COPY_OUT_VENDOR)/bin/GoogleOtaBinder
+bin/MtkCodecService|$(TARGET_COPY_OUT_VENDOR)/bin/MtkCodecService
+bin/aee|$(TARGET_COPY_OUT_VENDOR)/bin/aee
+bin/aee_archive|$(TARGET_COPY_OUT_VENDOR)/bin/aee_archive
+bin/aee_core_forwarder|$(TARGET_COPY_OUT_VENDOR)/bin/aee_core_forwarder
+bin/aee_dumpstate|$(TARGET_COPY_OUT_VENDOR)/bin/aee_dumpstate
+bin/akmd09911|$(TARGET_COPY_OUT_VENDOR)/bin/akmd09911
+bin/akmd8963|$(TARGET_COPY_OUT_VENDOR)/bin/akmd8963
+bin/akmd8975|$(TARGET_COPY_OUT_VENDOR)/bin/akmd8975
+bin/ami304d|$(TARGET_COPY_OUT_VENDOR)/bin/ami304d
+bin/atci_service|$(TARGET_COPY_OUT_VENDOR)/bin/atci_service
+bin/atcid|$(TARGET_COPY_OUT_VENDOR)/bin/atcid
+bin/audiocmdservice_atci|$(TARGET_COPY_OUT_VENDOR)/bin/audiocmdservice_atci
+bin/autokd|$(TARGET_COPY_OUT_VENDOR)/bin/autokd
+bin/batterywarning|$(TARGET_COPY_OUT_VENDOR)/bin/batterywarning
+bin/bmm050d|$(TARGET_COPY_OUT_VENDOR)/bin/bmm050d
+bin/boot_logo_updater|$(TARGET_COPY_OUT_VENDOR)/bin/boot_logo_updater
+bin/btconfig|$(TARGET_COPY_OUT_VENDOR)/bin/btconfig
+bin/btlogmask|$(TARGET_COPY_OUT_VENDOR)/bin/btlogmask
+bin/ccci_fsd|$(TARGET_COPY_OUT_VENDOR)/bin/ccci_fsd
+bin/ccci_mdinit|$(TARGET_COPY_OUT_VENDOR)/bin/ccci_mdinit
+bin/dhcp6c|$(TARGET_COPY_OUT_VENDOR)/bin/dhcp6c
+bin/dhcp6ctl|$(TARGET_COPY_OUT_VENDOR)/bin/dhcp6ctl
+bin/dhcp6s|$(TARGET_COPY_OUT_VENDOR)/bin/dhcp6s
+bin/dm_agent_binder|$(TARGET_COPY_OUT_VENDOR)/bin/dm_agent_binder
+bin/dmlog|system/bin/dmlog
+bin/dmlog|$(TARGET_COPY_OUT_VENDOR)/bin/dmlog
+bin/downloader|$(TARGET_COPY_OUT_VENDOR)/bin/downloader
+bin/dualmdlogger|$(TARGET_COPY_OUT_VENDOR)/bin/dualmdlogger
+bin/em_svr|$(TARGET_COPY_OUT_VENDOR)/bin/em_svr
+bin/emdlogger1|$(TARGET_COPY_OUT_VENDOR)/bin/emdlogger1
+bin/epdg_wod|$(TARGET_COPY_OUT_VENDOR)/bin/epdg_wod
+bin/factory|$(TARGET_COPY_OUT_VENDOR)/bin/factory
+bin/flymed|$(TARGET_COPY_OUT_VENDOR)/bin/flymed
+bin/fsck_msdos_mtk|$(TARGET_COPY_OUT_VENDOR)/bin/fsck_msdos_mtk
+bin/fuelgauged|$(TARGET_COPY_OUT_VENDOR)/bin/fuelgauged
+bin/gatord|$(TARGET_COPY_OUT_VENDOR)/bin/gatord
+bin/geomagneticd|$(TARGET_COPY_OUT_VENDOR)/bin/geomagneticd
+bin/gsm0710muxd|$(TARGET_COPY_OUT_VENDOR)/bin/gsm0710muxd
+bin/gsm0710muxdmd2|$(TARGET_COPY_OUT_VENDOR)/bin/gsm0710muxdmd2
+bin/guiext-server|$(TARGET_COPY_OUT_VENDOR)/bin/guiext-server
+bin/init_thh|$(TARGET_COPY_OUT_VENDOR)/bin/init_thh
+bin/iperf|$(TARGET_COPY_OUT_VENDOR)/bin/iperf
+bin/kpoc_charger|$(TARGET_COPY_OUT_VENDOR)/bin/kpoc_charger
+bin/lcdc_screen_cap|$(TARGET_COPY_OUT_VENDOR)/bin/lcdc_screen_cap
+bin/lsm303md|$(TARGET_COPY_OUT_VENDOR)/bin/lsm303md
+bin/lsm6ds3d|$(TARGET_COPY_OUT_VENDOR)/bin/lsm6ds3d
+bin/magd|$(TARGET_COPY_OUT_VENDOR)/bin/magd
+bin/matv|$(TARGET_COPY_OUT_VENDOR)/bin/matv
+bin/mc6420d|$(TARGET_COPY_OUT_VENDOR)/bin/mc6420d
+bin/md_ctrl|$(TARGET_COPY_OUT_VENDOR)/bin/md_ctrl
+bin/mdlogger|$(TARGET_COPY_OUT_VENDOR)/bin/mdlogger
+bin/memorydumper|$(TARGET_COPY_OUT_VENDOR)/bin/memorydumper
+bin/memsicd|$(TARGET_COPY_OUT_VENDOR)/bin/memsicd
+bin/memsicd3416x|$(TARGET_COPY_OUT_VENDOR)/bin/memsicd3416x
+bin/meta_tst|$(TARGET_COPY_OUT_VENDOR)/bin/meta_tst
+bin/mfv_ut|$(TARGET_COPY_OUT_VENDOR)/bin/mfv_ut
+bin/mmp|$(TARGET_COPY_OUT_VENDOR)/bin/mmp
+bin/mnld|$(TARGET_COPY_OUT_VENDOR)/bin/mnld
+bin/mobile_log_d|$(TARGET_COPY_OUT_VENDOR)/bin/mobile_log_d
+bin/msensord|$(TARGET_COPY_OUT_VENDOR)/bin/msensord
+bin/mtk_agpsd|$(TARGET_COPY_OUT_VENDOR)/bin/mtk_agpsd
+bin/mtk_setprop|$(TARGET_COPY_OUT_VENDOR)/bin/mtk_setprop
+bin/mtkbt|$(TARGET_COPY_OUT_VENDOR)/bin/mtkbt
+bin/mtkrild|$(TARGET_COPY_OUT_VENDOR)/bin/mtkrild
+bin/mtkrildmd2|$(TARGET_COPY_OUT_VENDOR)/bin/mtkrildmd2
+bin/mtkvfc|$(TARGET_COPY_OUT_VENDOR)/bin/mtkvfc
+bin/muxreport|system/bin/muxreport
+bin/muxreport|$(TARGET_COPY_OUT_VENDOR)/bin/muxreport
+bin/mxg2320d|$(TARGET_COPY_OUT_VENDOR)/bin/mxg2320d
+bin/mzPerf|$(TARGET_COPY_OUT_VENDOR)/bin/mzPerf
+bin/netdiag|$(TARGET_COPY_OUT_VENDOR)/bin/netdiag
+bin/netdiagn|$(TARGET_COPY_OUT_VENDOR)/bin/netdiagn
+bin/nmbd|$(TARGET_COPY_OUT_VENDOR)/bin/nmbd
+bin/ntfs-3g|$(TARGET_COPY_OUT_VENDOR)/bin/ntfs-3g
+bin/nvram_agent_binder|$(TARGET_COPY_OUT_VENDOR)/bin/nvram_agent_binder
+bin/nvram_daemon|$(TARGET_COPY_OUT_VENDOR)/bin/nvram_daemon
+bin/orientationd|$(TARGET_COPY_OUT_VENDOR)/bin/orientationd
+bin/override_nvram|$(TARGET_COPY_OUT_VENDOR)/bin/override_nvram
+bin/perf_native_test|$(TARGET_COPY_OUT_VENDOR)/bin/perf_native_test
+bin/permission_check|$(TARGET_COPY_OUT_VENDOR)/bin/permission_check
+bin/ppl_agent|$(TARGET_COPY_OUT_VENDOR)/bin/ppl_agent
+bin/pppd_btdun|system/bin/pppd_btdun
+bin/pppd_btdun|$(TARGET_COPY_OUT_VENDOR)/bin/pppd_btdun
+bin/pppd_dt|$(TARGET_COPY_OUT_VENDOR)/bin/pppd_dt
+bin/pppd_via|$(TARGET_COPY_OUT_VENDOR)/bin/pppd_via
+bin/pppoe|$(TARGET_COPY_OUT_VENDOR)/bin/pppoe
+bin/pq|$(TARGET_COPY_OUT_VENDOR)/bin/pq
+bin/program_binary_service|$(TARGET_COPY_OUT_VENDOR)/bin/program_binary_service
+bin/radvd|$(TARGET_COPY_OUT_VENDOR)/bin/radvd
+bin/resize_ext4|system/bin/resize_ext4
+bin/resize_ext4|$(TARGET_COPY_OUT_VENDOR)/bin/resize_ext4
+bin/rtt|$(TARGET_COPY_OUT_VENDOR)/bin/rtt
+bin/s62xd|$(TARGET_COPY_OUT_VENDOR)/bin/s62xd
+bin/sbchk|$(TARGET_COPY_OUT_VENDOR)/bin/sbchk
+bin/schedtest|$(TARGET_COPY_OUT_VENDOR)/bin/schedtest
+bin/smbd|$(TARGET_COPY_OUT_VENDOR)/bin/smbd
+bin/smbpasswd|system/bin/smbpasswd
+bin/smbpasswd|$(TARGET_COPY_OUT_VENDOR)/bin/smbpasswd
+bin/sn|$(TARGET_COPY_OUT_VENDOR)/bin/sn
+bin/superumount|system/bin/superumount
+bin/superumount|$(TARGET_COPY_OUT_VENDOR)/bin/superumount
+bin/teei_daemon|$(TARGET_COPY_OUT_VENDOR)/bin/teei_daemon
+bin/terservice|$(TARGET_COPY_OUT_VENDOR)/bin/terservice
+bin/tertestclient|$(TARGET_COPY_OUT_VENDOR)/bin/tertestclient
+bin/thermal|$(TARGET_COPY_OUT_VENDOR)/bin/thermal
+bin/thermal_manager|system/bin/thermal_manager
+bin/thermal_manager|$(TARGET_COPY_OUT_VENDOR)/bin/thermal_manager
+bin/thermald|$(TARGET_COPY_OUT_VENDOR)/bin/thermald
+bin/tiny_mkswap|$(TARGET_COPY_OUT_VENDOR)/bin/tiny_mkswap
+bin/tiny_swapoff|$(TARGET_COPY_OUT_VENDOR)/bin/tiny_swapoff
+bin/tiny_swapon|$(TARGET_COPY_OUT_VENDOR)/bin/tiny_swapon
+bin/volte_imcb|system/bin/volte_imcb
+bin/volte_imcb|$(TARGET_COPY_OUT_VENDOR)/bin/volte_imcb
+bin/volte_stack|$(TARGET_COPY_OUT_VENDOR)/bin/volte_stack
+bin/volte_ua|$(TARGET_COPY_OUT_VENDOR)/bin/volte_ua
+bin/vtservice|$(TARGET_COPY_OUT_VENDOR)/bin/vtservice
+bin/wifi2agps|$(TARGET_COPY_OUT_VENDOR)/bin/wifi2agps
+bin/wmt_loader|$(TARGET_COPY_OUT_VENDOR)/bin/wmt_loader
+bin/xlog|$(TARGET_COPY_OUT_VENDOR)/bin/xlog
+etc/agps_profiles_conf2.xml|$(TARGET_COPY_OUT_VENDOR)/etc/agps_profiles_conf2.xml
+etc/audio_param/AudioParamOptions.xml|$(TARGET_COPY_OUT_VENDOR)/etc/audio_param/AudioParamOptions.xml
+etc/audio_param/Volume_AudioParam.xml|$(TARGET_COPY_OUT_VENDOR)/etc/audio_param/Volume_AudioParam.xml
+etc/bluetooth/auto_pair_blacklist.conf|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/auto_pair_blacklist.conf
+etc/bluetooth/auto_pair_devlist.conf|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/auto_pair_devlist.conf
+etc/bluetooth/bt_did.conf|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_did.conf
+etc/bluetooth/bt_stack.conf|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_stack.conf
+etc/bluetooth/bt_stack.conf.debug|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_stack.conf.debug
+etc/bluetooth/bt_stack.conf.sqc|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/bt_stack.conf.sqc
+etc/bluetooth/btconfig.xml|$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth/btconfig.xml
+etc/firmware/ROMv2_lm_patch_1_0_hdr.bin|system/etc/firmware/ROMv2_lm_patch_1_0_hdr.bin
+etc/firmware/ROMv2_lm_patch_1_1_hdr.bin|system/etc/firmware/ROMv2_lm_patch_1_1_hdr.bin
+etc/firmware/S_ANDRO_SFL.ini|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/S_ANDRO_SFL.ini
+etc/firmware/WIFI_RAM_CODE_6735|system/etc/firmware/WIFI_RAM_CODE_6735
+etc/firmware/WMT_SOC.cfg|system/etc/firmware/WMT_SOC.cfg
+etc/firmware/catcher_filter_1_ltg_n.bin|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/catcher_filter_1_ltg_n.bin
+etc/firmware/catcher_filter_1_lwg_n.bin|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/catcher_filter_1_lwg_n.bin
+etc/firmware/dsp_1_ltg_n.bin|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/dsp_1_ltg_n.bin
+etc/firmware/dsp_1_lwg_n.bin|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/dsp_1_lwg_n.bin
+etc/fstab.mt6735|$(TARGET_COPY_OUT_VENDOR)/etc/fstab.mt6735
+etc/mtk_omx_core.cfg|$(TARGET_COPY_OUT_VENDOR)/etc/mtk_omx_core.cfg
+etc/mtklog-config.prop|system/etc/mtklog-config.prop
+etc/nfc_conformance/DTA_Config/AT4/listen_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/listen_config.txt
+etc/nfc_conformance/DTA_Config/AT4/listen_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/listen_polling.txt
+etc/nfc_conformance/DTA_Config/AT4/p2p_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/p2p_config.txt
+etc/nfc_conformance/DTA_Config/AT4/p2p_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/p2p_polling.txt
+etc/nfc_conformance/DTA_Config/AT4/platform_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/platform_config.txt
+etc/nfc_conformance/DTA_Config/AT4/platform_config_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/platform_config_tagOp.txt
+etc/nfc_conformance/DTA_Config/AT4/platform_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/platform_polling.txt
+etc/nfc_conformance/DTA_Config/AT4/platform_polling_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/AT4/platform_polling_tagOp.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/listen_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/listen_config.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/listen_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/listen_polling.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/p2p_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/p2p_config.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/p2p_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/p2p_polling.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/platform_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/platform_config.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/platform_config_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/platform_config_tagOp.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/platform_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/platform_polling.txt
+etc/nfc_conformance/DTA_Config/Clear2Pay/platform_polling_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Clear2Pay/platform_polling_tagOp.txt
+etc/nfc_conformance/DTA_Config/Comprion/listen_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/listen_config.txt
+etc/nfc_conformance/DTA_Config/Comprion/listen_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/listen_polling.txt
+etc/nfc_conformance/DTA_Config/Comprion/p2p_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/p2p_config.txt
+etc/nfc_conformance/DTA_Config/Comprion/p2p_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/p2p_polling.txt
+etc/nfc_conformance/DTA_Config/Comprion/platform_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/platform_config.txt
+etc/nfc_conformance/DTA_Config/Comprion/platform_config_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/platform_config_tagOp.txt
+etc/nfc_conformance/DTA_Config/Comprion/platform_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/platform_polling.txt
+etc/nfc_conformance/DTA_Config/Comprion/platform_polling_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Comprion/platform_polling_tagOp.txt
+etc/nfc_conformance/DTA_Config/Others/listen_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/listen_config.txt
+etc/nfc_conformance/DTA_Config/Others/listen_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/listen_polling.txt
+etc/nfc_conformance/DTA_Config/Others/p2p_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/p2p_config.txt
+etc/nfc_conformance/DTA_Config/Others/p2p_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/p2p_polling.txt
+etc/nfc_conformance/DTA_Config/Others/platform_config.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_config.txt
+etc/nfc_conformance/DTA_Config/Others/platform_config_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_config_tagOp.txt
+etc/nfc_conformance/DTA_Config/Others/platform_polling.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_polling.txt
+etc/nfc_conformance/DTA_Config/Others/platform_polling_tagOp.txt|$(TARGET_COPY_OUT_VENDOR)/etc/nfc_conformance/DTA_Config/Others/platform_polling_tagOp.txt
+etc/radvd/radvd.conf|$(TARGET_COPY_OUT_VENDOR)/etc/radvd/radvd.conf
+etc/seccomp_policy/mediacodec.policy|$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
+etc/seccomp_policy/mediaextractor.policy|$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediaextractor.policy
+etc/wifi/p2p_supplicant_overlay.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
+etc/wifi/wpa_supplicant.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf
+etc/wifi/wpa_supplicant_overlay.conf|$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
+firmware/WIFI_RAM_CODE_MT6630|system/etc/firmware/WIFI_RAM_CODE_MT6630
+firmware/WMT.cfg|system/etc/firmware/WMT.cfg
+firmware/modem_1_lwg_n.img|$(TARGET_COPY_OUT_VENDOR)/etc/firmware/modem_1_lwg_n.img
+firmware/mt6630_ant_m1.cfg|system/etc/firmware/mt6630_ant_m1.cfg
+firmware/mt6630_fm_v1_coeff.bin|system/etc/firmware/mt6630_fm_v1_coeff.bin
+firmware/mt6630_fm_v1_coeff_tx.bin|system/etc/firmware/mt6630_fm_v1_coeff_tx.bin
+firmware/mt6630_fm_v1_patch.bin|system/etc/firmware/mt6630_fm_v1_patch.bin
+firmware/mt6630_fm_v1_patch_tx.bin|system/etc/firmware/mt6630_fm_v1_patch_tx.bin
+firmware/mt6630_fm_v2_coeff.bin|system/etc/firmware/mt6630_fm_v2_coeff.bin
+firmware/mt6630_fm_v2_coeff_tx.bin|system/etc/firmware/mt6630_fm_v2_coeff_tx.bin
+firmware/mt6630_fm_v2_patch.bin|system/etc/firmware/mt6630_fm_v2_patch.bin
+firmware/mt6630_fm_v2_patch_tx.bin|system/etc/firmware/mt6630_fm_v2_patch_tx.bin
+firmware/mt6630_fm_v3_coeff.bin|system/etc/firmware/mt6630_fm_v3_coeff.bin
+firmware/mt6630_fm_v3_coeff_tx.bin|system/etc/firmware/mt6630_fm_v3_coeff_tx.bin
+firmware/mt6630_fm_v3_patch.bin|system/etc/firmware/mt6630_fm_v3_patch.bin
+firmware/mt6630_fm_v3_patch_tx.bin|system/etc/firmware/mt6630_fm_v3_patch_tx.bin
+firmware/mt6630_fm_v4_coeff.bin|system/etc/firmware/mt6630_fm_v4_coeff.bin
+firmware/mt6630_fm_v4_coeff_tx.bin|system/etc/firmware/mt6630_fm_v4_coeff_tx.bin
+firmware/mt6630_fm_v4_patch.bin|system/etc/firmware/mt6630_fm_v4_patch.bin
+firmware/mt6630_fm_v4_patch_tx.bin|system/etc/firmware/mt6630_fm_v4_patch_tx.bin
+firmware/mt6630_fm_v5_coeff.bin|system/etc/firmware/mt6630_fm_v5_coeff.bin
+firmware/mt6630_fm_v5_coeff_tx.bin|system/etc/firmware/mt6630_fm_v5_coeff_tx.bin
+firmware/mt6630_fm_v5_patch.bin|system/etc/firmware/mt6630_fm_v5_patch.bin
+firmware/mt6630_fm_v5_patch_tx.bin|system/etc/firmware/mt6630_fm_v5_patch_tx.bin
+firmware/mt6630_patch_e1_hdr.bin|system/etc/firmware/mt6630_patch_e1_hdr.bin
+firmware/mt6630_patch_e2_hdr.bin|system/etc/firmware/mt6630_patch_e2_hdr.bin
+firmware/mt6630_patch_e3_0_hdr.bin|system/etc/firmware/mt6630_patch_e3_0_hdr.bin
+firmware/mt6630_patch_e3_1_hdr.bin|system/etc/firmware/mt6630_patch_e3_1_hdr.bin
+lib/drm/libdrmctaplugin.so|$(TARGET_COPY_OUT_VENDOR)/lib/drm/libdrmctaplugin.so
+lib/drm/libdrmmtkplugin.so|$(TARGET_COPY_OUT_VENDOR)/lib/drm/libdrmmtkplugin.so
+lib/drm/libdrmwvmplugin.so|$(TARGET_COPY_OUT_VENDOR)/lib/drm/libdrmwvmplugin.so
+lib/egl/egl.cfg|$(TARGET_COPY_OUT_VENDOR)/lib/egl/egl.cfg
+lib/egl/libGLES_mali.so|$(TARGET_COPY_OUT_VENDOR)/lib/egl/libGLES_mali.so
+lib/extend/libCodec.adpcmdec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.adpcmdec.so
+lib/extend/libCodec.adt.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.adt.so
+lib/extend/libCodec.alacdec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.alacdec.so
+lib/extend/libCodec.ape.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.ape.so
+lib/extend/libCodec.dsddec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.dsddec.so
+lib/extend/libCodec.dts.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.dts.so
+lib/extend/libCodec.lpcm.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.lpcm.so
+lib/extend/libCodec.mp3dec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.mp3dec.so
+lib/extend/libCodec.mp3enc.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.mp3enc.so
+lib/extend/libCodec.mpegdec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.mpegdec.so
+lib/extend/libCodec.radec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.radec.so
+lib/extend/libCodec.raw.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.raw.so
+lib/extend/libCodec.rvdec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.rvdec.so
+lib/extend/libCodec.wmadec.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libCodec.wmadec.so
+lib/extend/libExtractor.AC3.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.AC3.so
+lib/extend/libExtractor.AIFF.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.AIFF.so
+lib/extend/libExtractor.APE.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.APE.so
+lib/extend/libExtractor.ASF.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.ASF.so
+lib/extend/libExtractor.AVI.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.AVI.so
+lib/extend/libExtractor.DTS.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.DTS.so
+lib/extend/libExtractor.FLAC.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.FLAC.so
+lib/extend/libExtractor.FLV.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.FLV.so
+lib/extend/libExtractor.MP3.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.MP3.so
+lib/extend/libExtractor.MPEG.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.MPEG.so
+lib/extend/libExtractor.MPEG2TS.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.MPEG2TS.so
+lib/extend/libExtractor.MPEG4.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.MPEG4.so
+lib/extend/libExtractor.REALMEDIA.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.REALMEDIA.so
+lib/extend/libExtractor.WAV.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.WAV.so
+lib/extend/libExtractor.matroska.so|$(TARGET_COPY_OUT_VENDOR)/lib/extend/libExtractor.matroska.so
+lib/hw/audio.a2dp.blueangel.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.a2dp.blueangel.so
+lib/hw/audio.primary.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio.primary.mt6753.so
+lib/hw/audio_policy.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/audio_policy.default.so
+lib/hw/bluetooth.blueangel.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/bluetooth.blueangel.so
+lib/hw/bluetooth.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/bluetooth.default.so
+lib/hw/camera.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/camera.mt6753.so
+lib/hw/gps.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/gps.default.so
+lib/hw/gps.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/gps.mt6753.so
+lib/hw/gralloc.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/gralloc.mt6753.so
+lib/hw/keystore.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/keystore.default.so
+lib/hw/lights.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/lights.default.so
+lib/hw/memtrack.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/memtrack.mt6753.so
+lib/hw/mmsdk.default.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/mmsdk.default.so
+lib/hw/mmsdk.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/mmsdk.mt6753.so
+lib/hw/radio.fm.mt6735.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/radio.fm.mt6735.so
+lib/hw/sensors.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib/hw/sensors.mt6753.so
+lib/lib3a.so|$(TARGET_COPY_OUT_VENDOR)/lib/lib3a.so
+lib/lib3a_sample.so|$(TARGET_COPY_OUT_VENDOR)/lib/lib3a_sample.so
+lib/libAGifEncoder.so|$(TARGET_COPY_OUT_VENDOR)/lib/libAGifEncoder.so
+lib/libAndroidAlgSys.so|$(TARGET_COPY_OUT_VENDOR)/lib/libAndroidAlgSys.so
+lib/libBnMtkCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libBnMtkCodec.so
+lib/libClearMotionFW.so|$(TARGET_COPY_OUT_VENDOR)/lib/libClearMotionFW.so
+lib/libDiracAPI_SHARED.so|$(TARGET_COPY_OUT_VENDOR)/lib/libDiracAPI_SHARED.so
+lib/libDominantColors.so|$(TARGET_COPY_OUT_VENDOR)/lib/libDominantColors.so
+lib/libFFTEm.so|$(TARGET_COPY_OUT_VENDOR)/lib/libFFTEm.so
+lib/libGdmaScalerPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib/libGdmaScalerPipe.so
+lib/libHEVCdec_sa.ca7.android.so|system/lib/libHEVCdec_sa.ca7.android.so
+lib/libIvw40.so|$(TARGET_COPY_OUT_VENDOR)/lib/libIvw40.so
+lib/libJniAtvService.so|$(TARGET_COPY_OUT_VENDOR)/lib/libJniAtvService.so
+lib/libJpgDecPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib/libJpgDecPipe.so
+lib/libJpgEncPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib/libJpgEncPipe.so
+lib/libMAM2-AlgFX-Coretex_A9.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMAM2-AlgFX-Coretex_A9.so
+lib/libMiraVision_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMiraVision_jni.so
+lib/libMtkOmxAdpcmDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxAdpcmDec.so
+lib/libMtkOmxAdpcmEnc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxAdpcmEnc.so
+lib/libMtkOmxAlacDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxAlacDec.so
+lib/libMtkOmxApeDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxApeDec.so
+lib/libMtkOmxCore.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxCore.so
+lib/libMtkOmxFlacDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxFlacDec.so
+lib/libMtkOmxG711Dec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxG711Dec.so
+lib/libMtkOmxGsmDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxGsmDec.so
+lib/libMtkOmxMp3Dec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxMp3Dec.so
+lib/libMtkOmxRawDec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxRawDec.so
+lib/libMtkOmxVdec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxVdec.so
+lib/libMtkOmxVdecEx.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxVdecEx.so
+lib/libMtkOmxVenc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxVenc.so
+lib/libMtkOmxVorbisEnc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkOmxVorbisEnc.so
+lib/libMtkVideoSpeedEffect.so|$(TARGET_COPY_OUT_VENDOR)/lib/libMtkVideoSpeedEffect.so
+lib/libMtkVideoTranscoder.so|system/lib/libMtkVideoTranscoder.so
+lib/libOpenCLIcd.so|$(TARGET_COPY_OUT_VENDOR)/lib/libOpenCLIcd.so
+lib/libPQDCjni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libPQDCjni.so
+lib/libPQjni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libPQjni.so
+lib/libRSDriver_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libRSDriver_mtk.so
+lib/libSensorAdjustment.so|$(TARGET_COPY_OUT_VENDOR)/lib/libSensorAdjustment.so
+lib/libSonyIMX230PdafLibrary.so|$(TARGET_COPY_OUT_VENDOR)/lib/libSonyIMX230PdafLibrary.so
+lib/libSwJpgCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libSwJpgCodec.so
+lib/libWVStreamControlAPI_L3.so|$(TARGET_COPY_OUT_VENDOR)/lib/libWVStreamControlAPI_L3.so
+lib/liba3m.so|$(TARGET_COPY_OUT_VENDOR)/lib/liba3m.so
+lib/libaal.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaal.so
+lib/libacdk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libacdk.so
+lib/libadpcm.so|$(TARGET_COPY_OUT_VENDOR)/lib/libadpcm.so
+lib/libaed.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaed.so
+lib/libalipayteeclient.so|$(TARGET_COPY_OUT_VENDOR)/lib/libalipayteeclient.so
+lib/libamr_wrap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libamr_wrap.so
+lib/libamrvt.so|$(TARGET_COPY_OUT_VENDOR)/lib/libamrvt.so
+lib/libarcsoft_beautyshot.so|$(TARGET_COPY_OUT_VENDOR)/lib/libarcsoft_beautyshot.so
+lib/libarcsoft_makeup.so|$(TARGET_COPY_OUT_VENDOR)/lib/libarcsoft_makeup.so
+lib/libatciserv_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libatciserv_jni.so
+lib/libatvctrlservice.so|$(TARGET_COPY_OUT_VENDOR)/lib/libatvctrlservice.so
+lib/libaudiocompensationfilter.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiocompensationfilter.so
+lib/libaudiocomponentengine.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiocomponentengine.so
+lib/libaudiocustparam.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiocustparam.so
+lib/libaudiodcrflt.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiodcrflt.so
+lib/libaudioinfo_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudioinfo_jni.so
+lib/libaudiomtkdcremoval.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiomtkdcremoval.so
+lib/libaudioroute.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudioroute.so
+lib/libaudiosetting.so|$(TARGET_COPY_OUT_VENDOR)/lib/libaudiosetting.so
+lib/libavcodec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libavcodec.so
+lib/libavformat.so|$(TARGET_COPY_OUT_VENDOR)/lib/libavformat.so
+lib/libavutil.so|$(TARGET_COPY_OUT_VENDOR)/lib/libavutil.so
+lib/libawb_wrap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libawb_wrap.so
+lib/libbacktrace_libc++.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbacktrace_libc++.so
+lib/libbessound_hd_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbessound_hd_mtk.so
+lib/libbessurround_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbessurround_mtk.so
+lib/libblisrc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libblisrc.so
+lib/libblisrc32.so|$(TARGET_COPY_OUT_VENDOR)/lib/libblisrc32.so
+lib/libbluetooth_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetooth_jni.so
+lib/libbluetooth_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetooth_mtk.so
+lib/libbluetooth_mtk_pure.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetooth_mtk_pure.so
+lib/libbluetooth_relayer.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetooth_relayer.so
+lib/libbluetoothdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetoothdrv.so
+lib/libbluetoothem_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbluetoothem_mtk.so
+lib/libbt-aptX-ARM-4.2.2.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbt-aptX-ARM-4.2.2.so
+lib/libbtcust.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtcust.so
+lib/libbtcusttable.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtcusttable.so
+lib/libbtcusttc1.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtcusttc1.so
+lib/libbtem.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtem.so
+lib/libbtpcm.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtpcm.so
+lib/libbtsession.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtsession.so
+lib/libbtsniff.so|system/lib/libbtsniff.so
+lib/libbtstd.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbtstd.so
+lib/libbwc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libbwc.so
+lib/libcam.camadapter.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.camadapter.so
+lib/libcam.camnode.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.camnode.so
+lib/libcam.camshot.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.camshot.so
+lib/libcam.client.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.client.so
+lib/libcam.common.meizu.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.common.meizu.so
+lib/libcam.device1.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.device1.so
+lib/libcam.device3.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.device3.so
+lib/libcam.exif.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.exif.so
+lib/libcam.exif.v3.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.exif.v3.so
+lib/libcam.hal3a.v3.dng.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.hal3a.v3.dng.so
+lib/libcam.hal3a.v3.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.hal3a.v3.so
+lib/libcam.halsensor.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.halsensor.so
+lib/libcam.iopipe.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.iopipe.so
+lib/libcam.jni.lomohaljni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.jni.lomohaljni.so
+lib/libcam.metadata.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.metadata.so
+lib/libcam.metadataprovider.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.metadataprovider.so
+lib/libcam.paramsmgr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.paramsmgr.so
+lib/libcam.sdkclient.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.sdkclient.so
+lib/libcam.utils.cpuctrl.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.utils.cpuctrl.so
+lib/libcam.utils.sensorlistener.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.utils.sensorlistener.so
+lib/libcam.utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam.utils.so
+lib/libcam1_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam1_utils.so
+lib/libcam1client.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam1client.so
+lib/libcam3_app.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam3_app.so
+lib/libcam3_hwnode.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam3_hwnode.so
+lib/libcam3_hwpipeline.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam3_hwpipeline.so
+lib/libcam3_pipeline.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam3_pipeline.so
+lib/libcam3_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam3_utils.so
+lib/libcam_hwutils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam_hwutils.so
+lib/libcam_mmp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam_mmp.so
+lib/libcam_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam_platform.so
+lib/libcam_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcam_utils.so
+lib/libcamalgo.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcamalgo.so
+lib/libcamdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcamdrv.so
+lib/libcamera_3rdalgo.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcamera_3rdalgo.so
+lib/libcamera_client_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcamera_client_mtk.so
+lib/libcamera_metadata.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcamera_metadata.so
+lib/libcameracustom.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcameracustom.so
+lib/libccci_util.so|$(TARGET_COPY_OUT_VENDOR)/lib/libccci_util.so
+lib/libcfgdevparam.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcfgdevparam.so
+lib/libcommon_time_client.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcommon_time_client.so
+lib/libcomutils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcomutils.so
+lib/libcrypto_framwork.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcrypto_framwork.so
+lib/libcurl.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcurl.so
+lib/libcustom_jni.so|system/lib/libcustom_jni.so
+lib/libcustom_nvram.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcustom_nvram.so
+lib/libcustom_prop.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcustom_prop.so
+lib/libcvsd_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libcvsd_mtk.so
+lib/libdcfdecoderjni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdcfdecoderjni.so
+lib/libdiagn.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdiagn.so
+lib/libdirect-coredump.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdirect-coredump.so
+lib/libdlna_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdlna_jni.so
+lib/libdngop.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdngop.so
+lib/libdpframework.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdpframework.so
+lib/libdrmmtkutil.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdrmmtkutil.so
+lib/libdrmmtkwhitelist.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdrmmtkwhitelist.so
+lib/libdta_mt6605_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libdta_mt6605_jni.so
+lib/libeffects_filters.so|$(TARGET_COPY_OUT_VENDOR)/lib/libeffects_filters.so
+lib/libeffects_mosaic.so|$(TARGET_COPY_OUT_VENDOR)/lib/libeffects_mosaic.so
+lib/libeglbitmap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libeglbitmap.so
+lib/libem_bt_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_bt_jni.so
+lib/libem_gpio_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_gpio_jni.so
+lib/libem_lte_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_lte_jni.so
+lib/libem_modem_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_modem_jni.so
+lib/libem_sensor_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_sensor_jni.so
+lib/libem_support_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_support_jni.so
+lib/libem_usb_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_usb_jni.so
+lib/libem_wifi_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libem_wifi_jni.so
+lib/libexif.so|$(TARGET_COPY_OUT_VENDOR)/lib/libexif.so
+lib/libexif_gallery.so|$(TARGET_COPY_OUT_VENDOR)/lib/libexif_gallery.so
+lib/libextadvanced_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextadvanced_jni.so
+lib/libextbip.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextbip.so
+lib/libextbip_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextbip_jni.so
+lib/libextbpp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextbpp.so
+lib/libextbpp_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextbpp_jni.so
+lib/libextdun_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextdun_jni.so
+lib/libextem.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextem.so
+lib/libextftp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextftp.so
+lib/libextftp_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextftp_jni.so
+lib/libextmap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextmap.so
+lib/libextmap_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextmap_jni.so
+lib/libextsimap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextsimap.so
+lib/libextsimap_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextsimap_jni.so
+lib/libextsys.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextsys.so
+lib/libextsys_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libextsys_jni.so
+lib/libexttestmode.so|$(TARGET_COPY_OUT_VENDOR)/lib/libexttestmode.so
+lib/libfeatureio.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfeatureio.so
+lib/libfeatureiodrv.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfeatureiodrv.so
+lib/libffmpeg_utils.so|system/lib/libffmpeg_utils.so
+lib/libfgauge.so|system/lib/libfgauge.so
+lib/libfile_op.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfile_op.so
+lib/libfilterUtils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfilterUtils.so
+lib/libfilter_effects.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfilter_effects.so
+lib/libfilterfw.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfilterfw.so
+lib/libfilterpack_imageproc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfilterpack_imageproc.so
+lib/libfmcust.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfmcust.so
+lib/libfmjni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfmjni.so
+lib/libfmmt6630.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfmmt6630.so
+lib/libfrsdk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libfrsdk.so
+lib/libgas.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgas.so
+lib/libgccdemangle.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgccdemangle.so
+lib/libged.so|$(TARGET_COPY_OUT_VENDOR)/lib/libged.so
+lib/libgifEncoder_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgifEncoder_jni.so
+lib/libgnustl_shared.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgnustl_shared.so
+lib/libgpu_aux.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgpu_aux.so
+lib/libgralloc_extra.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgralloc_extra.so
+lib/libgraphite2.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgraphite2.so
+lib/libgui_ext.so|$(TARGET_COPY_OUT_VENDOR)/lib/libgui_ext.so
+lib/libh264enc_sa.ca7.so|system/lib/libh264enc_sa.ca7.so
+lib/libh264enc_sb.ca7.so|system/lib/libh264enc_sb.ca7.so
+lib/libhotknot.so|$(TARGET_COPY_OUT_VENDOR)/lib/libhotknot.so
+lib/libhotknot_vendor.so|$(TARGET_COPY_OUT_VENDOR)/lib/libhotknot_vendor.so
+lib/libhwm.so|$(TARGET_COPY_OUT_VENDOR)/lib/libhwm.so
+lib/libimage_codec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimage_codec.so
+lib/libimage_dehazing.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimage_dehazing.so
+lib/libimageio.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimageio.so
+lib/libimageio_plat_drv.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimageio_plat_drv.so
+lib/libimageproc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimageproc.so
+lib/libimg_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimg_utils.so
+lib/libimsma.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma.so
+lib/libimsma_rtp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma_rtp.so
+lib/libimsma_socketwrapper.so|$(TARGET_COPY_OUT_VENDOR)/lib/libimsma_socketwrapper.so
+lib/libion_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libion_mtk.so
+lib/libiprouteutil.so|$(TARGET_COPY_OUT_VENDOR)/lib/libiprouteutil.so
+lib/libja3m.so|$(TARGET_COPY_OUT_VENDOR)/lib/libja3m.so
+lib/libjhead.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjhead.so
+lib/libjhead_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjhead_jni.so
+lib/libjni_gauss_blur.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_gauss_blur.so
+lib/libjni_glrenderer.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_glrenderer.so
+lib/libjni_lomoeffect.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_lomoeffect.so
+lib/libjni_pq.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_pq.so
+lib/libjni_systemui.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_systemui.so
+lib/libjni_systemuitools.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjni_systemuitools.so
+lib/libjnigraphics.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjnigraphics.so
+lib/libjtranscode.so|$(TARGET_COPY_OUT_VENDOR)/lib/libjtranscode.so
+lib/libkaraoke.so|$(TARGET_COPY_OUT_VENDOR)/lib/libkaraoke.so
+lib/libm4u.so|$(TARGET_COPY_OUT_VENDOR)/lib/libm4u.so
+lib/libmal.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal.so
+lib/libmal_datamngr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_datamngr.so
+lib/libmal_epdga.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_epdga.so
+lib/libmal_imsmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_imsmngr.so
+lib/libmal_mdmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_mdmngr.so
+lib/libmal_nwmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_nwmngr.so
+lib/libmal_rds.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_rds.so
+lib/libmal_rilproxy.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_rilproxy.so
+lib/libmal_simmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmal_simmngr.so
+lib/libmatv_cust.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmatv_cust.so
+lib/libmcode_image.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmcode_image.so
+lib/libmdfx.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmdfx.so
+lib/libmdloggerrecycle.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmdloggerrecycle.so
+lib/libmediatek_exceptionlog.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmediatek_exceptionlog.so
+lib/libmeizu.camera.algo.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmeizu.camera.algo.so
+lib/libmeizucamera.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmeizucamera.so
+lib/libmemoryDumpEncoder.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmemoryDumpEncoder.so
+lib/libmemorydumper.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmemorydumper.so
+lib/libmhalImageCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmhalImageCodec.so
+lib/libmisc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmisc.so
+lib/libmmprofile.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmmprofile.so
+lib/libmmprofile_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmmprofile_jni.so
+lib/libmmsdkservice.feature.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmmsdkservice.feature.so
+lib/libmmsdkservice.feature_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmmsdkservice.feature_platform.so
+lib/libmmsdkservice.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmmsdkservice.so
+lib/libmnl.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmnl.so
+lib/libmp4enc_sa.ca7.so|system/lib/libmp4enc_sa.ca7.so
+lib/libmp4enc_xa.ca7.so|system/lib/libmp4enc_xa.ca7.so
+lib/libmpbase.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmpbase.so
+lib/libmpo.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmpo.so
+lib/libmpodecoder.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmpodecoder.so
+lib/libmpoencoder.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmpoencoder.so
+lib/libmpojni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmpojni.so
+lib/libmrdump.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmrdump.so
+lib/libmsbc_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmsbc_mtk.so
+lib/libmtb.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtb.so
+lib/libmtcloader.so|system/lib/libmtcloader.so
+lib/libmtee.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtee.so
+lib/libmtk_drvb.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtk_drvb.so
+lib/libmtk_mmutils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtk_mmutils.so
+lib/libmtk_vt_service.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtk_vt_service.so
+lib/libmtk_vt_swip.so|system/lib/libmtk_vt_swip.so
+lib/libmtk_vt_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtk_vt_utils.so
+lib/libmtk_vt_wrapper.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtk_vt_wrapper.so
+lib/libmtkbtextspp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtkbtextspp.so
+lib/libmtkcamera_client.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtkcamera_client.so
+lib/libmtkjpeg.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtkjpeg.so
+lib/libmtklimiter.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtklimiter.so
+lib/libmtkplayer.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtkplayer.so
+lib/libmtkshifter.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtkshifter.so
+lib/libmtksqlite3_android.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtksqlite3_android.so
+lib/libmtksqlite3_custom.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmtksqlite3_custom.so
+lib/libmzplayer.so|$(TARGET_COPY_OUT_VENDOR)/lib/libmzplayer.so
+lib/libn3d3a.so|$(TARGET_COPY_OUT_VENDOR)/lib/libn3d3a.so
+lib/libnative_blur.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnative_blur.so
+lib/libnative_glrenderer.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnative_glrenderer.so
+lib/libnativecheck-jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnativecheck-jni.so
+lib/libnfc_ndef.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnfc_ndef.so
+lib/libnicipher.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnicipher.so
+lib/libnvram.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnvram.so
+lib/libnvram_daemon_callback.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnvram_daemon_callback.so
+lib/libnvram_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnvram_platform.so
+lib/libnvram_sec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnvram_sec.so
+lib/libnvramagentclient.so|$(TARGET_COPY_OUT_VENDOR)/lib/libnvramagentclient.so
+lib/libopus.so|$(TARGET_COPY_OUT_VENDOR)/lib/libopus.so
+lib/libpalsecurity.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpalsecurity.so
+lib/libpalwlan_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpalwlan_mtk.so
+lib/libperfservice.so|$(TARGET_COPY_OUT_VENDOR)/lib/libperfservice.so
+lib/libperfservicenative.so|system/lib/libperfservicenative.so
+lib/libphoto_process.so|$(TARGET_COPY_OUT_VENDOR)/lib/libphoto_process.so
+lib/libpppbtdun.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpppbtdun.so
+lib/libpq_cust.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpq_cust.so
+lib/libpq_prot.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpq_prot.so
+lib/libpqservice.so|$(TARGET_COPY_OUT_VENDOR)/lib/libpqservice.so
+lib/librilmtkmd2.so|$(TARGET_COPY_OUT_VENDOR)/lib/librilmtkmd2.so
+lib/librrc.so|$(TARGET_COPY_OUT_VENDOR)/lib/librrc.so
+lib/libsbccodec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsbccodec.so
+lib/libsec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsec.so
+lib/libshowlogo.so|$(TARGET_COPY_OUT_VENDOR)/lib/libshowlogo.so
+lib/libsink.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsink.so
+lib/libskia_hw_interface.so|$(TARGET_COPY_OUT_VENDOR)/lib/libskia_hw_interface.so
+lib/libsource.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsource.so
+lib/libspeech_enh_lib.so|$(TARGET_COPY_OUT_VENDOR)/lib/libspeech_enh_lib.so
+lib/libspeexresampler.so|$(TARGET_COPY_OUT_VENDOR)/lib/libspeexresampler.so
+lib/libsqlite_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsqlite_jni.so
+lib/libssladp.so|$(TARGET_COPY_OUT_VENDOR)/lib/libssladp.so
+lib/libstagefrighthw.so|$(TARGET_COPY_OUT_VENDOR)/lib/libstagefrighthw.so
+lib/libstlport.so|$(TARGET_COPY_OUT_VENDOR)/lib/libstlport.so
+lib/libsurfacetexture_bitmap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libsurfacetexture_bitmap.so
+lib/libswresample.so|$(TARGET_COPY_OUT_VENDOR)/lib/libswresample.so
+lib/libswscale.so|$(TARGET_COPY_OUT_VENDOR)/lib/libswscale.so
+lib/libtaglib.so|$(TARGET_COPY_OUT_VENDOR)/lib/libtaglib.so
+lib/libtiff.so|$(TARGET_COPY_OUT_VENDOR)/lib/libtiff.so
+lib/libtimestretch.so|$(TARGET_COPY_OUT_VENDOR)/lib/libtimestretch.so
+lib/libtouchfilter.so|$(TARGET_COPY_OUT_VENDOR)/lib/libtouchfilter.so
+lib/libttssuitemsc.so|$(TARGET_COPY_OUT_VENDOR)/lib/libttssuitemsc.so
+lib/libudf.so|$(TARGET_COPY_OUT_VENDOR)/lib/libudf.so
+lib/libui_ext.so|$(TARGET_COPY_OUT_VENDOR)/lib/libui_ext.so
+lib/libunwind-ptrace.so|$(TARGET_COPY_OUT_VENDOR)/lib/libunwind-ptrace.so
+lib/libvariablespeed.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvariablespeed.so
+lib/libvc1dec_sa.ca7.so|system/lib/libvc1dec_sa.ca7.so
+lib/libvcodec_cap.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvcodec_cap.so
+lib/libvcodec_oal.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvcodec_oal.so
+lib/libvcodec_utility.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvcodec_utility.so
+lib/libvcodecdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvcodecdrv.so
+lib/libvfb_render.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvfb_render.so
+lib/libvie.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvie.so
+lib/libvie_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvie_jni.so
+lib/libvoicerecognition.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvoicerecognition.so
+lib/libvoicerecognition_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvoicerecognition_jni.so
+lib/libvorbisidec.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvorbisidec.so
+lib/libvp8dec_sa.ca7.so|system/lib/libvp8dec_sa.ca7.so
+lib/libvp8enc_sa.ca7.so|system/lib/libvp8enc_sa.ca7.so
+lib/libvp9dec_sa.ca7.so|system/lib/libvp9dec_sa.ca7.so
+lib/libvt_avsync.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvt_avsync.so
+lib/libvt_custom.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvt_custom.so
+lib/libvt_socketbind.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvt_socketbind.so
+lib/libvtmal.so|$(TARGET_COPY_OUT_VENDOR)/lib/libvtmal.so
+lib/libwebrtc_audio_preprocessing.so|$(TARGET_COPY_OUT_VENDOR)/lib/libwebrtc_audio_preprocessing.so
+lib/libwvdrm_L3.so|$(TARGET_COPY_OUT_VENDOR)/lib/libwvdrm_L3.so
+lib/libwvm.so|$(TARGET_COPY_OUT_VENDOR)/lib/libwvm.so
+lib/mtk-rilmd2.so|system/lib/mtk-rilmd2.so
+lib/ssl/engines/libkeystore.so|$(TARGET_COPY_OUT_VENDOR)/lib/ssl/engines/libkeystore.so
+lib/volte_imsm.so|system/lib/volte_imsm.so
+lib64/egl/egl.cfg|$(TARGET_COPY_OUT_VENDOR)/lib64/egl/egl.cfg
+lib64/egl/libGLES_mali.so|$(TARGET_COPY_OUT_VENDOR)/lib64/egl/libGLES_mali.so
+lib64/extend/libCodec.adpcmdec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libCodec.adpcmdec.so
+lib64/extend/libCodec.adt.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libCodec.adt.so
+lib64/extend/libCodec.lpcm.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libCodec.lpcm.so
+lib64/extend/libCodec.mp3enc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libCodec.mp3enc.so
+lib64/extend/libCodec.raw.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libCodec.raw.so
+lib64/extend/libExtractor.AC3.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.AC3.so
+lib64/extend/libExtractor.AIFF.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.AIFF.so
+lib64/extend/libExtractor.APE.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.APE.so
+lib64/extend/libExtractor.ASF.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.ASF.so
+lib64/extend/libExtractor.AVI.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.AVI.so
+lib64/extend/libExtractor.FLAC.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.FLAC.so
+lib64/extend/libExtractor.FLV.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.FLV.so
+lib64/extend/libExtractor.MP3.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.MP3.so
+lib64/extend/libExtractor.MPEG.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.MPEG.so
+lib64/extend/libExtractor.MPEG2TS.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.MPEG2TS.so
+lib64/extend/libExtractor.MPEG4.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.MPEG4.so
+lib64/extend/libExtractor.REALMEDIA.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.REALMEDIA.so
+lib64/extend/libExtractor.WAV.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.WAV.so
+lib64/extend/libExtractor.matroska.so|$(TARGET_COPY_OUT_VENDOR)/lib64/extend/libExtractor.matroska.so
+lib64/hw/audio.primary.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio.primary.mt6753.so
+lib64/hw/audio_policy.default.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/audio_policy.default.so
+lib64/hw/camera.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/camera.mt6753.so
+lib64/hw/gps.default.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gps.default.so
+lib64/hw/gps.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gps.mt6753.so
+lib64/hw/gralloc.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/gralloc.mt6753.so
+lib64/hw/keystore.default.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/keystore.default.so
+lib64/hw/lights.default.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/lights.default.so
+lib64/hw/memtrack.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/memtrack.mt6753.so
+lib64/hw/mmsdk.default.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/mmsdk.default.so
+lib64/hw/mmsdk.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/mmsdk.mt6753.so
+lib64/hw/sensors.mt6753.so|$(TARGET_COPY_OUT_VENDOR)/lib64/hw/sensors.mt6753.so
+lib64/lib3a.so|$(TARGET_COPY_OUT_VENDOR)/lib64/lib3a.so
+lib64/lib3a_sample.so|$(TARGET_COPY_OUT_VENDOR)/lib64/lib3a_sample.so
+lib64/libBnMtkCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libBnMtkCodec.so
+lib64/libDominantColors.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libDominantColors.so
+lib64/libFFTEm.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libFFTEm.so
+lib64/libGdmaScalerPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libGdmaScalerPipe.so
+lib64/libJpgDecPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libJpgDecPipe.so
+lib64/libJpgEncPipe.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libJpgEncPipe.so
+lib64/libMiraVision_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMiraVision_jni.so
+lib64/libMtkOmxAdpcmDec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxAdpcmDec.so
+lib64/libMtkOmxAdpcmEnc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxAdpcmEnc.so
+lib64/libMtkOmxAlacDec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxAlacDec.so
+lib64/libMtkOmxApeDec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxApeDec.so
+lib64/libMtkOmxCore.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxCore.so
+lib64/libMtkOmxG711Dec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxG711Dec.so
+lib64/libMtkOmxGsmDec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxGsmDec.so
+lib64/libMtkOmxMp3Dec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxMp3Dec.so
+lib64/libMtkOmxRawDec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxRawDec.so
+lib64/libMtkOmxVorbisEnc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkOmxVorbisEnc.so
+lib64/libMtkVideoTranscoder.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libMtkVideoTranscoder.so
+lib64/libOpenCLIcd.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libOpenCLIcd.so
+lib64/libPQDCjni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libPQDCjni.so
+lib64/libPQjni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libPQjni.so
+lib64/libRSDriver_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libRSDriver_mtk.so
+lib64/libSensorAdjustment.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libSensorAdjustment.so
+lib64/libSonyIMX230PdafLibrary.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libSonyIMX230PdafLibrary.so
+lib64/libSwJpgCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libSwJpgCodec.so
+lib64/liba3m.so|$(TARGET_COPY_OUT_VENDOR)/lib64/liba3m.so
+lib64/libaal.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaal.so
+lib64/libacdk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libacdk.so
+lib64/libaed.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaed.so
+lib64/libarcsoft_makeup.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libarcsoft_makeup.so
+lib64/libatciserv_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libatciserv_jni.so
+lib64/libatvctrlservice.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libatvctrlservice.so
+lib64/libaudiocompensationfilter.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocompensationfilter.so
+lib64/libaudiocomponentengine.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocomponentengine.so
+lib64/libaudiocustparam.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiocustparam.so
+lib64/libaudiodcrflt.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiodcrflt.so
+lib64/libaudioinfo_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudioinfo_jni.so
+lib64/libaudiosetting.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libaudiosetting.so
+lib64/libavcodec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libavcodec.so
+lib64/libavformat.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libavformat.so
+lib64/libavutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libavutil.so
+lib64/libbacktrace_libc++.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbacktrace_libc++.so
+lib64/libbessound_hd_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbessound_hd_mtk.so
+lib64/libblisrc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libblisrc.so
+lib64/libblisrc32.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libblisrc32.so
+lib64/libbluetooth_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbluetooth_mtk.so
+lib64/libbluetooth_mtk_pure.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbluetooth_mtk_pure.so
+lib64/libbluetooth_relayer.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbluetooth_relayer.so
+lib64/libbluetoothdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbluetoothdrv.so
+lib64/libbluetoothem_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbluetoothem_mtk.so
+lib64/libbt-aptX-ARM-4.2.2.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbt-aptX-ARM-4.2.2.so
+lib64/libbtcusttable.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbtcusttable.so
+lib64/libbtem.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbtem.so
+lib64/libbtstd.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbtstd.so
+lib64/libbwc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libbwc.so
+lib64/libcam.camadapter.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.camadapter.so
+lib64/libcam.camnode.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.camnode.so
+lib64/libcam.camshot.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.camshot.so
+lib64/libcam.client.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.client.so
+lib64/libcam.common.meizu.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.common.meizu.so
+lib64/libcam.device1.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.device1.so
+lib64/libcam.device3.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.device3.so
+lib64/libcam.exif.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.exif.so
+lib64/libcam.exif.v3.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.exif.v3.so
+lib64/libcam.hal3a.v3.dng.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.hal3a.v3.dng.so
+lib64/libcam.hal3a.v3.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.hal3a.v3.so
+lib64/libcam.halsensor.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.halsensor.so
+lib64/libcam.iopipe.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.iopipe.so
+lib64/libcam.jni.lomohaljni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.jni.lomohaljni.so
+lib64/libcam.metadata.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.metadata.so
+lib64/libcam.metadataprovider.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.metadataprovider.so
+lib64/libcam.paramsmgr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.paramsmgr.so
+lib64/libcam.sdkclient.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.sdkclient.so
+lib64/libcam.utils.cpuctrl.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.utils.cpuctrl.so
+lib64/libcam.utils.sensorlistener.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.utils.sensorlistener.so
+lib64/libcam.utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam.utils.so
+lib64/libcam1_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam1_utils.so
+lib64/libcam1client.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam1client.so
+lib64/libcam3_app.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam3_app.so
+lib64/libcam3_hwnode.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam3_hwnode.so
+lib64/libcam3_hwpipeline.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam3_hwpipeline.so
+lib64/libcam3_pipeline.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam3_pipeline.so
+lib64/libcam3_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam3_utils.so
+lib64/libcam_hwutils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam_hwutils.so
+lib64/libcam_mmp.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam_mmp.so
+lib64/libcam_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam_platform.so
+lib64/libcam_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcam_utils.so
+lib64/libcamalgo.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcamalgo.so
+lib64/libcamdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcamdrv.so
+lib64/libcamera_client_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcamera_client_mtk.so
+lib64/libcamera_metadata.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcamera_metadata.so
+lib64/libcameracustom.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcameracustom.so
+lib64/libccci_util.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libccci_util.so
+lib64/libcfgdevparam.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcfgdevparam.so
+lib64/libcommon_time_client.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcommon_time_client.so
+lib64/libcomutils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcomutils.so
+lib64/libcurl.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcurl.so
+lib64/libcustom_jni.so|system/lib64/libcustom_jni.so
+lib64/libcustom_nvram.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcustom_nvram.so
+lib64/libcustom_prop.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcustom_prop.so
+lib64/libcvsd_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libcvsd_mtk.so
+lib64/libdcfdecoderjni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdcfdecoderjni.so
+lib64/libdiagn.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdiagn.so
+lib64/libdirect-coredump.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdirect-coredump.so
+lib64/libdlna_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdlna_jni.so
+lib64/libdngop.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdngop.so
+lib64/libdpframework.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdpframework.so
+lib64/libdrmmtkutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdrmmtkutil.so
+lib64/libdrmmtkwhitelist.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdrmmtkwhitelist.so
+lib64/libdta_dynamic_load_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdta_dynamic_load_jni.so
+lib64/libdta_mt6605_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libdta_mt6605_jni.so
+lib64/libeffects_filters.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libeffects_filters.so
+lib64/libeffects_mosaic.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libeffects_mosaic.so
+lib64/libeglbitmap.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libeglbitmap.so
+lib64/libem_bt_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_bt_jni.so
+lib64/libem_gpio_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_gpio_jni.so
+lib64/libem_lte_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_lte_jni.so
+lib64/libem_modem_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_modem_jni.so
+lib64/libem_sensor_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_sensor_jni.so
+lib64/libem_support_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_support_jni.so
+lib64/libem_usb_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_usb_jni.so
+lib64/libem_wifi_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libem_wifi_jni.so
+lib64/libexif.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libexif.so
+lib64/libexif_gallery.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libexif_gallery.so
+lib64/libextadvanced_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libextadvanced_jni.so
+lib64/libextem.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libextem.so
+lib64/libextsys.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libextsys.so
+lib64/libextsys_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libextsys_jni.so
+lib64/libfeatureio.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfeatureio.so
+lib64/libfeatureiodrv.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfeatureiodrv.so
+lib64/libffmpeg_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libffmpeg_utils.so
+lib64/libfile_op.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfile_op.so
+lib64/libfilterUtils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfilterUtils.so
+lib64/libfilter_effects.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfilter_effects.so
+lib64/libfilterfw.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfilterfw.so
+lib64/libfilterpack_imageproc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfilterpack_imageproc.so
+lib64/libfmcust.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfmcust.so
+lib64/libfmjni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfmjni.so
+lib64/libfmmt6630.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfmmt6630.so
+lib64/libfrsdk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libfrsdk.so
+lib64/libgas.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgas.so
+lib64/libgccdemangle.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgccdemangle.so
+lib64/libged.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libged.so
+lib64/libgpu_aux.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgpu_aux.so
+lib64/libgralloc_extra.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgralloc_extra.so
+lib64/libgraphite2.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgraphite2.so
+lib64/libgui_ext.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libgui_ext.so
+lib64/libh264enc_sa.ca7.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libh264enc_sa.ca7.so
+lib64/libhotknot.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libhotknot.so
+lib64/libhotknot_vendor.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libhotknot_vendor.so
+lib64/libhwm.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libhwm.so
+lib64/libimage_codec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimage_codec.so
+lib64/libimage_dehazing.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimage_dehazing.so
+lib64/libimageio.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimageio.so
+lib64/libimageio_plat_drv.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimageio_plat_drv.so
+lib64/libimageproc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimageproc.so
+lib64/libimg_utils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimg_utils.so
+lib64/libimsma.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma.so
+lib64/libimsma_rtp.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma_rtp.so
+lib64/libimsma_socketwrapper.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libimsma_socketwrapper.so
+lib64/libion_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libion_mtk.so
+lib64/libiprouteutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libiprouteutil.so
+lib64/libja3m.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libja3m.so
+lib64/libjhead.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjhead.so
+lib64/libjhead_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjhead_jni.so
+lib64/libjni_glrenderer.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_glrenderer.so
+lib64/libjni_lomoeffect.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_lomoeffect.so
+lib64/libjni_pacprocessor.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_pacprocessor.so
+lib64/libjni_pq.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_pq.so
+lib64/libjni_systemui.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_systemui.so
+lib64/libjni_systemuitools.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjni_systemuitools.so
+lib64/libjnigraphics.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libjnigraphics.so
+lib64/libkaraoke.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libkaraoke.so
+lib64/liblogwrap.so|$(TARGET_COPY_OUT_VENDOR)/lib64/liblogwrap.so
+lib64/libm4u.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libm4u.so
+lib64/libmal.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal.so
+lib64/libmal_datamngr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_datamngr.so
+lib64/libmal_epdga.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_epdga.so
+lib64/libmal_imsmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_imsmngr.so
+lib64/libmal_mdmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_mdmngr.so
+lib64/libmal_nwmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_nwmngr.so
+lib64/libmal_rds.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_rds.so
+lib64/libmal_rilproxy.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_rilproxy.so
+lib64/libmal_simmngr.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmal_simmngr.so
+lib64/libmatv_cust.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmatv_cust.so
+lib64/libmcode_image.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmcode_image.so
+lib64/libmdfx.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmdfx.so
+lib64/libmdloggerrecycle.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmdloggerrecycle.so
+lib64/libmediatek_exceptionlog.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmediatek_exceptionlog.so
+lib64/libmeizu.camera.algo.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmeizu.camera.algo.so
+lib64/libmeizucamera.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmeizucamera.so
+lib64/libmemoryDumpEncoder.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmemoryDumpEncoder.so
+lib64/libmemorydumper.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmemorydumper.so
+lib64/libmhalImageCodec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmhalImageCodec.so
+lib64/libmisc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmisc.so
+lib64/libmmprofile.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmmprofile.so
+lib64/libmmprofile_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmmprofile_jni.so
+lib64/libmmsdkservice.feature.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmmsdkservice.feature.so
+lib64/libmmsdkservice.feature_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmmsdkservice.feature_platform.so
+lib64/libmmsdkservice.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmmsdkservice.so
+lib64/libmpbase.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmpbase.so
+lib64/libmpo.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmpo.so
+lib64/libmpoencoder.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmpoencoder.so
+lib64/libmrdump.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmrdump.so
+lib64/libmsbc_mtk.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmsbc_mtk.so
+lib64/libmtk_drvb.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtk_drvb.so
+lib64/libmtk_mmutils.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtk_mmutils.so
+lib64/libmtkcamera_client.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtkcamera_client.so
+lib64/libmtkjpeg.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtkjpeg.so
+lib64/libmtklimiter.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtklimiter.so
+lib64/libmtkplayer.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtkplayer.so
+lib64/libmtkshifter.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtkshifter.so
+lib64/libmtksqlite3_android.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtksqlite3_android.so
+lib64/libmtksqlite3_custom.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmtksqlite3_custom.so
+lib64/libmzplayer.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libmzplayer.so
+lib64/libn3d3a.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libn3d3a.so
+lib64/libnative_blur.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnative_blur.so
+lib64/libnative_glrenderer.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnative_glrenderer.so
+lib64/libnativecheck-jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnativecheck-jni.so
+lib64/libnfc_ndef.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnfc_ndef.so
+lib64/libnicipher.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnicipher.so
+lib64/libnvram.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnvram.so
+lib64/libnvram_daemon_callback.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnvram_daemon_callback.so
+lib64/libnvram_platform.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnvram_platform.so
+lib64/libnvram_sec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnvram_sec.so
+lib64/libnvramagentclient.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libnvramagentclient.so
+lib64/libopus.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libopus.so
+lib64/libperfservice.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libperfservice.so
+lib64/libperfservicenative.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libperfservicenative.so
+lib64/libphoto_process.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libphoto_process.so
+lib64/libpppbtdun.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libpppbtdun.so
+lib64/libpq_cust.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libpq_cust.so
+lib64/libpq_prot.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libpq_prot.so
+lib64/libpqservice.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libpqservice.so
+lib64/libprintspooler_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libprintspooler_jni.so
+lib64/librilmtkmd2.so|$(TARGET_COPY_OUT_VENDOR)/lib64/librilmtkmd2.so
+lib64/librrc.so|$(TARGET_COPY_OUT_VENDOR)/lib64/librrc.so
+lib64/libsink.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libsink.so
+lib64/libskia_hw_interface.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libskia_hw_interface.so
+lib64/libsource.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libsource.so
+lib64/libspeech_enh_lib.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libspeech_enh_lib.so
+lib64/libspeexresampler.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libspeexresampler.so
+lib64/libsqlite_jni.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libsqlite_jni.so
+lib64/libstagefrighthw.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libstagefrighthw.so
+lib64/libstlport.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libstlport.so
+lib64/libswresample.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libswresample.so
+lib64/libswscale.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libswscale.so
+lib64/libtaglib.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libtaglib.so
+lib64/libterservice.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libterservice.so
+lib64/libtiff.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libtiff.so
+lib64/libtouchfilter.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libtouchfilter.so
+lib64/libttscompat.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libttscompat.so
+lib64/libttspico.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libttspico.so
+lib64/libudf.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libudf.so
+lib64/libui_ext.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libui_ext.so
+lib64/libunwind-ptrace.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libunwind-ptrace.so
+lib64/libvariablespeed.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvariablespeed.so
+lib64/libvcodec_cap.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvcodec_cap.so
+lib64/libvcodec_utility.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvcodec_utility.so
+lib64/libvcodecdrv.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvcodecdrv.so
+lib64/libvfb_render.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvfb_render.so
+lib64/libvlife_media.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvlife_media.so
+lib64/libvlife_openglutil.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvlife_openglutil.so
+lib64/libvlife_render.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvlife_render.so
+lib64/libvorbisidec.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvorbisidec.so
+lib64/libvt_avsync.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libvt_avsync.so
+lib64/libwapi.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libwapi.so
+lib64/libwebrtc_audio_preprocessing.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libwebrtc_audio_preprocessing.so
+lib64/libwifitest.so|$(TARGET_COPY_OUT_VENDOR)/lib64/libwifitest.so
+lib64/mtk-rilmd2.so|$(TARGET_COPY_OUT_VENDOR)/lib64/mtk-rilmd2.so
+lib64/ssl/engines/libkeystore.so|$(TARGET_COPY_OUT_VENDOR)/lib64/ssl/engines/libkeystore.so
+lib64/volte_imsm.so|$(TARGET_COPY_OUT_VENDOR)/lib64/volte_imsm.so
+thh/alipayapp|$(TARGET_COPY_OUT_VENDOR)/thh/alipayapp
+thh/soter.raw|$(TARGET_COPY_OUT_VENDOR)/thh/soter.raw
+thh/uTAgent|$(TARGET_COPY_OUT_VENDOR)/thh/uTAgent
+# bin/adb  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/am  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/applypatch  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# bin/applysig  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/appops  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/appwidget  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/atrace  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/badblocks  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/bcc  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/blkid  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/bmgr  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/bu  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/bugreport  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/clatd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/content  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dalvikvm  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dalvikvm32  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dalvikvm64  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dex2oat  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dhcpcd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dnsmasq  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/dpm  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/e2fsck  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/fsck_msdos  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/gzip  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# bin/gzip_static  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/halutil  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/hostapd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/hostapd_cli  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# bin/idmap  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ime  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/input  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/install-recovery.sh  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ip  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ip6tables  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/iptables  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/make_ext4fs  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/mdnsd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/media  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/mke2fs  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/mknod  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# bin/monkey  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/mtpd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ndc  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/netcfg  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/oatdump  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/patchoat  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ping  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/ping6  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/pppd  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/racoon  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/reboot  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/recovery  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/requestsync  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/resize2fs  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/screencap  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/screenrecord  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/sdcard  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/sensorservice  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/svc  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/tc  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/tune2fs  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/uiautomator  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/uncrypt  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/wm  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# bin/wpa_cli  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# bin/wpa_supplicant  -- AOSP-инструмент стокового /system/bin (Android 6); у Pie свой
+# etc/dhcpcd/dhcpcd-hooks/20-dns.conf  -- конфиг dhcpcd — в Pie dhcpcd нет
+# etc/dhcpcd/dhcpcd-hooks/95-configured  -- конфиг dhcpcd — в Pie dhcpcd нет
+# etc/dhcpcd/dhcpcd-run-hooks  -- конфиг dhcpcd — в Pie dhcpcd нет
+# etc/init/autokd.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/ccci_fsd.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/ccci_mdinit.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/conn.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/gsm0710muxd.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/hw/init.microtrust.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/hw/init.modem.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/hw/init.mt6735.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/hw/init.mt6735.usb.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/init_thh.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/md_ctrl.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/mnld.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/muxreport.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/nvram_daemon.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/permission_check.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/rild.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/teei_daemon.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/thermal_manager.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/wifi2agps.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/init/wpa_supplicant.rc  -- rc 15.1 (Oreo): сервисы определяет rc дерева (forge-modem.rc, init.mt6735.rc) — двойные определения
+# etc/permissions/android.hardware.bluetooth.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.bluetooth_le.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.camera.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.faketouch.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.location.gps.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.microphone.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.accelerometer.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.compass.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.gyroscope.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.light.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.proximity.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.stepcounter.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.sensor.stepdetector.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.telephony.gsm.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.touchscreen.multitouch.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.touchscreen.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.usb.accessory.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.usb.host.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.wifi.direct.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.hardware.wifi.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.software.live_wallpaper.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.software.sip.voip.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.software.sip.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/android.software.webview.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.android.location.provider.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.android.media.remotedisplay.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.android.mediadrm.signer.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.google.android.maps.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.google.widevine.software.drm.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.mediatek.effect.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/com.meizu.camera.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/handheld_core_hardware.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# etc/permissions/platform.xml  -- стоковые M-xml (platform.xml, handheld_core_hardware.xml и фичи) — фичи объявляет device.mk
+# lib/hw/audio.primary.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/audio.r_submix.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/audio.usb.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/audio_policy.stub.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/fingerprint.mt6753.so  -- датчика отпечатка у m2note нет
+# lib/hw/hwcomposer.mt6753.so  -- source-HWC 15.1 m2note собирается под тем же именем
+# lib/hw/local_time.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/power.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/hw/vibrator.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/lib_fpc_tac_shared.so  -- датчика отпечатка у m2note нет
+# lib/libcom_fingerprints_service.so  -- датчика отпечатка у m2note нет
+# lib/libeffects.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/libfingerprint_tac.so  -- датчика отпечатка у m2note нет
+# lib/libfs_mgr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/libm.so  -- AOSP libm Android 6 — не должен лежать рядом с блобами
+# lib/libreference-ril.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/librilmtk.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
+# lib/libteei_fp.so  -- датчика отпечатка у m2note нет
+# lib/mediadrm/libdrmclearkeyplugin.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/mediadrm/libmockdrmcryptoplugin.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/mediadrm/libwvdrmengine.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/mtk-ril.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
+# lib/soundfx/libaudiopreprocessing.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libbundlewrapper.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libdownmix.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libeffectproxy.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libldnhncr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libmaxxeffect-cembedded.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libreverbwrapper.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libswdap.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib/soundfx/libvisualizer.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/audio.primary.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/audio.r_submix.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/audio.usb.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/audio_policy.stub.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/fingerprint.mt6753.so  -- датчика отпечатка у m2note нет
+# lib64/hw/hwcomposer.mt6753.so  -- source-HWC 15.1 m2note собирается под тем же именем
+# lib64/hw/local_time.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/power.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/hw/vibrator.default.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/lib_fpc_tac_shared.so  -- датчика отпечатка у m2note нет
+# lib64/libcam1client.so.pre_m2note_skip_prefeature_cmd.bak  -- резервная копия редактора
+# lib64/libcom_fingerprints_service.so  -- датчика отпечатка у m2note нет
+# lib64/libeffects.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/libfingerprint_tac.so  -- датчика отпечатка у m2note нет
+# lib64/libfs_mgr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/libreference-ril.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/librilmtk.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
+# lib64/libteei_fp.so  -- датчика отпечатка у m2note нет
+# lib64/mediadrm/libdrmclearkeyplugin.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/mediadrm/libmockdrmcryptoplugin.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/mediadrm/libwvdrmengine.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/mtk-ril.so  -- модуль BUILD_PREBUILT (Android.mk): MTK libril линкует по имени
+# lib64/soundfx/libaudiopreprocessing.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libbundlewrapper.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libdownmix.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libeffectproxy.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libldnhncr.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libreverbwrapper.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# lib64/soundfx/libvisualizer.so  -- AOSP-модуль, M-пересборка MTK (LOS20: коллизия с модулем платформы)
+# thh/fp_server  -- датчика отпечатка у m2note нет
+# usr/keylayout/ACCDET.kl  -- ставит device.mk (keylayout/ дерева) — одно правило на цель
+# usr/keylayout/AVRCP.kl  -- ставит device.mk (keylayout/ дерева) — одно правило на цель
+# usr/keylayout/Vendor_2454_Product_6500.kl  -- ставит device.mk (keylayout/ дерева) — одно правило на цель
+# usr/keylayout/Vendor_2454_Product_6500.kl.bak-volswap  -- резервная копия редактора
+# usr/keylayout/fpc1020_input.kl  -- датчика отпечатка у m2note нет
+# usr/keylayout/mtk-kpd.kl  -- ставит device.mk (keylayout/ дерева) — одно правило на цель
+# usr/keylayout/mtk-kpd.kl.bak-volswap  -- резервная копия редактора
+# usr/keylayout/mtk-tpd.kl  -- ставит device.mk (keylayout/ дерева) — одно правило на цель
