@@ -1,5 +1,5 @@
 # forge-connectivity.rc — Pie half of the MTK CONSYS Wi-Fi userspace for the
-# m5c (LOS 16), peripherals lane 2026-09-03.  Vendor rc: parsed inside
+# m2note copy of the m5c (LOS 16) file, peripherals lane 2026-09-03.  Vendor rc: parsed inside
 # mount_all, i.e. AFTER the ramdisk init.mt6735.rc (the 14.1 rc set carried
 # over as the porting base).
 #

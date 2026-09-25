@@ -1,7 +1,15 @@
-# fstab.mt6735 for the Meizu M5c — LineageOS 16.0, Treble stage A.
-#
-# The by-name path is device-verified LIVE on this unit:
-#   /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/<partition>
+# fstab.mt6735 for the Meizu M2 Note — LineageOS 16.0, Treble stage A.
+# Entries: the m5c LOS 16 set.  m2note facts that decide them:
+#   - by-name path /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/ —
+#     FACT on this handset with this 3.18 kernel line: every captured
+#     /proc/mounts of the running 15.1 build (M2NOTE_LOS20_TREE.md §5).
+#   - custom = mmcblk0p19, 512 MiB -> /vendor (the 15.1 port already did this).
+#   - the m2note numbering is NOT the m5c/m5s one (boot p9, recovery p10,
+#     para p8, expdb p12, custom p19) — which is why numbers are never written
+#     here.
+# No first-stage/DT fstab (stock DTB byte for byte); forceencrypt dropped.
+
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/<partition>
 #
 # custom = mmcblk0p17 = exactly 512 MiB, never mounted by LOS 14.1 — it IS
 # the /vendor partition on this device (owner decision 2026-08-17, matches

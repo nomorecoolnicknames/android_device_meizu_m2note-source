@@ -1,5 +1,6 @@
 #!/vendor/bin/sh
-# forge m5c (bt-stp, 2026-09-03): hand /dev/stpbt to the Bluetooth HAL user.
+# forge (m5c bt-stp lane 2026-09-03, carried to the m2note): hand /dev/stpbt
+# to the Bluetooth HAL user.
 #
 # The node does not exist when `on post-fs-data` runs: it is created only when
 # wmt_loader initialises the connectivity drivers, and wmtLoader is `class core`

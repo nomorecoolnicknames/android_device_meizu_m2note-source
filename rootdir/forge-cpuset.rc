@@ -7,25 +7,19 @@
 # was a no-op even once the kernel gained the controller
 # (CONFIG_CPUSETS, kernel commit on branch pie-disp).
 #
-# MT6737M is four identical Cortex-A53 cores, no big.LITTLE, so the split is
-# purely foreground-vs-background: keep background work off the three cores
-# the UI and RenderThread run on.  Measured motivation: forcing the Settings
-# UI+Render threads to SCHED_FIFO left the medians alone but cut the frame
-# maxima 2-3x (IssueDrawCommands->SwapBuffers max 60.3 -> 22.6 ms,
-# dequeueBuffer max 57.1 -> 18.5 ms) -- the jank the owner feels is tail
-# variance, not median latency, and background interference is its source.
-#
-# Writes are harmless on a kernel without CONFIG_CPUSETS: the files simply
-# do not exist and init logs a failed write.
+# m2note: MT6753 = eight Cortex-A53 in two clusters of four.  Masks widened
+# from the m5c's 0-3 to 0-7.  FACT: m2note_defconfig has CONFIG_CPUSETS=y, so
+# on this kernel the writes take effect (on the m5c 4.9 it needed a kernel
+# commit first).
 
 on boot
-    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/top-app/cpus 0-7
     write /dev/cpuset/top-app/mems 0
-    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-7
     write /dev/cpuset/foreground/mems 0
     write /dev/cpuset/background/cpus 0
     write /dev/cpuset/background/mems 0
-    write /dev/cpuset/system-background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/system-background/mems 0
-    write /dev/cpuset/restricted/cpus 0-1
+    write /dev/cpuset/restricted/cpus 0-3
     write /dev/cpuset/restricted/mems 0

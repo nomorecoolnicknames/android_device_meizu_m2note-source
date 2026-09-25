@@ -1,5 +1,10 @@
-# forge-bluetooth.rc — Bluetooth HAL service + local address for the m5c on
-# LOS 16 (peripherals lane 2026-09-03).  Vendor rc, parsed inside mount_all.
+# forge-bluetooth.rc — Bluetooth HAL service + local address for the m2note on
+# LOS 16.  Source: the m5c file (peripherals lane 2026-09-03).  ONE deliberate
+# difference: the service is the stock 64-bit AOSP
+# android.hardware.bluetooth@1.0-service — the m2note libbt-vendor.so is built
+# from source for both ABIs over libbluetoothdrv.so, which the m2note set has
+# in both ABIs (FACT, readelf), so the m5c 32-bit service is not needed.  The
+# comments below are the m5c's evidence.  Vendor rc, parsed inside mount_all.
 #
 # 1. The service.  Replaces the 64-bit AOSP android.hardware.bluetooth@1.0-
 #    service placed on 2026-08-29: that one registers fine (btHci != nullptr
@@ -42,7 +47,7 @@ on post-fs-data
     chmod 0660 /dev/stpbt
     chown root bluetooth /data/nvram/APCFG/APRDEB/BT_Addr
     chmod 0660 /data/nvram/APCFG/APRDEB/BT_Addr
-    exec_background - root bluetooth -- /vendor/bin/sh /vendor/bin/m5c-bdaddr.sh
+    exec_background - root bluetooth -- /vendor/bin/sh /vendor/bin/m2note-bdaddr.sh
 
 # forge m5c (2026-09-03, bt-stp): the chown at post-fs-data above CANNOT work.
 # /dev/stpbt does not exist yet at that point.  The node appears only when
@@ -72,13 +77,13 @@ on post-fs-data
 on property:init.svc.wmtLoader=stopped
     chown bluetooth bluetooth /dev/stpbt
     chmod 0660 /dev/stpbt
-    exec_background - root root -- /vendor/bin/sh /vendor/bin/m5c-stpbt-perm.sh
+    exec_background - root root -- /vendor/bin/sh /vendor/bin/m2note-stpbt-perm.sh
 
 on property:sys.boot_completed=1
     chown bluetooth bluetooth /dev/stpbt
     chmod 0660 /dev/stpbt
 
-service vendor.bluetooth-1-0 /vendor/bin/hw/android.hardware.bluetooth@1.0-service.m5c
+service vendor.bluetooth-1-0 /vendor/bin/hw/android.hardware.bluetooth@1.0-service
     override
     class hal
     capabilities BLOCK_SUSPEND NET_ADMIN SYS_NICE

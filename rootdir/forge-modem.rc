@@ -1,4 +1,11 @@
-# forge: modem bring-up chain for LineageOS 16.0 on m5c.
+# forge: modem bring-up chain for LineageOS 16.0 — m2note copy of the m5c file.
+# Every binary named here exists in the m2note set (FACT, ls vendor/bin).
+# ONE change for the 3.18 kernel: the mux wrapper below waited for the 4.9
+# ccci printk "md_hs2_msg_notify", which the m2note eccci driver does not have
+# (FACT: no such string in kernel-m2note-3.18-adapt drivers/misc/mediatek/eccci).
+# On 3.18 HS2 is MD_NORMAL_BOOT -> CCCI_MD_MSG_BOOT_READY (port_kernel.c:~464),
+# after which ccci_mdinit sets mtk.md1.status=ready (FACT: strings ccci_mdinit
+# has mtk.md%d.status and "ready").  So the wrapper waits for that property.
 #
 # The Pie vendor tree ships the MTK modem binaries (ccci_mdinit, ccci_fsd,
 # gsm0710muxd, muxreport, terservice, mtkrild) but no init script defines
@@ -94,7 +101,7 @@ on property:service.nvram_init=Ready
 # NB: no '$' anywhere in the command. init expands BOTH ${x} and bare $x as
 # property names (system/core/init/util.cpp expand_props), so a shell variable
 # in an rc line is read as a property name and the line fails to expand.
-service gsm0710muxd /system/bin/sh -c "timeout 30 sh -c 'while ! dmesg | grep -q md_hs2_msg_notify; do sleep 1; done'; exec /vendor/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic"
+service gsm0710muxd /system/bin/sh -c "timeout 30 sh -c 'until getprop mtk.md1.status | grep -qx ready; do sleep 1; done'; exec /vendor/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic"
     override
     class main
     user root

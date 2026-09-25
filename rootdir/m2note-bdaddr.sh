@@ -1,10 +1,10 @@
 #!/vendor/bin/sh
 # Publish the factory Bluetooth address from MTK NVRAM as a system property.
 # Port of device/meizu/m95/rootdir/m95-bdaddr.sh (rationale there and in
-# forge-bluetooth.rc).  Source record: /data/nvram/APCFG/APRDEB/BT_Addr,
-# ap_nvram_btradio_struct, addr[6] first; on 710HVBR923RYK the bytes read
-# d8 6c 02 ab 6f 3f (FACT, od 2026-09-03) — the factory address the 14.1
-# stack shows as <factory-address-redacted>, natural byte order, U/L bit clear.
+# forge-bluetooth.rc), via the m5c copy.  Source record:
+# /data/nvram/APCFG/APRDEB/BT_Addr, ap_nvram_btradio_struct, addr[6] first —
+# the layout proven on the m5c.  The m2note libnvram names the same record
+# (FACT: strings vendor/lib/libnvram.so); its content on an m2note was never read.
 
 set -u
 
