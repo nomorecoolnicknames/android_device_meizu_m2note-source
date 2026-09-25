@@ -11,7 +11,7 @@ Meizu M2 Note (M571, MT6753, 8×A53). Продукт `lineage_m2note` (`-userdeb
 | Pie-обвязка (zygote в vendor-rc, RIL-рецепт, modem-rc, шимы, периферия) | `device/meizu/m5c` @`77e62e0` (первый коммит — снимок `git archive`), MT6753-решения — как в `a9-trees/m5s` |
 | Разделы, геометрия, cmdline, экран | живые захваты 15.1 (`export/m2note_flash_captures/`), заголовок доказанного boot-образа (sha256 `9b25c1e0…3a3f`) |
 | HWC, USB-rc, конфиги, keylayout | дерево и набор блобов LOS 15.1 m2note |
-| Блобы | набор 15.1 (1110 файлов) → `a9-trees/m2note/vendor/meizu/m2note` (918 правил, генератор) |
+| Блобы | набор 15.1 (1110 файлов) → `a9-trees/m2note/vendor/meizu/m2note` (912 правил, генератор) |
 | Ядро | prebuilt 3.18.19+ #108 (§3) |
 | Платформа | состояние ганвеста `m6rom16` — `designs/a9-trees/gunwest-m6rom16-heads-20260925.txt` |
 
