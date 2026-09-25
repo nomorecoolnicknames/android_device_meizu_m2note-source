@@ -99,6 +99,20 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.4-service.clearkey \
     android.hardware.gatekeeper@1.0-service.software
 
+# Health: no IHealth at all was installed.  FACT (found by the treble-m5c lane,
+# BRINGUP_STATE 2026-09-25 02:45): Android 13 system_server has no fallback —
+# HealthServiceWrapper throws without an IHealth
+# (frameworks/base/services/core/java/com/android/server/health/
+# HealthServiceWrapper.java:110-116, HealthServiceWrapperHidl.java:205-209),
+# and BatteryService goes down with it.  The AOSP 2.1 default impl reads
+# /sys/class/power_supply, no board library needed; m95 ships the same pair.
+# The -service carries its own VINTF fragment (android.hardware.health@2.1.xml,
+# hardware/interfaces/health/2.1/default/Android.bp:83), so manifest.xml does
+# not repeat it.
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
+
 # ---------------------------------------------------------------------------
 # Screen: 1080x1920, density 420 -> xxhdpi
 # ---------------------------------------------------------------------------
