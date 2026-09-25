@@ -1,5 +1,5 @@
 /*
- * MTK video-codec blob shim, LineageOS 16.0 on m5c.
+ * MTK video-codec blob shim, LineageOS 16.0 (m5c source, used for the m2note).
  *
  * libvcodecdrv.so ships from Flyme (Android 7.1) and imports
  * __pthread_gettid, which bionic dropped in Pie. Without it the whole

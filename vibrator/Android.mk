@@ -1,4 +1,4 @@
-# vibrator.mt6737m — the Pie libhardware vibrator module built under the
+# vibrator.mt6753 (m2note; m5c source; the stock vibrator.default.so here is the AOSP stub) — the Pie libhardware vibrator module built under the
 # platform name (peripherals lane 2026-09-03).
 #
 # FACT (smoke run on the live LOS 16, 13:09): android.hardware.vibrator@1.0-
@@ -19,7 +19,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := vibrator.mt6737m
+LOCAL_MODULE := vibrator.mt6753
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_SRC_FILES := ../../../../hardware/libhardware/modules/vibrator/vibrator.c
 LOCAL_C_INCLUDES := hardware/libhardware/include
