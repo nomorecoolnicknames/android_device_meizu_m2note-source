@@ -1,6 +1,12 @@
 # lineage_m2note — LineageOS 16.0 product for the Meizu M2 Note (M571, MT6753, arm64).
 # Donor: lineage_m5c.mk @77e62e0.
 
+# This product owns Pie-specific HAL modules and packaging. Fail before module
+# selection if a cloud worker accidentally combines it with another platform.
+ifneq ($(PLATFORM_SDK_VERSION),28)
+$(error lineage_m2note requires LineageOS 16.0 / Android SDK 28)
+endif
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
