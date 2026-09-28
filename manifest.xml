@@ -1,71 +1,4 @@
-<!--
-  Device HAL manifest (VINTF) for the Meizu M2 Note on LineageOS 20.0.
-
-  Why this file exists.  Without a DEVICE_MANIFEST_FILE there is no
-  /vendor/etc/vintf/manifest.xml and hwservicemanager answers getTransport()
-  with EMPTY for every vendor HAL.  Most clients survive that: system/libhidl's
-  getRawServiceInternal() only warns on an undeclared interface and still tries
-  hwbinder, then passthrough.
-
-  Wi-Fi is the exception.  frameworks/opt/net/wifi HalDeviceManager decides
-  whether a vendor HAL exists at all by asking the manifest directly:
-
-      isSupportedInternal():
-          IServiceManager.getTransport(IWifi.kInterfaceName, "default")
-              != Transport.EMPTY
-
-  With no manifest that returns EMPTY, WifiNative logs "Vendor Hal not
-  supported, ignoring start", IWifi.start() is never called, and
-  wifi_load_driver() never writes "1" into /dev/wmtWifi.  wlan0 is then never
-  created.
-
-  FACT specific to this handset: Wi-Fi DOES work on it.  The 2026-06-18 capture
-  v194_15.1_ais_full_scan shows "wlan0" in identity.txt alongside
-  sys.boot_completed=1, plus a full dumpsys wifi and a successful scan.  So the
-  two entries below describe a path that has been observed live here — unlike
-  the m5s tree, where the same two entries are still a hypothesis.
-
-  FACT on the other side: the 2026-07-06 subsystem matrix recorded TRB-FULL as
-  "error" with the cause "нет /vendor/etc/vintf/manifest.xml".  This file is the
-  direct answer to that finding.
-
-  Scope is deliberately narrow.  A HAL declared here but not actually served
-  hangs its client (the m681 light@2.0 lesson).  The LOS 15.1 tree for this
-  handset ships a 7.3 KB manifest listing a dozen HALs; that set is NOT copied,
-  because on this port none of those services is wired yet (see the
-  "NOT WIRED YET" block in device.mk).  Add an entry only together with runtime
-  proof that the service answers.
--->
-<!--
-  2026-09-25, FULL TREBLE (owner's directive 2026-09-24) — the "deliberately
-  narrow" rule above no longer holds, and this is why:
-
-  PRODUCT_FULL_TREBLE turns on PRODUCT_ENFORCE_VINTF_MANIFEST
-  (build/make/core/config.mk:684-693), libhidl is then built with
-  -DENFORCE_VINTF_MANIFEST (system/libhidl/Android.bp:222), and
-  registerAsService() refuses every HIDL service this manifest does not declare
-  as hwbinder (system/libhidl/transport/ServiceManagement.cpp:851-862); the
-  passthrough fallback of getService() is gone too (:770-771).  So under Treble
-  a SERVED-but-undeclared HAL is as fatal as a declared-but-unserved one:
-  without the composer entry SurfaceFlinger never gets a composer.  Every HIDL
-  service installed by device.mk is therefore declared below, and nothing else.
-  Services that ship their own VINTF fragment are NOT repeated here (the build
-  merges them): keymint, wpa_supplicant, gatekeeper@1.0-service.software,
-  drm@1.4-service.clearkey.
-
-  target-level 3 = FCM of Android 9, the lowest one Android 13 carries (m95
-  measured this: level 1 no longer exists, checkvintf exit 70).  Its
-  optional="false" HALs are all present: audio 6.0 + audio.effect 6.0 (>= 4.0
-  required), drm 1.0 + clearkey 1.4 fragment, gatekeeper (fragment),
-  composer 2.1, mapper 2.0, media.omx 1.0 (service from base_vendor.mk).
-
-  The IWifi entry stays although its service is still NOT WIRED (device.mk
-  item 3): that is the pre-existing decision of this tree, kept unchanged.
-
-  GNSS is NOT declared (and its service not installed): its legacy module
-  cannot load in the vendor namespace yet, and system_server blocks on a
-  declared IGnss (device.mk, GNSS block).
--->
+<!-- Android 11 HIDL services; see BRINGUP_STATE.md. -->
 <manifest version="1.0" type="device" target-level="3">
     <hal format="hidl">
         <name>android.hardware.audio</name>
@@ -201,15 +134,11 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <!--
-      android.hardware.wifi.supplicant is deliberately NOT declared here
-      (2026-09-24, lesson of m95 161682f).  The Android 13 wpa_supplicant of
-      this tree serves only the AIDL ISupplicant (CONFIG_CTRL_IFACE_AIDL,
-      external/wpa_supplicant_8/wpa_supplicant/android.config:332) and declares
-      it itself in its own VINTF fragment,
-      /vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml
-      (wpa_supplicant/Android.mk:1827).  The HIDL 1.1 entry that stood here
-      would be a declared-but-unserved HAL (see the rule above).  The service
-      itself is in rootdir/etc/init/init.m2note.wifi.rc.
-    -->
+
+    <hal format="hidl">
+        <name>android.hardware.keymaster</name>
+        <transport>hwbinder</transport>
+        <version>3.0</version>
+        <interface><name>IKeymasterDevice</name><instance>default</instance></interface>
+    </hal>
 </manifest>
