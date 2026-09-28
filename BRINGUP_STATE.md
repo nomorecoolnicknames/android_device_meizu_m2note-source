@@ -55,3 +55,7 @@ Expected marker: /dev/usb-ffs/adb is mounted and adb enumerates after boot.
 Rollback: duplicate FunctionFS mounts in a generated image or a proven different
 gadget ABI in the selected kernel. Verification: inspect generated init rc and
 exact kernel config before a separately authorized boot. Runtime untested.
+
+## Public source checkpoint, 2026-09-29
+
+Category: DIAGNOSTIC (publication and provenance only). The separate public export preserves original logical history with the filters and SHA mapping in PUBLICATION.json. Original private source repositories are unchanged. README.md now makes the omitted external build inputs visible at the repository entry point. Verification: full reachable-history audit, Git fsck, XML parsing and shell syntax checks; no compiler, phone or firmware mutation. Do not infer full ROM build or hardware success from publication. Rollback condition: any public payload violates the declared exclusion/privacy boundary; halt publication and review the offending content.
