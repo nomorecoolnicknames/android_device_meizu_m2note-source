@@ -1,21 +1,8 @@
 #!/bin/sh
-# check_prebuilt_kernel.sh — гейт свежести prebuilt-ядра m2note, вызывается из
-# BoardConfig.mk.  Печатает НИЧЕГО при успехе; при несовпадении печатает
-# указание в stderr и короткий маркер в stdout, по которому BoardConfig валит
-# сборку через $(error).
-#
-# Зачем: ядро попадает в образ через TARGET_PREBUILT_KERNEL, кладётся в дерево
-# РУКАМИ и молча устаревает.  На m5c это уже случилось: 2026-09-03 в дереве
-# лежало ядро от 28 августа, и чистая сборка отгрузила бы ROM без единой
-# правки того дня.  Ядро не входит ни в /system, ни в /vendor, поэтому никакой
-# инвентарь образов этого не ловит.
-#
-# ГРАНИЦА ГЕЙТА, названная явно: он проверяет СООТВЕТСТВИЕ образа дереву, а НЕ
-# актуальность дерева.  Зелёный ответ означает «образ совпадает с тем, что в
-# дереве записано», а не «в дереве лежит нужное ядро».
-#
-#   $1 — путь к Image.gz-dtb
-#   $2 — путь к файлу ожиданий (MD5 / VERSION)
+# Verify the prebuilt against the supplied MD5/VERSION expectations.
+# Success is silent; stdout on mismatch makes BoardConfig reject the input.
+# Usage: check_prebuilt_kernel.sh IMAGE EXPECTATIONS
+
 set -u
 IMG=$1
 EXP=$2
