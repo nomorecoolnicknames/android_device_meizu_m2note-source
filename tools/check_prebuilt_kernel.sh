@@ -40,7 +40,7 @@ cat >&2 <<MSG
            $want_ver
   найдено: $have_md5
            $have_ver
-Что делать (m2note): ядро собирается из /srv/forge/android/m2note/kernel-m2note-3.18-adapt
+Что делать (m2note): ядро собирается из дерева kernel-m2note-3.18-adapt
 (m2note_defconfig) в Image.gz-dtb со стоковым DTB m2note (md5 8b477a6c…);
 положить сюда и обновить $EXP.  Приклеенный DTB проверяет
 tools/check_appended_dtb.sh.
