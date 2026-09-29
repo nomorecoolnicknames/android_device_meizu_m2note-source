@@ -1,18 +1,4 @@
-# BoardConfig.mk for the Meizu M2 Note (m2note, model M571) — MT6753, arm64,
-# 8x Cortex-A53.  LineageOS 16.0 (Android 9 Pie), Treble stage A: a REAL
-# /vendor partition on custom, NO VNDK.
-#
-# Donor: device/meizu/m5c @77e62e0 (LOS 16.0, boots on the M5c), through the
-# MT6753 adaptations made for the m5s (a9-trees/m5s, same SoC).  The m2note
-# differs from both in what matters most here: it runs a 3.18.19 kernel (not
-# 4.9), its partition NUMBERS differ, its panel is 1080x1920, it uses the
-# legacy android_usb gadget, and it is the only one of the three with a live
-# history (LOS 15.1 reached sys.boot_completed on it).  Sources of truth:
-#   - live 15.1 captures   /srv/forge/android/export/m2note_flash_captures/
-#   - the LOS 15.1 tree    /srv/forge/android/meizu_m6/rom-lineage-15.1-meizu_m6-experimental/device/meizu/m2note
-#   - kernel tree          /srv/forge/android/m2note/kernel-m2note-3.18-adapt
-#   - the LOS 20 report    meizu-fleet/trees/M2NOTE_LOS20_TREE.md
-# Nothing in this tree has been built or run on the device (README.md).
+# Meizu M2 Note / MT6753 board configuration for LineageOS 16.0.
 
 DEVICE_PATH := device/meizu/m2note
 
@@ -65,14 +51,8 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset 
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-# Prebuilt lane: 3.18.19+ #108 — the kernel of that same proven image
-# (pages [2048, 2048+7654977) of it), sha256 87f5ec53...4080, md5 c98b27fe...
-# (identical to los20/device/meizu/m2note/prebuilt-kernel, PROVENANCE.md there).
-# Built from /srv/forge/android/m2note/kernel-m2note-3.18-adapt (m2note_defconfig).
-# What this kernel is: the v178 "pmic rail trace" debug build — the LAST one that
-# booted, not a release kernel.  3.18 is fine for Pie (m95 and the M6 run LOS 16
-# on 3.18).  FACT (m2note_defconfig): CONFIG_USB_G_ANDROID=y, no USB_CONFIGFS —
-# hence the legacy USB path in rootdir/; CONFIG_CPUSETS=y; CONFIG_SECCOMP_FILTER=y.
+# Use the pinned MT6753 prebuilt with its matching board DTB.
+# The checksum and appended-DTB checks below are required.
 TARGET_KERNEL_SOURCE :=
 TARGET_KERNEL_CONFIG :=
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt-kernel/Image.gz-dtb
@@ -108,12 +88,7 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# --- Treble stage A ---------------------------------------------------------
-# /vendor is a REAL partition: custom = mmcblk0p19, 512 MiB (FACT: live by-name
-# and /proc/partitions), and the 15.1 port already mounted it as /vendor
-# (kernel-m2note-3.18-adapt/HANDOFF_NEXT_AGENT.md:30).  VNDK OFF: the 15.1 tree
-# set BOARD_VNDK_VERSION := current and full Treble was never reached
-# (TRB-FULL = error, M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:47) — Marshmallow blobs.
+# The stock custom partition supplies /vendor without changing the partition table.
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
