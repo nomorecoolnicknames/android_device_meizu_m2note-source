@@ -1,7 +1,15 @@
-# Public source publication — 2026-09-29
+# Meizu M2 Note: LineageOS 18.1
 
-ReMeizu M2 Note, Android 11: actual development source history, published for review and contribution. **This source-only export is not a complete ROM build input or a flash-ready release.**
+Device configuration, init rules, SELinux policy and compatibility code for Android 11.
+Place this tree at `device/meizu/m2note` in the matching LineageOS source tree.
 
-Read [PUBLICATION.md](PUBLICATION.md) and [the exact source/history map](PUBLICATION.json) first: proprietary binaries, prebuilt kernels and board payloads without established redistribution provenance are omitted. Historical notes below describe the original private build view, including external inputs; their file-presence statements do not override the publication exclusions. Existing per-file licenses are retained; unmarked files still need a licensing decision before inclusion in an approved open-source-only workload.
+The build requires the referenced common and MediaTek platform trees, matching kernel
+source/headers and prebuilt image where selected, and this board’s proprietary inputs.
+Use `proprietary-files.txt`, dependency manifests and kernel checks provided by this branch.
+Prebuilt firmware and complete ROM images are not supplied by this repository.
 
-Branch status and next gates are recorded in [BRINGUP_STATE.md](BRINGUP_STATE.md).
+After providing those inputs, select `lunch lineage_m2note-userdebug`.
+These sources remain under development; compiling them does not certify all hardware
+or establish a tested installable release.
+
+Retain the copyright and license notices in individual files.

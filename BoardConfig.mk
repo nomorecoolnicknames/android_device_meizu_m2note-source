@@ -1,8 +1,6 @@
 # Copyright (C) 2026 The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
-# m2note: isolated LineageOS 18.1 / Android 11 staging product.
-# Derived only from this board's lineage-20-treble tree; see BRINGUP_STATE.md
-# for original commits, board evidence and unresolved build/runtime gates.
+# Device configuration for this Android branch.
 
 DEVICE_PATH := device/meizu/m2note
 

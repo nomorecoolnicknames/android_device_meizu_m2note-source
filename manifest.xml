@@ -1,4 +1,7 @@
-<!-- Android 11 HIDL services; see BRINGUP_STATE.md. -->
+<!--
+  Android HIDL service declarations.
+-->
+
 <manifest version="1.0" type="device" target-level="3">
     <hal format="hidl">
         <name>android.hardware.audio</name>

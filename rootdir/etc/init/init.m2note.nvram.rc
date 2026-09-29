@@ -1,18 +1,5 @@
-# init.m2note.nvram.rc — NVRAM-dependent fixes carried over from the m95
-# bring-up (meizu-fleet/BRINGUP_STATE.md 2026-09-24).
-#
-# Only the Bluetooth-address lesson applies here.  The fstab copy that m5c,
-# m5s and m95 need does NOT: this libnvram never reads /data/nvram/fstab.%s
-# (FACT, strings of vendor/meizu/m2note/proprietary/vendor/lib{,64}/
-# libnvram.so: it opens /dev/block/platform/mtk-msdc.0/by-name/nvram directly,
-# and nvram_daemon has no "cp fstab*").
-#
-# service.nvram_init=Ready: set by nvram_daemon (FACT, strings of
-# proprietary/vendor/bin/nvram_daemon: "service.nvram_init").  Its stock rc
-# (proprietary/vendor/etc/init/nvram_daemon.rc, excluded from the image with
-# the other Oreo rc files) starts it only on sys.boot_completed=1 or
-# vold.decrypt=trigger_restart_framework, so on this device the trigger
-# below fires late; the HAL needs the address only when Bluetooth is enabled.
+# Create /data/nvram before starting NVRAM consumers.
+# This board uses a real directory; do not substitute the M5c /nvdata symlink layout.
 
 # Bluetooth address from NVRAM (m95 lesson, device/meizu/m95 15d2dc9).
 # The AOSP BT HAL of this tree aborts with "No Bluetooth Address!" unless an
