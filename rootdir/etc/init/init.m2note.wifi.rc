@@ -1,25 +1,5 @@
-# init.m2note.wifi.rc — wpa_supplicant for Android 13 (m95 lesson,
-# device/meizu/m95 161682f, meizu-fleet/BRINGUP_STATE.md 2026-09-24).
-#
-# external/wpa_supplicant_8 of this tree is built with CONFIG_CTRL_IFACE_AIDL
-# (wpa_supplicant/android.config:332) and ships its own VINTF fragment that
-# declares the AIDL android.hardware.wifi.supplicant.ISupplicant/default
-# (wpa_supplicant/Android.mk:1827), so the framework asks init to start
-# exactly that name (ctl.interface_start).  The module installs an rc only
-# when WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY=true
-# (Android.mk:1828-1830), which this tree does not set, and
-# nothing in this image defines `service wpa_supplicant` (FACT: the tree
-# has no rc of its own, and m2note-vendor-blobs.mk excludes the Oreo
-# etc/init/wpa_supplicant.rc with the other 19 vendor rc files).
-# Without a service that declares the AIDL name Wi-Fi cannot start:
-# on m95, whose service still carried the 18.1 HIDL names, the log had
-# "Could not find 'aidl/android.hardware.wifi.supplicant.ISupplicant/default'
-# for ctl.interface_start" 361 times.
-#
-# The block below is m95's (init.m95.connectivity.rc), proven on the MX6:
-# wpa_supplicant running, scans see 2.4 and 5 GHz networks.  If the rc lane
-# later ports another `service wpa_supplicant`, keep only one of them — init
-# ignores a second definition of the same name.
+# Declare the AIDL supplicant interface expected by Android 13.
+# Keep a single wpa_supplicant service definition; init ignores duplicate service names.
 
 on post-fs-data
     # Control sockets (-O below) and the conf the AIDL HAL creates from the

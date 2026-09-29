@@ -69,45 +69,8 @@ MTK_HARDWARE := true
 
 TARGET_OTA_ASSERT_DEVICE := m2note,M571
 
-# ---------------------------------------------------------------------------
-# Kernel — PREBUILT 3.18, and it is a PLACEHOLDER
-# ---------------------------------------------------------------------------
-# Full provenance, including the four-way sha256 chain that proves this exact
-# image booted this exact handset, is in prebuilt-kernel/PROVENANCE.md.
-# Summary:
-#   md5      c98b27fec7f9452420f15bab39973ea1
-#   sha256   87f5ec53f1bd49cee96a7cdf0cfab25fc0f6e663d56f2e0b9fa95361a07f4080
-#   size     7 654 977 B
-#   version  Linux version 3.18.19+ (n8n@n8nagent) #108 SMP PREEMPT
-#            Thu Jun 18 11:02:00 CDT 2026
-#   source   export/m2note_flash_captures/runtime/
-#            v181_15.1_v178_regdump_20260618-121109/
-#            boot-after-v181-v178-readback-p9-16m.img  (kernel section)
-#
-# *** ANDROID 13 WILL NOT BOOT ON THIS KERNEL. ***
-# FACT: "# CONFIG_BPF_SYSCALL is not set" in the config of this 3.18 line
-# (/home/n8n/m5s_out/m2note_check/.config:165), and CONFIG_CGROUP_BPF is not
-# even a symbol in this kernel — grep over
-# /srv/forge/android/m2note/kernel-m2note-3.18-adapt/init/Kconfig finds
-# "config BPF_SYSCALL" at :1529 and nothing for CGROUP_BPF.  cgroup-BPF is a
-# 4.10 feature.  Compare the m5s 4.9, whose init/Kconfig:1281 does define it
-# and whose built config has CONFIG_CGROUP_BPF=y.
-# INFERENCE: A13 netd/bpfloader needs both; without them boot stops before
-# zygote.  The fix is a kernel port, not a tree change.
-#
-# FACT (appended-DTB gate, run on the copy in this tree):
-#   DTB at offset 7 587 015, 67 962 B, md5 8b477a6c3c16eb6ea20288de272cd10c,
-#   sha256 33a8779d0dd68e134b19ac4ff922c4b6d5e219e677087c5ad8885490653bc980;
-#   key counts "mt6753-mmc" = 2, "mediatek,msdc\0" = 0.
-# NOTE that this is NOT the m5c rule restated.  On m5c the project insists on
-# the byte-identical STOCK DTB because that tree's own DTS spells the eMMC node
-# "mediatek,msdc" while the driver binds "mediatek,mt6735m-mmc".  The m2note
-# kernel tree has no such defect: FACT,
-#   kernel-m2note-3.18-adapt/arch/arm64/boot/dts/mt6753.dtsi:37,45
-#   compatible = "mediatek,mt6753-mmc"
-# so a tree-built DTB is already correct here — and the DTB in the proven boot
-# image is exactly that.  Do not copy the m5c "stock DTB only" rule onto this
-# device without re-deriving it.
+# This product uses a pinned prebuilt kernel.
+# Android 13 additionally requires working BPF and cgroup support; a kernel image alone is not a boot guarantee.
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE :=
@@ -206,12 +169,7 @@ BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 
-# A-only.  Install path on this device is TWRP sideload; the project rule is
-# "sideload only, never `adb shell dd`" because the PTY mangles the stream
-# (FACT: HANDOFF_NEXT_AGENT.md:216-232).
-# FACT worth keeping next to the partition table: forced recovery on m2note is
-# the BCB flag "boot-recovery" in `para` = mmcblk0p8, NOT in a partition called
-# misc, and it is cleared with dd if=/dev/zero bs=1 count=32.
+# The para partition holds the bootloader control block; it is not a partition named misc.
 AB_OTA_UPDATER := false
 BOARD_USES_RECOVERY_AS_BOOT := false
 
@@ -219,20 +177,7 @@ BOARD_USES_RECOVERY_AS_BOOT := false
 TARGET_COPY_OUT_SYSTEM_EXT := system/system_ext
 TARGET_COPY_OUT_PRODUCT := system/product
 
-# ---------------------------------------------------------------------------
-# Vendor partition / VNDK
-# ---------------------------------------------------------------------------
-# Decision: REAL /vendor on custom (p19).  (Until 2026-09-24: "VNDK OFF";
-# superseded by the Treble block below.)
-#
-# FACT: custom = mmcblk0p19, 524 288 KiB = 512 MiB (by-name.txt +
-#   proc_partitions.txt above).
-# FACT: the LOS 15.1 port already mounts it as /vendor — "/custom mounted as
-#   /vendor" (HANDOFF_NEXT_AGENT.md:30), and the 15.1 BoardConfig carries
-#   TARGET_COPY_OUT_VENDOR := vendor with the same 512 MiB size.
-# FACT: the blob payload carried here is 363 MiB / 1110 files, which fits
-#   512 MiB with ~150 MiB of slack.  (This is tighter than on the m5s, whose
-#   set is 240 MiB — m2note's camera and modem sets are much larger.)
+# Keep vendor HAL and firmware inputs specific to the M2 Note stock baseline.
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912

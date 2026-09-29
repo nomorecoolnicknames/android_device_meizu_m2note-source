@@ -1,29 +1,6 @@
-# check_appended_dtb.sh — проверка приклеенного DTB в Image.gz-dtb m2note.
-#
-# Ключ различения для MT6753: узел eMMC обязан называться
-# compatible = "mediatek,mt6753-mmc".  Имя "mediatek,msdc" означает, что DTB
-# собран деревом, у которого этот узел не переименован — на таком образе
-# аппарат не найдёт корневую ФС.
-#
-# ВАЖНОЕ ОТЛИЧИЕ ОТ m5c, чтобы правило не переносили вслепую.  На m5c действует
-# жёсткое правило «только СТОКОВЫЙ DTB байт-в-байт», потому что DTS в его
-# дереве пишет "mediatek,msdc", а драйвер ждёт "mediatek,mt6735m-mmc".
-# На m2note такого расхождения НЕТ: FACT —
-#   /srv/forge/android/m2note/kernel-m2note-3.18-adapt/arch/arm64/boot/dts/
-#   mt6753.dtsi:37,45  ->  compatible = "mediatek,mt6753-mmc"
-# то есть DTB, собранный этим деревом, уже несёт правильное имя, и именно
-# такой DTB приклеен к образу, который довёл аппарат до boot_completed.
-# Поэтому эталон здесь — DTB ИЗ ДОКАЗАННОГО ОБРАЗА, а не «стоковый».
-#
-# ВАЖНО: гейт осмыслен только на СЖАТОМ Image.gz-dtb.  На сыром
-# arch/arm64/boot/Image строки msdc читаются из самого драйвера и вывод был бы
-# ложным; поэтому не-gzip вход отвергается отдельным кодом 2.
-#
-#   ./check_appended_dtb.sh <Image.gz-dtb> [ожидаемый-md5-dtb]
-#
-# Без второго аргумента сверяет с DTB из образа v178
-# (67 962 Б, md5 8b477a6c3c16eb6ea20288de272cd10c,
-#  sha256 33a8779d0dd68e134b19ac4ff922c4b6d5e219e677087c5ad8885490653bc980).
+# Validate the appended stock M2 Note DTB, not strings inside an uncompressed kernel.
+# The MMC binding is mediatek,mt6753-mmc; the generic mediatek,msdc binding is incompatible.
+# Only a gzip Image.gz-dtb input is accepted.
 set -u
 
 STOCK_MD5=8b477a6c3c16eb6ea20288de272cd10c

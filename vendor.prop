@@ -1,13 +1,5 @@
-#
-# vendor.prop for the Meizu M2 Note (m2note, M571) — LineageOS 20.0
-#
-# These go to /vendor/build.prop.  Sources: the LOS 15.1 tree's system.prop for
-# this handset, and live getprop captures of the running 15.1 build under
-# /srv/forge/android/export/m2note_flash_captures/runtime/.
-#
-# CAVEAT: on these Meizu MTK devices property_load_boot_defaults() runs before
-# /vendor is mounted, so /vendor/build.prop is not readable by early init.
-# Anything needed before mount_all belongs in PRODUCT_PROPERTY_OVERRIDES.
+# Properties needed before mount_all belong in PRODUCT_PROPERTY_OVERRIDES.
+# /vendor/build.prop is unavailable before the vendor filesystem is mounted.
 
 # --- Platform identity -----------------------------------------------------
 # FACT (capture v212_live_20260620-080956/getprop.txt):

@@ -1,36 +1,5 @@
-# fstab.mt6735 — Meizu M2 Note (m2note, M571), LineageOS 20.0 / Android 13.
-#
-# Android-13 changes vs the LOS 15.1 fstab that runs on this handset:
-#
-#  1. first_stage_mount on /system and /vendor.  A13 has no "mount /system
-#     later from init.rc" mode; DoFirstStageMount() must bring both up and then
-#     SwitchRoot() into /system.
-#  2. /vendor is a REAL partition on `custom`.
-#     FACT: custom = mmcblk0p19, 524 288 KiB = 512 MiB (live by-name.txt and
-#     /proc/partitions, recovery session 2026-05-30), and the LOS 15.1 port
-#     already mounts it as /vendor (HANDOFF_NEXT_AGENT.md:30).
-#  3. forceencrypt dropped from /data — A13 uses FBE.
-#     CORRECTION 2026-09-24: /data carries NO encryption flag at all.  The
-#     encryptable=footer this note used to keep is rejected by Android 13
-#     unless vold_managed is also set (system/core/fs_mgr/fs_mgr_fstab.cpp:
-#     317-322, "FDE is no longer supported"), and that rejection fails the
-#     WHOLE fstab, so first-stage init could not have mounted /system.
-#     Decision (team lead, 2026-09-24): /data unencrypted for now; FBE is a
-#     separate task.
-#
-# The by-name directory is resolved at runtime; partition NUMBERS are never
-# written here.  That rule matters more on this device than on its siblings:
-# the m2note GPT numbering is NOT the m5c/m5s numbering (here boot=p9,
-# recovery=p10, para=p8, expdb=p12, custom=p19; there boot=p7, recovery=p8,
-# para=p6, expdb=p10, custom=p17).
-#
-# FACT: the long node path below is the one the device actually uses
-# ("/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ext4"
-#  in every captured /proc/mounts).  The short mtk-msdc.0/by-name form exists
-# only as an init-created symlink alias — and captures show BOTH forms live at
-# once, which is why the long one is used here.
-#
-# <src>                                                                        <mnt_point>  <type>  <mnt_flags and options>                                               <fs_mgr_flags>
+# First-stage init mounts /system and /vendor before switch_root.
+# The vendor image uses the board custom partition.
 
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system                   /system      ext4    ro,barrier=1                                                          wait,first_stage_mount
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/custom                   /vendor      ext4    ro,barrier=1                                                          wait,first_stage_mount
