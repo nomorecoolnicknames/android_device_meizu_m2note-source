@@ -1,17 +1,3 @@
-# hwcomposer.mt6753 for the m2note — the m2note's OWN source HWC 1.1 from the
-# LOS 15.1 tree (device/meizu/m2note/hwcomposer, copied unchanged), NOT the
-# m5c forge_hwc: forge_hwc carries the 4.9 disp_session UAPI, which differs
-# from the m2note 3.18 kernel's in 626 lines; this source's disp_session.h is
-# byte-identical to kernel-m2note-3.18-adapt HEAD
-# drivers/misc/mediatek/video/include/disp_session.h (FACT, cmp 2026-09-25).
-# It is the HWC that 15.1 ran on this handset (system.prop v212 notes, "panel
-# functional; HWC and gralloc HALs run", M2NOTE_SUBSYSTEM_STATUS DISP-HWC).
-# The stock hwcomposer.mt6753.so blob is left out of the vendor list.
-# libgralloc_extra: linked against the vendor/mediatek source module (defined for
-# m2note), but at runtime the BLOB copy is what lands in /vendor/lib* — the
-# vendor list installs it and PRODUCT_COPY_FILES wins the expected "overriding
-# commands" — exactly the 15.1 state (device_m2note.mk:497-510).  This HWC calls
-# only gralloc_extra_query, which the blob exports (FACT, readelf).
 LOCAL_PATH := $(call my-dir)
 
 # m2note source HWC 1.1 (direct-framebuffer present; replacement for the

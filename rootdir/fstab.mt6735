@@ -1,13 +1,3 @@
-# fstab.mt6735 for the Meizu M2 Note — LineageOS 16.0, Treble stage A.
-# Entries: the m5c LOS 16 set.  m2note facts that decide them:
-#   - by-name path /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/ —
-#     FACT on this handset with this 3.18 kernel line: every captured
-#     /proc/mounts of the running 15.1 build (M2NOTE_LOS20_TREE.md §5).
-#   - custom = mmcblk0p19, 512 MiB -> /vendor (the 15.1 port already did this).
-#   - the m2note numbering is NOT the m5c/m5s one (boot p9, recovery p10,
-#     para p8, expdb p12, custom p19) — which is why numbers are never written
-#     here.
-# No first-stage/DT fstab (stock DTB byte for byte); forceencrypt dropped.
 
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system     /system     ext4  ro                                                        wait
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/custom     /vendor     ext4  ro                                                        wait
@@ -21,7 +11,6 @@
 /devices/mtk-msdc.0/11240000.msdc1*  auto  auto  defaults  voldmanaged=sdcard1:auto
 /devices/platform/mt_usb*            auto  vfat  defaults  voldmanaged=usbotg:auto
 
-# zram — mandatory on 2 GB RAM under Pie (plan §3); 512 MiB.
 /dev/block/zram0  none  swap  defaults  zramsize=536870912
 
 # Raw emmc slots (recovery/OTA tooling)

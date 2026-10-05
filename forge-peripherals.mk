@@ -18,11 +18,6 @@ PRODUCT_COPY_FILES += \
     external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_template.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant.conf \
     device/meizu/m2note/rootdir/forge-connectivity.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/forge-connectivity.rc
 
-# --- Sensors / lights / vibrator --------------------------------------------
-# FACT (ls lib*/hw): sensors.mt6753.so, lights.default.so (lib64), memtrack
-# present; vibrator.default.so is the 5.8 KB AOSP stub (M2NOTE_LOS20_TREE /
-# m2note-vendor-blobs.mk exclusion note) and is left out; vibrator.mt6753 is the
-# Pie libhardware module (timed_output first — the 3.18 MTK path).
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
@@ -104,10 +99,6 @@ PRODUCT_COPY_FILES += \
     device/meizu/m2note/configs/hostapd/hostapd.accept:$(TARGET_COPY_OUT_VENDOR)/etc/hostapd/hostapd.accept \
     device/meizu/m2note/configs/hostapd/hostapd.deny:$(TARGET_COPY_OUT_VENDOR)/etc/hostapd/hostapd.deny
 
-# Thermal: thermal_manager reads /etc/.tp/thermal.conf (FACT, strings).
-# THERMAL row of M2NOTE_SUBSYSTEM_STATUS (07-06) says thermal_manager was
-# stopped on 15.1 and the config path "still needs verification" — this is the
-# path the binary names.
 PRODUCT_COPY_FILES += \
     device/meizu/m2note/configs/thermal/thermal.conf:system/etc/.tp/thermal.conf \
     device/meizu/m2note/configs/thermal/thermal.off.conf:system/etc/.tp/thermal.off.conf \

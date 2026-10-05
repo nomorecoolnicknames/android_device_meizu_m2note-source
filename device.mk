@@ -1,13 +1,6 @@
 LOCAL_PATH := device/meizu/m2note
 
-# Device makefile for the Meizu M2 Note on LineageOS 16.0.  Donor:
-# device/meizu/m5c @77e62e0 via the MT6753 choices of the m5s tree; every
-# block says what is m2note-specific and on which evidence.  Nothing here has
-# been built or run on the device (README.md).
 
-# Vendor blobs: vendor/meizu/m2note (a9-trees/m2note/vendor/meizu/m2note), list
-# generated from the 15.1 stock extraction by meizu-fleet/tools/a9-gen-vendor-blobs.py.
-# Hard inherit: a missing vendor tree / proprietary mount must stop the build.
 $(call inherit-product, vendor/meizu/m2note/m2note-vendor.mk)
 
 PRODUCT_DEVICE := m2note
@@ -16,9 +9,6 @@ PRODUCT_DEVICE := m2note
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Dalvik heap set explicitly (m95 lesson).  The m2note is a 2 GB phone
-# (INFERENCE: model spec; no meminfo capture was checked) — the m5c set that
-# boots LOS 16 on 2 GB.
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapgrowthlimit=192m \
@@ -62,11 +52,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 
-# Permission xmls.  Sensors: FACT, live 15.1 dumpsys sensorservice lists
-# accel, magnetometer, orientation, gyro, light, proximity
-# (M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:62) — the gyroscope IS declared (the
-# LOS 20 tree left it out without evidence).  No fingerprint (FACT: the 15.1
-# tree itself excludes the FPC blobs, "m2note has no fingerprint sensor").
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
@@ -93,10 +78,6 @@ PRODUCT_PACKAGES += \
     vndservicemanager \
     servicemanager
 
-# Graphics.  hwcomposer.mt6753 is the m2note's own 15.1 source HWC 1.1
-# (hwcomposer/Android.mk says why, FACT: its UAPI == the 3.18 kernel's); the
-# stock blob is left out of the vendor list.  composer@2.1 passthrough wraps it
-# through libhwc2on1adapter (m5c stage 3).
 PRODUCT_PACKAGES += \
     hwcomposer.mt6753 \
     android.hardware.graphics.composer@2.1-impl \
@@ -106,20 +87,10 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl \
     libhwc2on1adapter
 
-# Keymaster: AOSP 3.0 impl (m5c: keystore aborts without a keymaster HAL).
-# The m2note set carries keystore.default.so (m5c carries one too and boots).
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
 
-# Props early init actually reads on this no-first-stage-mount layout
-# (/system/build.prop, m5c 2026-08-29).  USB: NO sys.usb.configfs / controller
-# here — the m2note kernel has the legacy android_usb gadget, driven by
-# rootdir/init.mt6735.usb.rc and the platform init.usb.rc (configfs=0 path).
-# sys.usb.ffs.aio_compat=1 (m5c usb-shell 2026-08-29): Pie adbd uses AIO on
-# FunctionFS by default, and on the MTK musb path AIO wedged bulk-IN.  Oreo
-# adbd (what ran on 15.1) did not use AIO, so 15.1 proves nothing here —
-# kept on (review 2026-09-25); harmless where AIO works.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.zygote=zygote64_32 \
     persist.sys.usb.config=adb \
@@ -168,10 +139,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     forge_vendor_firmware_link
 
-# Blob ABI shims paired in BoardConfig.mk TARGET_LD_SHIM_LIBS.  The linker loads
-# a shim like a DT_NEEDED library (bionic linker.cpp:1368-1371 @29f0b5db): if
-# the file is not in the image, the CONSUMER fails to load — so they must be
-# installed (review 2026-09-25: they were paired but not packaged).
 PRODUCT_PACKAGES += \
     libshim_vcodec_m2note \
     libshim_icu53_m2note

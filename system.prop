@@ -27,10 +27,6 @@ persist.mtk.wcn.fwlog.status=0
 service.wcn.driver.ready=no
 persist.mtk.combo.coredump=no
 
-# --- Telephony (dual SIM, LTE) ------------------------------------------------
-# HONEST NOTE: on 15.1 telephony was broken (gsm.sim.state=ABSENT,ABSENT with a
-# live modem, M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:60), and the last proven
-# boot ran with m2note.disable_md1=1.  These are configuration, not evidence.
 rild.libpath=/vendor/lib64/mtk-ril.so
 rild.libargs=-d /dev/ttyC0
 ro.telephony.sim.count=2
@@ -78,12 +74,7 @@ ro.opengles.version=196609
 # mounted upside down (15.1 tree: ro.sf.hwrotation=180).
 ro.sf.lcd_density=420
 ro.sf.hwrotation=180
-# Capacitive/hardware keys; the 15.1 build ran with mainkeys=1 and mBack works
-# (INPUT-MBACK = good, M2NOTE_SUBSYSTEM_STATUS_2026-07-06.md:51).
 qemu.hw.mainkeys=1
-# FACT on THIS handset (M2NOTE_FULL_ROM_ASSESSMENT_2026-07-02.md, "BOOTLOOP
-# ЗИПА"): debug.hwui.use_buffer_age=true bootlooped the consolidated ROM
-# (~160 s hang, wdt reboot); false booted clean and held >500 s.
 debug.hwui.use_buffer_age=false
 # Mali-T720 partial-update tearing (m5c lesson).  Name checked against
 # frameworks/base @a1553b93f0 libs/hwui/Properties.h:152.

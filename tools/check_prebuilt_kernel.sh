@@ -40,10 +40,9 @@ cat >&2 <<MSG
            $want_ver
   найдено: $have_md5
            $have_ver
-Что делать (m2note): ядро собирается из дерева kernel-m2note-3.18-adapt
-(m2note_defconfig) в Image.gz-dtb со стоковым DTB m2note (md5 8b477a6c…);
-положить сюда и обновить $EXP.  Приклеенный DTB проверяет
-tools/check_appended_dtb.sh.
+Build the pinned m2note-3.18-native source with m2note_defconfig and its own
+compiled DTB. See README.md and prebuilt-kernel/EXPECTED.txt. The appended
+DTB is checked by tools/check_appended_dtb.sh.
 
 ГРАНИЦА ЭТОГО ГЕЙТА: он не проверяет, что prebuilt АКТУАЛЕН.  Совпадение
 md5 означает лишь «образ соответствует дереву»; отстало ли само дерево от
