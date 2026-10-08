@@ -1,0 +1,4 @@
+
+/nvdata             u:object_r:rootfs:s0
+/protect_f          u:object_r:rootfs:s0
+/protect_s          u:object_r:rootfs:s0

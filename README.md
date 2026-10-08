@@ -41,6 +41,12 @@ lunch lineage_m2note-userdebug
 mka bacon
 ```
 
+## Stock partition build
+
+This branch includes the `fit1536` product configuration for the original 1536 MiB system partition. It removes selected bundled apps and CJK fonts to reduce the image size; see [the installed trim list](fit1536/m2note-fit1536-trim.txt) for the visible tradeoffs. It requires no repartitioning. The current configuration also adds root mount labels and omits the incompatible source `libtinycompress` dependency; the matching external audio libraries remain required.
+
+These source changes have not been validated on a physical M2 Note. Full image validation and component testing remain separate requirements.
+
 ## Next steps
 
 Complete missing build inputs, produce a reproducible ROM, then test boot and each subsystem on this device.

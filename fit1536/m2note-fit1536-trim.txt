@@ -1,0 +1,22 @@
+m2note LineageOS 20 (Treble) — variant "fit1536"
+================================================
+
+This build is the TRIMMED variant of lineage_m2note: its /system is shaped to
+fit the 1536 MiB stock system partition (p23) of the Meizu M2 Note (M571)
+without repartitioning the eMMC.
+
+Removed, via LOCAL_OVERRIDES_MODULES in device/meizu/m2note/Android.mk
+(module m2note_fit1536_trim):
+
+  NfcNci                     ~13 MiB   no NFC controller on this unit
+  ThemePicker                ~30 MiB   Styles & wallpapers picker
+  Seedvault                  ~20 MiB   encrypted backup app
+  StorageManager             ~12 MiB   Settings "free up space"
+  EmergencyInfo              ~12 MiB   emergency info editor
+  Gallery2                   ~12 MiB   stock gallery
+  NotoSerifCJK-Regular.ttc   ~24 MiB   CJK serif font
+  NotoSansCJK-Regular.ttc    ~19 MiB   CJK sans font
+
+Consequence you can see from the UI: Chinese / Japanese / Korean text renders
+as tofu boxes, there is no wallpaper or style picker, no gallery app, no
+backup app.  Other hardware and software behavior still requires validation.
